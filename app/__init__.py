@@ -1,7 +1,20 @@
 from flask import Flask
 
-app = Flask(__name__)
 
-from app.users.view import user_bp
+# from instance
+from instance.config import app_config
 
-app.register_blueprint(user_bp)
+
+def create_app(config_name):
+    app = Flask(__name__, instance_relative_config=True)
+    # app.config.from_object(app_config[config_name])
+    app.config.from_pyfile('config.py')
+
+    # blueprint registration
+    from app.users.view import user_bp
+
+    app.register_blueprint(user_bp)
+
+    return app
+
+

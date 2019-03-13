@@ -26,9 +26,9 @@ def signup():
         users.append(new_user.to_dictionary())
         return jsonify(
             {
-                "status": 200, 
+                "status": 201, 
                 "message":"You have successfully created an account", 
                 "data":new_user.to_dictionary()
             }
-        ), 200
+        ), 201
 
