@@ -1,8 +1,84 @@
 html, body{
-    padding: 0;
-    margin: 0;
+    background-color: rgb(220,220,220);
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	font-family: sans-serif;
 }
-
+/* .clearbox:after {
+	content: "";
+	display: block;
+	height: 0;
+	width: 0;
+	clear: both;
+} */
+/* dashboard admin */
+.slidebar {
+	width: 20%;
+	min-height: 690px;
+	float: left;
+	border-right: 1px solid rgb(235,235,235);
+	background-color: rgb(247,247,247);
+}
+.slidebar .profile-pic {
+	height: 145px;
+	border-bottom: 1px solid rgb(235,235,235);
+}
+.slidebar ul {
+	padding: 0;
+	margin:0;
+}
+.slidebar li {
+	list-style-type: none;
+	margin: 0;
+	position: relative;
+}
+.slidebar li:before {
+	content: "";
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	position: absolute;
+	display: block;
+	line-height: 40px;
+	color: rgb(102,102,102);
+	right: 20px;
+	-webkit-font-smoothing: antialiased;
+}
+.slidebar ul a {
+	color: rgb(140,140,140);
+	text-decoration: none;
+	font:16px/40px helvetica,verdana,sans-serif;
+	box-sizing:border-box;
+	border-bottom: 1px solid rgb(235,235,235);
+	display: block;
+	box-shadow:inset 0 1px 0 rgb(255,255,255);
+	text-indent: 20px;
+	text-transform: capitalize;
+}
+.slidebar li:hover a {
+	background-color: rgb(255,255,255);
+	box-shadow: 1px 0 0 rgb(255,255,255),inset 10px 0 0 -1px rgb(234,83,63);
+}
+/* main admin panel */
+.main {
+	float: left;
+	width: 79.9%;
+	height: 690px;
+	background-color: rgb(255,255,255);
+	position: relative;
+	font-family: helvetica,verdana,sans-serif;
+}
+/* main content */
+/*mainContent*/
+.mainContent h4 {
+	line-height: 1;
+	font-size: 18px;
+	margin: 1.3em 0 1em;
+	margin-left: 17px;
+}
+/* end of dashboard */
 /* header */
 .header {
     overflow: hidden;
