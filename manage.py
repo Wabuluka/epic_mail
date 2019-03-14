@@ -21,7 +21,7 @@ manager = Manager(app)
 @manager.command
 def test():
     """Runs the unit tests without test coverage."""
-    tests = unittest.TestLoader().discover('epicmail/tests', pattern='test*.py')
+    tests = unittest.TestLoader().discover('epicmail/tests', pattern='test_*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0

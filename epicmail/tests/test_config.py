@@ -1,7 +1,7 @@
 # epicmail/app/tests/test_config.py
 
 
-# import unittest
+import unittest
 
 from flask import current_app
 from epicmail.app import app
@@ -32,3 +32,7 @@ class TestProductionConfig(TestCase):
 
     def test_app_is_production(self):
         self.assertTrue(app.config['DEBUG'] is False)
+
+
+if __name__ == '__main__':
+    unittest.main()
