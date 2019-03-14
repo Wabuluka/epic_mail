@@ -7,11 +7,11 @@ from epicmail.app import app
 
 COV = coverage.coverage(
     branch=True,
-    include='project/*',
+    include='epicmail/*',
     omit=[
-        'project/tests/*',
-        'project/server/config.py',
-        'project/server/*/__init__.py'
+        'app/tests/*',
+        'epicmail/app/config.py',
+        'epicmail/app/*/__init__.py'
     ]
 )
 COV.start()
