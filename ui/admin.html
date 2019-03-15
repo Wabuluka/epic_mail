@@ -1,54 +1,74 @@
-<!doctype <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>epicmail - signup</title>
+    <title>epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="resources/css/custom.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/navigation.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/forms.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/admin.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/responsive.css">
 </head>
 <body>
-<div class="header">
+
+<nav class="top-navigation" id="myTopnav">
     <div class="container">
-        <a href="#default" class="logo">epicmail</a>
-        <div class="header-right">
-            <a href="#contact">Sign Up</a>
+        <a href="">About</a>
+        <a href="index.html">Logout</a>
+        <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </div>
+</nav>
+
+<div class="admin">
+    <div class="container">
+        <div class="admin-column-1">
+            <div class="admin-profile-panel">
+                <div class="profile">
+                    username
+                </div>
+            </div>
+            <div class="admin-menu-panel">
+                <div class="side-menu-one">
+                    <a href="">Create Mail</a>
+                    <a href="">Inbox</a>
+                    <a href="">Sent Mails</a>
+                    <a href="">Drafts</a>
+                    <a href="">Deleted</a>
+                </div>
+            </div>
+            <div class="admin-menu-panel">
+                <div class="side-menu-one">
+                    <a href="">Create Group</a>
+                    <a href="">Group 1</a>
+                    <a href="">Group 2</a>
+                    <a href="">Group 3</a>
+                    <a href="">Archived</a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="admin-column-2">
+            <div class="admin-search">
+                    <input type="text"  placeholder="Search..">
+            </div>
+            <div class="admin-activity">
+                <p>O</p>
+            </div>
         </div>
     </div>
 </div>
 
-
-    <div class="admin-panel clearbox">
-        <div class="slidebar">
-            <div class="profile-pic">
-                <a href=""></a>
-            </div>
-            <ul>
-                <li><a href="#dashboard" id="targeted">dashboard</a></li>
-                <li><a href="#create">Create Mail</a></li>
-                <li><a href="#inbox">Inbox</a></li>
-                <li><a href="#sent">Sent Mails</a></li>
-                <li><a href="#draft">Drafts</a></li>
-                <li><a href="#deleted">Deleted</a></li>
-                <li><a href="#create-group">Create New Group</a></li>
-            </ul>
-        </div>
-    </div> 
-    <div class="main">
-        <div class="mainContent clearfix">
-            <div id="posts">
-                <h2 class="header">posts</h2>
-            </div>
-        </div>
-    </div>
-
-
 <footer>
     <div class="container">
-        <p style="float:right">Footer</p>
+        <p><small>dwabuluka</small></p>
     </div>
 </footer>
-
-    <script src="resources/js/custom.js"></script>
+<script src="resources/js/custom.js"></script>
 </body>
 </html>
