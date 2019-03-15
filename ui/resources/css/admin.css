@@ -1,0 +1,45 @@
+.admin{
+    height: 600px;
+    background: #444;
+}
+.container p{
+    padding: 5px;
+    margin: 0;
+    color: #fff;
+}
+.admin-column-1{
+    float: left;
+    width: 20%;
+}
+.admin-profile-panel{
+    margin: 5px;
+    height: 100px;
+    background: #333;
+}
+.admin-column-2{
+    float: left;
+    width: 80%;
+}
+.admin-menu-panel{
+    margin: 5px;
+    min-height: 100px;
+    background: #333;
+}
+.admin-menu-panel .side-menu-one a{
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+    background: #333;
+    margin-top: 5px;
+    border-bottom: 1px solid #444;
+}
+.admin-menu-panel .side-menu-one a:hover{
+    background: #555;
+}
+.admin-search input{
+    background: #222;
+}
+.admin-search input:focus-within{
+    background: rgb(88, 71, 13);
+}
