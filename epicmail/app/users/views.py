@@ -1,6 +1,7 @@
 # epicmail/app/users/views.py
 
 from flask import Blueprint, request, make_response, jsonify
+from epicmail.app import bcrypt
 from flask.views import MethodView
 from epicmail.app.models import User, users
 
@@ -46,13 +47,51 @@ class RegisterUser(MethodView):
             }
             return make_response(jsonify(responseObject)), 401
 
+class LoginUser(MethodView):
+    """Users with accounts can log in"""
+
+    def post(self):
+        # login the user
+        data_posted = request.get_json((True)
+        email = data_posted.get("email", None)
+        password_hash = data_posted.get("password_hash", None)
+        
+
+
+        for user in users:
+            if email == user.email:
+                bcrypt.check_password_hash(user.password_hash, password_hash)
+                # logged_in = user
+                responseObject = {
+                    'status': 'success',
+                    'message': 'Successfully logged in.'
+                }
+                return make_response(jsonify(responseObject)), 200
+        responseObject ={
+            'status': 'Not possible',
+            'message': 'there is something wrong.' 
+        }
+        return make_response(jsonify(responseObject)), 404
+
+        
+        
+
+
+        
+
 # define the API resources
-registration_view = RegisterUser.as_view('user_blueprint')
+registration_view = RegisterUser.as_view('register_user')
+login_view = LoginUser.as_view('login_user')
 
 # add Rules for API Endpoints
 user_blueprint.add_url_rule(
     '/auth/signup',
     view_func=registration_view,
+    methods=['POST']
+)
+user_blueprint.add_url_rule(
+    '/auth/login',
+    view_func=login_view,
     methods=['POST']
 )
                 

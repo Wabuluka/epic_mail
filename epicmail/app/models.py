@@ -13,6 +13,8 @@ users = []
 class User:
     """User Model contains the properties stored for a user"""
 
+    
+
     def __init__(self, user_id, email, firstname, lastname, password_hash):
         self.user_id = user_id
         self.firstname = firstname
