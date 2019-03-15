@@ -52,14 +52,14 @@ class LoginUser(MethodView):
 
     def post(self):
         # login the user
-        data_posted = request.get_json((True)
-        email = data_posted.get("email", None)
-        password_hash = data_posted.get("password_hash", None)
+        data_posted = request.get_json(force=True)
+        email = data_posted['email']
+        password_hash = data_posted['password_hash']
         
 
 
         for user in users:
-            if email == user.email:
+            if user. email == email:
                 bcrypt.check_password_hash(user.password_hash, password_hash)
                 # logged_in = user
                 responseObject = {
