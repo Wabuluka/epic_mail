@@ -1,0 +1,16 @@
+language: python
+python:
+  - "3.6"  
+
+install:
+- pip install -r requirements.txt
+
+script:
+# - pytest -v --cov app --cov-report term-missing
+- pytest --cov
+
+after_success:
+  - coveralls
+
+notifications:
+  email: false
