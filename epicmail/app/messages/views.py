@@ -62,6 +62,12 @@ class GetSpecificMail(MethodView):
         return make_response(jsonify(responseObject)), 401
 
 
+class GetAllMail(MethodView):
+    """User fetches all the mails"""
+
+    def get(self):
+        pass
+
 
 
 # define the Messages rources

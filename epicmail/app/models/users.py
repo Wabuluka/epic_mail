@@ -36,6 +36,7 @@ class User:
         }
     
     # jwt token generator
+    # @staticmethod
     def encode_auth_token(self, user_id):
         """Encode Tokens"""
         try:
@@ -57,7 +58,11 @@ class User:
     def decode_auth_token(auth_token):
         """Decode the auth token"""
         try:
-            payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
+            payload = jwt.decode(
+                auth_token,
+                app.config.get('SECRET_KEY'),
+                algorithm='HS256'
+                )
             return payload['sub']
         except jwt.ExpiredSignatureError:
             return 'Your signature has expired, Please login again.'

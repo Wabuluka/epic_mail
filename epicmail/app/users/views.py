@@ -4,10 +4,9 @@ from flask import Blueprint, request, make_response, jsonify
 from epicmail.app import bcrypt
 from flask.views import MethodView
 from epicmail.app.models.users import User, users
-
 # special validatiors
 # from epicmail.app.handlers.validatiors import Validations
-
+usr = User
 
 user_blueprint = Blueprint('user', __name__)
 
@@ -58,7 +57,7 @@ class RegisterUser(MethodView):
                 password_hash=password_hash
             )
             users.append(new_user.to_dictionary())
-            auth_token = new_user.encode_auth_token(new_user.user_id)
+            auth_token = new_user.encode_auth_token(new_user.user_id) 
             responseObject = {
                 "status": 201,
                 "message": "You have successfully created an account",
@@ -75,7 +74,7 @@ class RegisterUser(MethodView):
 
 class LoginUser(MethodView):
     """Users with accounts can log in"""
-
+    
     def post(self):
         # login the user
         data_posted = request.get_json(force=True)
@@ -85,13 +84,14 @@ class LoginUser(MethodView):
         for user in users:
             if user['email'] == email:
                 bcrypt.check_password_hash(user['password'], password_hash)
-                # auth_token = users.decode_auth_token(user.user_id)
+                # auth_token = user.(encode_auth_token('user_id'))
+                # auth_token = encode_auth_token(user.user_id)
                 user_logged_in = user
                 responseObject = {
                     'status': 200,
                     'message': 'Successfully logged in.',
-                    # 'token': auth_token.decode(),
-                    # 'data': user[0]
+                    'user':user_logged_in,
+                    # 'token': auth_token.decode()
                 }
                 return make_response(jsonify(responseObject)), 200
 
