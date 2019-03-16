@@ -43,3 +43,58 @@
 .admin-search input:focus-within{
     background: rgb(88, 71, 13);
 }
+.admin-activity .activity-tab {
+    display: block;
+    margin-top: 5px;
+    padding: 5px;
+    border: #333 dotted 1px;
+    width: 869px;
+    /* height: 50px; */
+    background: #555;
+    line-height: 50px;
+}
+.admin-activity .activity-tab p{
+    color: #ff9;
+}
+.admin-activity .activity-tab p button{
+    color: #ff9;
+    width: 90px;
+    margin-top: -30px;
+}
+
+/* when the screen gets less than 600px in width hide the main navigation links except the right dashes */
+@media screen and (max-width: 600px) {
+    .admin{
+        height: 100%;
+        background: #444;
+    }
+    .admin-column-1 {
+        display: none;
+        /* margin: auto;
+        width: 90%; */
+    }
+    .admin-column-2 .admin-search{
+        margin: auto;
+        width: 90%;
+    }
+    .admin-column-2 .admin-activity{
+        margin: auto;
+        width: 90%;
+    }
+    .admin-activity .activity-tab {
+        display: block;
+        margin-top: 5px;
+        padding: 5px;
+        border: #333 dotted 1px;
+        width: 100%;
+        min-height: 50px;
+        background: #555;
+        line-height: 50px;
+    }
+    .admin-activity .activity-tab p button{
+        display: none;
+    }
+    .admin-activity .activity-tab p{
+        font-size: 12px;
+    }
+}
