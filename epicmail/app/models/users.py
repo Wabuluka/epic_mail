@@ -8,13 +8,10 @@ from epicmail.app import app, bcrypt
 """
 All the models of the API and the relevant valis=dations are defined
 """
-
 users = []
+
 class User:
     """User Model contains the properties stored for a user"""
-
-    
-
     def __init__(self, user_id, email, firstname, lastname, password_hash):
         self.user_id = user_id
         self.firstname = firstname
@@ -36,7 +33,6 @@ class User:
         }
     
     # jwt token generator
-    # @staticmethod
     def encode_auth_token(self, user_id):
         """Encode Tokens"""
         try:
@@ -61,7 +57,7 @@ class User:
             payload = jwt.decode(
                 auth_token,
                 app.config.get('SECRET_KEY'),
-                algorithm='HS256'
+                algorithms='HS256'
                 )
             return payload['sub']
         except jwt.ExpiredSignatureError:

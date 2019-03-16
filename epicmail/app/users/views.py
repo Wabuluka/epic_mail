@@ -4,16 +4,11 @@ from flask import Blueprint, request, make_response, jsonify
 from epicmail.app import bcrypt
 from flask.views import MethodView
 from epicmail.app.models.users import User, users
-# special validatiors
-# from epicmail.app.handlers.validatiors import Validations
-usr = User
 
 user_blueprint = Blueprint('user', __name__)
 
 class RegisterUser(MethodView):
-
     """Method View for creating new accounts"""
-    
     def post(self):
         # get data from json
         data_posted = request.get_json()
@@ -26,7 +21,6 @@ class RegisterUser(MethodView):
                 }
                 return make_response(jsonify(responseObject)), 202
             
-        
         if request.method == "POST":
             user_id=len(users)+1
             firstname = data_posted['firstname']
@@ -47,7 +41,6 @@ class RegisterUser(MethodView):
                 return val_password
             elif val_email:
                 return val_email
-
             # create a new user instance
             new_user = User(
                 user_id=user_id,
@@ -61,8 +54,12 @@ class RegisterUser(MethodView):
             responseObject = {
                 "status": 201,
                 "message": "You have successfully created an account",
-                "token": auth_token.decode(),
-                "data": new_user.to_dictionary()
+                "data":[
+                    {
+                        "token": str(auth_token.decode()),
+                        "data": new_user.to_dictionary()
+                    }
+                ]
             }
             return make_response(jsonify(responseObject)), 201
         else:
@@ -74,24 +71,21 @@ class RegisterUser(MethodView):
 
 class LoginUser(MethodView):
     """Users with accounts can log in"""
-    
     def post(self):
         # login the user
         data_posted = request.get_json(force=True)
         email = data_posted['email']
-        password_hash = data_posted['password_hash']
-        
+        password_hash = data_posted['password_hash'] 
         for user in users:
             if user['email'] == email:
                 bcrypt.check_password_hash(user['password'], password_hash)
-                # auth_token = user.(encode_auth_token('user_id'))
-                # auth_token = encode_auth_token(user.user_id)
                 user_logged_in = user
+                auth_token = dict(user.encode_auth_token(user.user_id))
                 responseObject = {
                     'status': 200,
                     'message': 'Successfully logged in.',
+                    'token': auth_token,
                     'user':user_logged_in,
-                    # 'token': auth_token.decode()
                 }
                 return make_response(jsonify(responseObject)), 200
 
@@ -99,9 +93,7 @@ class LoginUser(MethodView):
                 'status': 401,
                 'message':'Unathorized, either email or password is incorrect'
             }
-        return make_response(jsonify(responseObject)), 401
-
-        
+        return make_response(jsonify(responseObject)), 401  
 
 # define the API resources
 registration_view = RegisterUser.as_view('register_user')

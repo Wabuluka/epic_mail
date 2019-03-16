@@ -5,7 +5,6 @@ messages = []
 
 class Messages:
     """Messages Models contains properties stored for a message to be sent to an individual"""
-
     def __init__(self, subject, message, status, createdby, address):
         """Initializes the message"""
         self.id=len(messages)+1
@@ -29,7 +28,6 @@ class Messages:
 
 class MessageReply(Messages):
     """MessageReply Models contains properties stored for a message to be replied to an individual"""
-
     def __init__(self, createdon, Message_repy, parent_message_id, reply_status):
         """Initializes the message reply"""
         pass
