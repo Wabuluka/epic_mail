@@ -2,7 +2,7 @@
 
 import unittest
 
-from epicmail.app.models import User, users
+from epicmail.app.models.users import User, users
 from epicmail.tests.base import BaseTestCase
 
 class TestUserModel(BaseTestCase):

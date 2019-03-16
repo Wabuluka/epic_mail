@@ -34,7 +34,7 @@ class SendMessage(MethodView):
             messages.append(new_message.to_dictionary())
             responseObject = {
                 "status": 201,
-                "message": "Your message has been successfully  sent"
+                "message": "Your message has been successfully sent."
             }
             return make_response(jsonify(responseObject)), 201
 

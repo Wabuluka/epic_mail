@@ -4,7 +4,7 @@ import json
 import datetime
 import unittest
 
-from epicmail.app.models import User, users
+from epicmail.app.models.users import User, users
 from epicmail.tests.base import BaseTestCase
 
 def signup_new_user(self, email, firstname, lastname, password_hash):
@@ -38,7 +38,7 @@ class TestUserAuth(BaseTestCase):
 
     def test_registration(self):
         with self.client:
-            response = signup_new_user(self, 'wabuluka', 'daviesd','dwabuluka@gmail.com', 'gdchjdjfhj@ndn')
+            response = signup_new_user(self, 'wabuluka', 'davies','dwabuluka@gmail.com', 'gdchjdjfhj@ndn')
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 201)
             self.assertTrue(data['message'] == 'You have successfully created an account')
