@@ -79,7 +79,7 @@ class DeleteMail(MethodView):
                 'message': 'No messages were found'
             }
             return make_response(jsonify(responseObject)), 404
-        for message in messages:
+        for message in range(len(messages)):
             if messages[message]["id"] == id:
                 del messages[message]
                 responseObject = {
