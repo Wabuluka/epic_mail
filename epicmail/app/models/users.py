@@ -10,7 +10,6 @@ All the models of the API and the relevant valis=dations are defined
 """
 
 users = []
-
 class User:
     """User Model contains the properties stored for a user"""
 
@@ -159,3 +158,6 @@ class User:
             }
             return jsonify(error)
             
+
+class Messages:
+    """"""

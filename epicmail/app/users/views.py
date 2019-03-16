@@ -3,7 +3,7 @@
 from flask import Blueprint, request, make_response, jsonify
 from epicmail.app import bcrypt
 from flask.views import MethodView
-from epicmail.app.models import User, users
+from epicmail.app.models.users import User, users
 
 # special validatiors
 from epicmail.app.handlers.validatiors import Validations
@@ -26,6 +26,7 @@ class RegisterUser(MethodView):
                     'message': 'User with that email already exists, please try with another email'
                 }
                 return make_response(jsonify(responseObject)), 202
+            
         
         if request.method == "POST":
             user_id=len(users)+1
@@ -81,33 +82,24 @@ class LoginUser(MethodView):
         email = data_posted['email']
         password_hash = data_posted['password_hash']
         
-
-
         for user in users:
             if user['email'] == email:
                 bcrypt.check_password_hash(user['password'], password_hash)
-                auth_token = user.encode_auth_token(user.user_id)
+                # auth_token = user.encode_auth_token(user.user_id)
+                user_logged_in = user
                 responseObject = {
                     'status': 200,
                     'message': 'Successfully logged in.',
-                    'token': auth_token.decode()
+                    # 'token': auth_token.decode(),
+                    # 'data': user[0]
                 }
                 return make_response(jsonify(responseObject)), 200
-            responseObject = {
+
+        responseObject = {
                 'status': 401,
                 'message':'Unathorized, either email or password is incorrect'
             }
-            return make_response(jsonify(responseObject)),401
-
-        responseObject ={
-            'status': 404,
-            'message': 'Your account was not found.' 
-        }
-        return make_response(jsonify(responseObject)), 404
-
-        
-        
-
+        return make_response(jsonify(responseObject)), 401
 
         
 
