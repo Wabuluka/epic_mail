@@ -1,12 +1,12 @@
 # epicmail/app/handlers/validators.py
-from flask import jsonify, request
+# from flask import jsonify, request
 
 
-class Validations:
+# class Validations:
 
-    def validate_content_type(self, contentType):
-       if contentType != "application/json":
-            return {
-                "status": 400,
-                "error": "Wrong content Type"
-            }
+#     def validate_content_type(self, contentType):
+#        if contentType != "application/json":
+#             return {
+#                 "status": 400,
+#                 "error": "Wrong content Type"
+#             }

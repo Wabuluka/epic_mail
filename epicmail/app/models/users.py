@@ -157,7 +157,3 @@ class User:
                 'message': 'Make sure your email is well written'
             }
             return jsonify(error)
-            
-
-class Messages:
-    """"""

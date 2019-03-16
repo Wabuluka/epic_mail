@@ -6,7 +6,7 @@ from flask.views import MethodView
 from epicmail.app.models.users import User, users
 
 # special validatiors
-from epicmail.app.handlers.validatiors import Validations
+# from epicmail.app.handlers.validatiors import Validations
 
 
 user_blueprint = Blueprint('user', __name__)
@@ -85,7 +85,7 @@ class LoginUser(MethodView):
         for user in users:
             if user['email'] == email:
                 bcrypt.check_password_hash(user['password'], password_hash)
-                # auth_token = user.encode_auth_token(user.user_id)
+                # auth_token = users.decode_auth_token(user.user_id)
                 user_logged_in = user
                 responseObject = {
                     'status': 200,

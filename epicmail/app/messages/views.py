@@ -34,16 +34,48 @@ class SendMessage(MethodView):
             messages.append(new_message.to_dictionary())
             responseObject = {
                 "status": 201,
-                "message": "Your message has been successfully sent."
+                "message": "Your message has been successfully sent.",
+                "data": new_message.to_dictionary()
             }
             return make_response(jsonify(responseObject)), 201
 
+class GetSpecificMail(MethodView):
+    """Get a message as specified by the user"""
+
+    def get(self, id):
+        """Get a message by id"""
+        
+        # get data from json
+        # data_posted = request.get_json()
+
+        for message in messages:
+            if message['id'] == id:
+                responseObject = {
+                    'status': 200,
+                    'message': message
+                }
+                return make_response(jsonify(responseObject)), 200
+        responseObject = {
+                'status': 401,
+                'message':'Unathorized, either email or password is incorrect'
+            }
+        return make_response(jsonify(responseObject)), 401
+
+
+
+
 # define the Messages rources
 send_message = SendMessage.as_view('create_message')
+get_message = GetSpecificMail.as_view('get_message')
 
 # add Rules for Endpoints
 messages_blueprint.add_url_rule(
     '/messages',
     view_func=send_message,
     methods=['POST']
+)
+messages_blueprint.add_url_rule(
+    '/messages/<int:id>',
+    view_func=get_message,
+    methods=['GET']
 )
