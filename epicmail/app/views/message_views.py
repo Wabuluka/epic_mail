@@ -62,7 +62,7 @@ class GetSpecificMail(MethodView):
                 return make_response(jsonify(responseObject)), 200
         responseObject = {
                 'status': 401,
-                'message':'Unathorized, either email or password is incorrect'
+                'message':'No message was found with id that belongs to you'
             }
         return make_response(jsonify(responseObject)), 401
 
@@ -105,13 +105,55 @@ class DeleteMail(MethodView):
         }
         return make_response(jsonify(responseObject)), 404
 
+class UpdateStatus(MethodView):
+    def PUT(self, id):
+        data_posted = request.get_json()
 
+        if len(messages) < 1:
+            responseObject = {
+                'status': 404,
+                'error': "There are no messages found."
+            }
+            return make_response(jsonify(responseObject)), 404
+        for message in range(len(messages)):
+            if messages[message]["id"] == id:
+                messages[message].update({"status":data_posted["status"]})
+                responseObject = {
+                    'status code': 200,
+                    'message': "You have successfully updated your status"
+                }
+                return make_response(jsonify(responseObject)),200
+        responseObject = {
+            'status': 404,
+            'error': "That message was not found, make sure its a right id provided."
+            }
+        return make_response(jsonify(responseObject)), 404
+
+
+class GetReadMessages(MethodView):
+    def get(self):
+        """Get a message by id"""
+        for message in messages:
+            if message['status'] == 'sent':
+                responseObject = {
+                    'status': 200,
+                    'message': messages
+                }
+                return make_response(jsonify(responseObject)), 200
+        responseObject = {
+                'status': 404,
+                'message':'No read emails were found.'
+            }
+        return make_response(jsonify(responseObject)), 401
+        
 
 # define the Messages rources
 send_message = SendMessage.as_view('create_message')
 get_message = GetSpecificMail.as_view('get_message')
 get_messages = GetAllMail.as_view('get_messages')
 delete_message = DeleteMail.as_view('del_message')
+update_status = UpdateStatus.as_view('update_statuses')
+get_read_messages = GetReadMessages.as_view('get_read_messages')
 
 # add Rules for Endpoints
 messages_blueprint.add_url_rule(
@@ -133,4 +175,14 @@ messages_blueprint.add_url_rule(
     '/messages/<int:id>',
     view_func=delete_message,
     methods=['DELETE']
+)
+messages_blueprint.add_url_rule(
+    '/messages/update/<int:id>',
+    view_func=update_status,
+    methods=['PUT']
+)
+messages_blueprint.add_url_rule(
+    '/messages/read',
+    view_func=get_read_messages,
+    methods=['GET']
 )
