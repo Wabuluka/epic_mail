@@ -1,5 +1,5 @@
 .admin{
-    height: 600px;
+    height: 100%;
     background: #444;
 }
 .container p{
@@ -52,6 +52,9 @@
     /* height: 50px; */
     background: #555;
     line-height: 50px;
+}
+.admin-activity .activity-tab:hover{
+    background: #222;
 }
 .admin-activity .activity-tab p{
     color: #ff9;
