@@ -2,12 +2,11 @@
 
 from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
-from epicmail.app.users.views import LoginUser
+from epicmail.app.views.user_views import LoginUser
 from epicmail.app.models.messages import Messages, messages
 
 # blueprint for the message
 messages_blueprint = Blueprint('messages', __name__)
-
 
 class SendMessage(MethodView):
     """Method View for creating a new email"""

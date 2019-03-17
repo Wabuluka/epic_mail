@@ -56,7 +56,7 @@ class RegisterUser(MethodView):
                 "message": "You have successfully created an account",
                 "data":[
                     {
-                        "token": str(auth_token.decode()),
+                        "token": auth_token.decode(),
                         "data": new_user.to_dictionary()
                     }
                 ]
@@ -80,14 +80,15 @@ class LoginUser(MethodView):
             if l_user['email'] == email and bcrypt.check_password_hash(l_user['password'], password):
                 
                 user_logged_in = l_user
-                # auth_token = l_user.encode_auth_token(l_user.user_id)
+                auth_token = l_user.encode_auth_token(l_user.user_id)
+                print(auth_token)
                 responseObject = {
                     'status': 200,
                     'message': 'Successfully logged in.',
-                    # 'token': auth_token,
+                    'token': auth_token,
                     'user':user_logged_in,
                 }
-                return make_response(jsonify(responseObject)), 200
+                # return make_response(jsonify(responseObject)), 200
 
         responseObject = {
                 'status': 401,
