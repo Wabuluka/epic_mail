@@ -12,13 +12,13 @@ users = []
 
 class User:
     """User Model contains the properties stored for a user"""
-    def __init__(self, user_id, email, firstname, lastname, password_hash):
+    def __init__(self, user_id, email, firstname, lastname, password):
         self.user_id = user_id
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
-        self.password_hash = bcrypt.generate_password_hash(
-            password_hash, app.config.get('BCRYPT_LOG_ROUNDS')
+        self.password = bcrypt.generate_password_hash(
+            password, app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
         self.registered_on = datetime.datetime.now()
 
@@ -28,7 +28,7 @@ class User:
             "firstname":self.firstname,
             "lastname":self.lastname,
             "email":self.email,
-            "password":self.password_hash,
+            "password":self.password,
             "registered_on":self.registered_on
         }
     
@@ -123,26 +123,26 @@ class User:
             return jsonify(error), 401
 
     @staticmethod
-    def validate_password(password_hash):
-        if len(password_hash) < 4:
+    def validate_password(password):
+        if len(password) < 4:
             error = {
                 "status": 401,
                 "message":"Your password must have 5 characters and above"
             }
             return jsonify(error)
-        elif re.search('[0-9]',password_hash) is None:
+        elif re.search('[0-9]',password) is None:
             error = {
                 "status": 401,
                 "message":"Your password must at least a number in it"
             }
             return jsonify(error)
-        elif re.search('[A-Z]',password_hash) is None:
+        elif re.search('[A-Z]',password) is None:
             error = {
                 "status": 401,
                 "message":"Your password must at least contain an uppercase character"
             }
             return jsonify(error)
-        elif re.search("[$#@*&%!~`+=|':;.><,_-]",password_hash) is None:
+        elif re.search("[$#@*&%!~`+=|':;.><,_-]",password) is None:
             error = {
                 "status": 401,
                 "message":"Your password must at least a special character"
@@ -156,5 +156,11 @@ class User:
             error = {
                 'status':401,
                 'message': 'Make sure your email is well written'
+            }
+            return jsonify(error)
+        elif email == '':
+            error = {
+                'status':401,
+                'message': 'You must fill in the email field'
             }
             return jsonify(error)

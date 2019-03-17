@@ -28,6 +28,19 @@ class SendMessage(MethodView):
                 createdby=createdby,
                 address=address
             )
+            val_subject = Messages.validate_subject(subject)
+            if val_subject:
+                return val_subject
+            val_message = Messages.validate_message(message)
+            if val_message:
+                return val_message
+            val_address = Messages.validate_address(address)
+            if val_address:
+                return val_address
+            val_createdby  = Messages.validate_createdby(createdby)
+            if val_createdby:
+                return val_createdby
+
             messages.append(new_message.to_dictionary())
             responseObject = {
                 "status": 201,

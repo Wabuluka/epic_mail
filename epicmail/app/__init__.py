@@ -20,5 +20,5 @@ from epicmail.app.users.views import user_blueprint
 from epicmail.app.messages.views import messages_blueprint
 
 # registering the blueprints
-app.register_blueprint(user_blueprint)
-app.register_blueprint(messages_blueprint)
+app.register_blueprint(user_blueprint, url_prefix='/epicmail/api/v2/')
+app.register_blueprint(messages_blueprint, url_prefix='/epicmail/api/v2/')

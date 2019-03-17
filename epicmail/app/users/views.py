@@ -13,7 +13,7 @@ class RegisterUser(MethodView):
         # get data from json
         data_posted = request.get_json()
         # check for user existence
-        for user in users:
+        for user in (users):
             if user['email'] == data_posted['email']:
                 responseObject = {
                     'status': 202,
@@ -26,12 +26,12 @@ class RegisterUser(MethodView):
             firstname = data_posted['firstname']
             lastname = data_posted['lastname']
             email = data_posted['email']
-            password_hash = data_posted['password_hash']
+            password = data_posted['password']
 
             # validating the necessary fields
             val_firstname = User.validate_firstname(firstname)
             val_lastname = User.validate_lastname(lastname)
-            val_password = User.validate_password(password_hash)
+            val_password = User.validate_password(password)
             val_email = User.validate_email(email)
             if val_firstname:
                 return val_firstname
@@ -47,7 +47,7 @@ class RegisterUser(MethodView):
                 firstname=firstname,
                 lastname=lastname,
                 email=email,
-                password_hash=password_hash
+                password=password
             )
             users.append(new_user.to_dictionary())
             auth_token = new_user.encode_auth_token(new_user.user_id) 
@@ -75,16 +75,16 @@ class LoginUser(MethodView):
         # login the user
         data_posted = request.get_json(force=True)
         email = data_posted['email']
-        password_hash = data_posted['password_hash'] 
-        for user in users:
-            if user['email'] == email:
-                bcrypt.check_password_hash(user['password'], password_hash)
-                user_logged_in = user
-                auth_token = dict(user.encode_auth_token(user.user_id))
+        password = data_posted['password'] 
+        for l_user in users:
+            if l_user['email'] == email and bcrypt.check_password_hash(l_user['password'], password):
+                
+                user_logged_in = l_user
+                # auth_token = l_user.encode_auth_token(l_user.user_id)
                 responseObject = {
                     'status': 200,
                     'message': 'Successfully logged in.',
-                    'token': auth_token,
+                    # 'token': auth_token,
                     'user':user_logged_in,
                 }
                 return make_response(jsonify(responseObject)), 200
