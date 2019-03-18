@@ -3,58 +3,55 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>epicmail</title>
+    <title>Change password - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/custom.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/navigation.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/forms.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/responsive.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
 </head>
 <body>
-
-<nav class="top-navigation" id="myTopnav">
+<div class="wrapper">
+    <nav class="top-navigation" id="myTopnav">
     <div class="container">
-        <a href="">About</a>
-        <a href="">Login</a>
+        <a href="about.html">About</a>
+        <a href="index.html">Sign Up</a>
         <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
             <span></span>
             <span></span>
             <span></span>
         </a>
     </div>
-</nav>
-
-<div class="main">
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <h1>You have forgotten your password?</h1>
-                <p>Don't worry!, just remember at epicmail we care about you and will help you recover your password in a few steps.</p>
-            </div>
-            <div class="column">
-                <form action="" >
-                    <div class="form-container">
-                        <h1>Reset Password</h1>
-                        <p>We are sending you an email with a link to reset your password, so check your inbox.</p>
-                        <input type="text" placeholder="Enter Email" name="email" required>            
-                        <div class="clearfix">
-                            <a href="login.html" >
-                                <button type="button" class="cancelbtn">Cancel</button>
-                            </a>
-                            <button type="submit" class="signupbtn">Reset</button>
+    </nav>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <h1>You can always change your password whenever you want to</h1>
+                    <p>You your right to information</p>
+                </div>
+                <div class="column">
+                    <form action="resetter.html" >
+                        <div class="form-container">
+                            <h1>Reset Password</h1>
+                            <p>Don't worry incase you can not remember your password, We'll help you</p>
+                            <input type="email" placeholder="Enter Email" name="email" required>            
+                            <div class="clearfix">
+                                <a href="login.html" >
+                                    <button type="button" class="cancelbtn">Cancel</button>
+                                </a>
+                                <button type="submit" class="signupbtn">Reset</button>
+                            </div>
                         </div>
-                    </div>
-                </form> 
+                    </form> 
+                </div>
             </div>
-        </div>     
+        </div>
     </div>
-</div>
 
-<footer>
-    <div class="container">
-        <p><small>dwabuluka</small></p>
+    <div class="footer">
+        <div class="container">
+            <p><small>dwabuluka</small></p>
+        </div>
     </div>
-</footer>
-<script src="resources/js/custom.js"></script> 
+</div>                     
+<script src="assets/js/custom.js"></script> 
 </body>
 </html>
