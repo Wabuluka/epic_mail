@@ -27,6 +27,7 @@ class RegisterUser(MethodView):
             lastname = data_posted['lastname']
             email = data_posted['email']
             password = data_posted['password']
+            # auth_token = 
 
             # validating the necessary fields
             val_firstname = User.validate_firstname(firstname)
@@ -47,10 +48,11 @@ class RegisterUser(MethodView):
                 firstname=firstname,
                 lastname=lastname,
                 email=email,
-                password=password
+                password=password,
+                
             )
-            users.append(new_user.to_dictionary())
-            auth_token = new_user.encode_auth_token(new_user.user_id) 
+            users.append(new_user)
+            auth_token=new_user.encode_auth_token(new_user.user_id) 
             responseObject = {
                 "status": 201,
                 "message": "You have successfully created an account",
@@ -71,30 +73,29 @@ class RegisterUser(MethodView):
 
 class LoginUser(MethodView):
     """Users with accounts can log in"""
+    # def post(self):
     def post(self):
-        # login the user
-        data_posted = request.get_json(force=True)
-        email = data_posted['email']
-        password = data_posted['password'] 
-        for l_user in users:
-            if l_user['email'] == email and bcrypt.check_password_hash(l_user['password'], password):
-                
-                user_logged_in = l_user
-                auth_token = l_user.encode_auth_token(l_user.user_id)
-                print(auth_token)
-                responseObject = {
-                    'status': 200,
-                    'message': 'Successfully logged in.',
-                    'token': auth_token,
-                    'user':user_logged_in,
-                }
-                # return make_response(jsonify(responseObject)), 200
+        data = request.get_json()
+        email = data.get("email", None)
+        password = data.get("password", None)
 
-        responseObject = {
-                'status': 401,
-                'message':'Unathorized, either email or password is incorrect'
-            }
-        return make_response(jsonify(responseObject)), 401  
+        for user in users:
+            if user.email == email and bcrypt.check_password_hash(user.password, password):
+                auth_token = user.encode_auth_token(user.user_id)
+                return jsonify({
+                    "status": 200,
+                    "message": "You have successfully logged in",
+                    "data": [{
+                        'user': user.to_dictionary(),
+                        'token':auth_token.decode()
+                    }]
+                }), 200
+
+        return jsonify({
+        "status": 400,
+        "error": "You have provided an invalid email or password. Check well and attempt to log in again"
+        }), 400
+        
 
 # define the API resources
 registration_view = RegisterUser.as_view('register_user')
@@ -111,4 +112,3 @@ user_blueprint.add_url_rule(
     view_func=login_view,
     methods=['POST']
 )
-                
