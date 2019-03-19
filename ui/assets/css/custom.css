@@ -164,6 +164,29 @@ footer {
 
   /* when the screen gets less than 600px in width hide the main navigation links except the right dashes */
 @media screen and (max-width: 600px) {
+    .top-navigation a {
+        display: none;
+    }
+    .top-navigation a.mobile {
+      float: right;
+      display: block;
+      background: rgb(221, 221, 221);
+    }
+    /* call the resposive class using javascript */
+    .top-navigation.responsive{
+        position: relative;
+    }
+    .top-navigation.top-navigation.responsive a.mobile{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .top-navigation.top-navigation.responsive a{
+        float: none;
+        display: block;
+        text-align: right;
+    }
+    
     .container{
         width: 100%;
     }
@@ -203,6 +226,16 @@ footer {
         cursor: pointer;
         width: 90%;
         opacity: 0.9;
+    }
+    .admin-column-one button{
+        float: left;
+        font-size: 10px;
+        padding: 10px 20px;
+    }
+    .admin-column-two{
+        float: left;
+        width: 60%;
+        padding: 5px;
     }
     /* footer always at the bottom */
     footer {
