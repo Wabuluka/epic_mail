@@ -10,49 +10,48 @@
 <body>
 <div class="wrapper">
     <nav class="top-navigation" id="myTopnav">
-    <div class="container">
-        <a href="about.html">About</a>
-        <a href="index.html">Sign Up</a>
-        <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </a>
-    </div>
-    </nav>
-    <div class="content">
         <div class="container">
-            <div class="row">
-                <div class="column">
+            <div class="nav-bar-right">
+                <a href="about.html">About</a>
+                <a href="index.html">Sign Up</a>
+                <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <div class="column-container">
                     <h1>Keep connected with your friends and family everywhere you go</h1>
                     <p>carry your messages with you</p>
                 </div>
-                <div class="column">
-                    <form action="admin.html" >
-                        <div class="form-container">
-                            <h1>Login</h1>
-                            <p>Login and continue from where you left off</p>
-                            <input type="email" placeholder="Enter Email" name="email" required>
-                            <input type="password" placeholder="Enter Password" name="psw" required>               
-                            <div class="clearfix">
-                                <a href="reset.html" >
-                                    <button type="button" class="cancelbtn">Forgot Password</button>
-                                </a>
-                                <button type="submit" class="signupbtn">Login</button>
-                            </div>
-                        </div>
-                    </form> 
-                </div>
+            </div>
+            <div class="column">
+                <form action="admin.html" >
+                    <div class="form-container">
+                        <h1>Login</h1>
+                        <p>Please fill in this form to login into your account.</p>
+                        <input type="email" placeholder="Enter Email" name="email" required>
+                        <input type="password" placeholder="Enter Password" name="psw" required> 
+                        <button type="submit" class="signupbtn">Login</button>
+                        <a href="reset.html">Forgot Password?</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-    <div class="footer">
-        <div class="container">
-            <p><small>dwabuluka</small></p>
-        </div>
+</div>   
+<footer>
+    <div class="container">
+        <p><small>dwabuluka</small></p>
     </div>
-</div>                     
-<script src="assets/js/custom.js"></script> 
+</footer>                 
+<script src="assets/js/custom.js"></script>
 </body>
 </html>

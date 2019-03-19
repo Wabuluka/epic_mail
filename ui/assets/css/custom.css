@@ -1,16 +1,24 @@
-html,
-body {
+html, body, a, p, h1, h2, h3, h4, h5, h6{
     margin: 0;
     padding: 0;
-    height: 100%;
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
-.wrapper {
+/* Body sytles only */
+body{
     min-height: 100%;
-    position: relative;
 }
+/* container that cuts across the entire website pages */
+.container{
+    margin: 0 auto;
+    width: 80%;
+}
+.content{
+    min-height: 500px;
+}
+/* Main Navigation bar */
 nav {
-    background: #ededed;
+    background: #333;
+    color: #fff;
 }
 .top-navigation{
     background-color: #333;
@@ -32,34 +40,55 @@ nav {
 .top-navigation .mobile{
     display: none;
 }
-.content {
-  padding-bottom: 100px;
-  /* Height of the footer element */
+/* Navbar rigth */
+.nav-bar-right{
+    float: right;
 }
-.column {
+/* Wrapper for keeping the footer down */
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
+/* Column for separating the pages content */
+.column{
     float: left;
     width: 40%;
     padding: 45px;
     text-align: center;
-    font-size: 25px;
 }
-.container{
-    width: 80%;
-    margin: 0 auto;
+.column-container{
+    padding: 16px;
 }
-/* signup form */
-/* Full-width input fields */
-input[type=text],input[type=email], input[type=password] {
+.column h1{
+    font-size: 20px;
+    text-align: left;
+}
+.column p{
+    font-size: 18px;
+    text-align: left;
+}
+/* Form-container */
+.form-container {
+    padding: 16px;
+    text-decoration: none;
+    text-align: left;
+  }
+/* Input fields in the  */
+.form-container input[type=email]{
     width: 93%;
     padding: 15px;
     border: none;
     background: #f1f1f1;
     margin-top: 10px;
 }
-input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
+.form-container input[type=password]{
+    width: 93%;
+    padding: 15px;
+    border: none;
+    background: #f1f1f1;
+    margin-top: 10px;
 }
+/* Buttons */
 button {
     background-color: #4CAF50;
     color: white;
@@ -70,163 +99,113 @@ button {
     width: 100%;
     opacity: 0.9;
 }
-.form-container {
-    padding: 16px;
-  }
-.form-container h1{
-    color: #000;
-}
-.form-container p{
-    color: #000;
-}
-button:hover {
-    opacity:1;
-}
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-  }
-.cancelbtn, .signupbtn {
-    float: left;
-    width: 50%;
-}
-/* Clear floats */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-.footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    color: antiquewhite;
-    background: #333;   
-  }
-  /* admin */
-.tab {
-    margin-top:10px;
+
+
+/* Admin */
+.admin-column-one{
     float: left;
     width: 20%;
 }
-.tab button {
-    background-color: inherit;
+.admin-column-two{
     float: left;
-    display: block;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    color: #333;
-  }
-  /* Change background color of buttons on hover */
-.tab button:hover {
-    background-color: #ddd;
-  }
-/* Create an active/current tablink class */
-.tab button.active {
-    background-color: #ccc;
-  }
-  .tab button.active {
-    background-color: #ccc;
-  }
-  
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border-top: none;
-  } 
-  * {box-sizing: border-box}
-  
-  /* Style the tab */
-  .tab {
-    float: left;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    width: 30%;
-    height: 300px;
-  }
-  
-  /* Style the buttons that are used to open the tab content */
-  .tab button {
-    display: block;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .tabcontent form input[type=email], input[type=textarea] {
-    width: 50%;
+    width: 60%;
+    padding: 10px;
+}
+.admin-column-two input[type=email]{
+    width: 95%;
     padding: 15px;
     border: none;
     background: #f1f1f1;
     margin-top: 10px;
 }
-.tabcontent form button {
-    width: 100px;
+.admin-column-two input[type=text]{
+    width: 95%;
+    padding: 15px;
+    border: none;
+    background: #f1f1f1;
+    margin-top: 10px;
 }
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ddd;
+.admin-column-two textarea{
+    width: 95%;
+    padding: 15px;
+    border: none;
+    background: #f1f1f1;
+    margin-top: 10px;
+}
+.admin-column-two .inbox{
+    padding: 10px;
+}
+.admin-column-two .inbox .inbox-footer a{
+    margin-right: 5px;
+    text-decoration: none;
+    color: #4CAF50;
+}
+/* Admin Buttons */
+.tablinks{
+    background-color: rgb(221, 145, 94);
+    padding: 14px 20px;
+    margin: 2px 0;
+    text-align: left;
+}
+
+/* footer always at the bottom */
+footer {
+    clear: both;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    color:antiquewhite;
+    background: #333; 
   }
-  
-  /* Create an active/current "tab button" class */
-  .tab button.active {
-    background-color: #ccc;
-  }
-/* when the screen gets less than 600px in width hide the main navigation links except the right dashes */
+
+
+
+  /* when the screen gets less than 600px in width hide the main navigation links except the right dashes */
 @media screen and (max-width: 600px) {
-    .top-navigation a {
+    .container{
+        width: 100%;
+    }
+    /* Column for separating the pages content */
+    .column{
+        float: left;
+        width: 100%;
+        padding: 5px;
+        text-align: center;
+    }
+    /* Form-container */
+    .form-container {
+        padding: 0px;
+    }
+    /* Input fields in the  */
+    .form-container input[type=email]{
+        width: 80%;
+        padding: 15px;
+        border: none;
+        background: #f1f1f1;
+        margin-top: 10px;
+    }
+    .form-container input[type=password]{
+        width: 80%;
+        padding: 15px;
+        border: none;
+        background: #f1f1f1;
+        margin-top: 10px;
+    }
+    /* Buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 90%;
+        opacity: 0.9;
+    }
+    /* footer always at the bottom */
+    footer {
         display: none;
     }
-    .top-navigation a.mobile {
-      float: right;
-      display: block;
-      background: rgb(221, 221, 221);
-    }
-    /* call the resposive class using javascript */
-    .top-navigation.responsive{
-        position: relative;
-    }
-    .top-navigation.top-navigation.responsive a.mobile{
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .top-navigation.top-navigation.responsive a{
-        float: none;
-        display: block;
-        text-align: left;
-    }
-    /* container */
-    .container{
-        margin: 0;
-        width: 100%;
-    }
-    /* column */
-    .column{
-        width: 100%;
-        padding: 0;
-    }
-    /* forms */
-    input[type=text],input[type=email], input[type=password] {
-        width: 100%;
-        background: #f1f1f1;
-    }
-    .form-container {
-        padding: 0;
-    }
-    .form-container h1{
-    font-size: 14px;
-    }
-    .form-container p{
-    font-size: 14px;
-    }
-  }
+}

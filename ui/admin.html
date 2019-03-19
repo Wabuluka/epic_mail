@@ -3,66 +3,190 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard - epicmail</title>
+    <title>Signup - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
 </head>
 <body>
 <div class="wrapper">
     <nav class="top-navigation" id="myTopnav">
-    <div class="container">
-        <a href="about.html">About</a>
-        <a href="index.html">Create Mail</a>
-        <a href="index.html">Logout</a>
-        <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </a>
-    </div>
-    </nav>
-    <div class="content">
         <div class="container">
-            <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'London')">Create Mail</button>
-                    <button class="tablinks" onclick="openCity(event, 'Paris')">Inbox</button>
-                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Drafts</button>
-                </div>
+            <div class="nav-bar-right">
+                <a href="about.html">About</a>
+                <a href="login.html">Logout</a>
+                <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="admin-column-one">
+                <button class="tablinks" onclick="openCity(event, 'London')">Create Mail</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Inbox</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Drafts</button>
+            </div>
+            <div class="admin-column-two">
+                <div id="Paris" class="tabcontent">
+                        <h3>Inbox</h3>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                            <div class="inbox-footer">
+                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                            </div>
+                        </div>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                            <div class="inbox-footer">
+                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                            </div>
+                        </div>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                            <div class="inbox-footer">
+                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                            </div>
+                        </div>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                        </div>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                            <div class="inbox-footer">
+                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                            </div>
+                        </div>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                            <div class="inbox-footer">
+                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                            </div>
+                        </div>
+                        <div class="inbox">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                repellat sint? Velit, numquam?</p>
+                            <div class="inbox-footer">
+                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                            </div>
+                        </div>
+                    </div>
                 <div id="London" class="tabcontent">
                     <h3>Create Mail</h3>
-                    <form action="/my-handling-form-page" method="post">
+                    <form action="" method="post">
                         <div>
-                          <label for="mail">E-mail:</label>
-                          <input type="email" id="mail" name="user_mail">
+                            <label for="mail">E-mail:</label>
+                            <input type="email" id="mail" name="user_mail">
                         </div>
                         <div>
-                          <label for="msg">Message:</label>
-                          <textarea id="msg" name="user_message"></textarea>
+                            <label for="msg">Message:</label>
+                            <textarea type="text" id="msg" name="user_message"></textarea>
                         </div>
                         <div>
                             <button type="submit">Send</button>
                         </div>
-                      </form>
-                </div>
-                
-                <div id="Paris" class="tabcontent">
-                    <h3>Inbox</h3>
-                    <p>You do not have any messages yet</p>
+                        </form>
                 </div>
                 
                 <div id="Tokyo" class="tabcontent">
                     <h3>Drafts</h3>
-                    <p>You have not made any drafts yet</p>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
+                    <div class="inbox">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                            repellat sint? Velit, numquam?</p>
+                        <div class="inbox-footer">
+                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
-
-    <div class="footer">
-        <div class="container">
-            <p><small>dwabuluka</small></p>
-        </div>
+</div>   
+<footer>
+    <div class="container">
+        <p><small>dwabuluka</small></p>
     </div>
-</div>                     
-<script src="assets/js/custom.js"></script> 
+</footer>                 
+<script src="assets/js/custom.js"></script>
 </body>
 </html>
