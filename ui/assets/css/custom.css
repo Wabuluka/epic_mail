@@ -49,6 +49,9 @@ nav {
     min-height: 100%;
     position: relative;
 }
+.content{
+    min-height: 650px;
+}
 /* Column for separating the pages content */
 .column{
     float: left;
