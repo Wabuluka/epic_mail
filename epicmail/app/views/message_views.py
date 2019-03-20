@@ -96,7 +96,7 @@ class DeleteMail(MethodView):
                 del messages[message]
                 responseObject = {
                     'status': 200,
-                    'message': [{"id":id}]
+                    'message': "The message has successfully been deleted."
                 }
                 return make_response(jsonify(responseObject)), 200
         responseObject = {

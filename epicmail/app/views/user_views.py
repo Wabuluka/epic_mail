@@ -14,10 +14,10 @@ class RegisterUser(MethodView):
         data_posted = request.get_json()
         # check for user existence
         for user in (users):
-            if user['email'] == data_posted['email']:
+            if user.email == data_posted['email']:
                 responseObject = {
                     'status': 202,
-                    'message': 'User with that email already exists, please try with another email'
+                    'message': 'User with that email already exists, please try with another email.'
                 }
                 return make_response(jsonify(responseObject)), 202
             
@@ -55,7 +55,7 @@ class RegisterUser(MethodView):
             auth_token=new_user.encode_auth_token(new_user.user_id) 
             responseObject = {
                 "status": 201,
-                "message": "You have successfully created an account",
+                "message": "You have successfully created an account.",
                 "data":[
                     {
                         "token": auth_token.decode(),
