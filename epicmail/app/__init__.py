@@ -16,9 +16,7 @@ app.config.from_object(app_settings)
 bcrypt = Bcrypt(app)
 
 # calling the blueprints
-# from epicmail.app.user_views import user_blueprint
 from epicmail.app.views.user_views import user_blueprint
-# from epicmail.app.messages.views import messages_blueprint
 from epicmail.app.views.message_views import messages_blueprint
 
 # registering the blueprints

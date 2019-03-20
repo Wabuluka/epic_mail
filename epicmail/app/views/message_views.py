@@ -96,7 +96,7 @@ class DeleteMail(MethodView):
                 del messages[message]
                 responseObject = {
                     'status': 200,
-                    'message': [{"id":id}]
+                    'message': "The message has successfully been deleted."
                 }
                 return make_response(jsonify(responseObject)), 200
         responseObject = {
@@ -106,7 +106,7 @@ class DeleteMail(MethodView):
         return make_response(jsonify(responseObject)), 404
 
 class UpdateStatus(MethodView):
-    def PUT(self, id):
+    def put(self, id):
         data_posted = request.get_json()
 
         if len(messages) < 1:

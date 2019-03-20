@@ -20,6 +20,7 @@ class User:
         self.password = bcrypt.generate_password_hash(
             password, app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
+        # self.auth_token=auth_token
         self.registered_on = datetime.datetime.now()
 
     def to_dictionary(self):
@@ -29,7 +30,8 @@ class User:
             "lastname":self.lastname,
             "email":self.email,
             "password":self.password,
-            "registered_on":self.registered_on
+            "registered_on":self.registered_on,
+            # "token":self.auth_token
         }
     
     # jwt token generator
@@ -151,7 +153,8 @@ class User:
 
     @staticmethod
     def validate_email(email):
-        email = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
+        # re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
+        email = re.match(r"[^@]+@[^@]+\.[^@]+", email)
         if email  == None:
             error = {
                 'status':401,

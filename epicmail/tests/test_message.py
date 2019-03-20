@@ -73,3 +73,32 @@ class TestMessageModel(BaseTestCase):
             self.assertTrue(data['error'] == 'You must fill the createdby field.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
+
+    def test_get_one_message(self):
+        """Test get one message"""
+        with self.client:
+            response = send_message(self, 'Hello world', 'I had taken long w',
+                                    'wwwwwwwww@gmail.com', 'dwabuluka@gmail.com', 'sent')
+            data = json.loads(response.data.decode())
+            response = self.client.get('/epicmail/api/v2/messages/1', content_type='application/json')
+            data = json.loads(response.data.decode())
+            self.assertTrue(data['status'] == 200)
+
+    def test_message_to_get_not_found(self):
+        with self.client:
+            # response = send_message(self,'subject', 'message', 'address', 'createdby', 'status')
+            # data = json.loads(response.data.decode())
+            response = self.client.get('/epicmail/api/v2/messages', content_type='application/json')
+            data = json.loads(response.data.decode())
+            self.assertTrue(data['status'] == 200)
+
+    def test_delete_one_message(self):
+        """Test delete one message"""
+        with self.client:
+            response = send_message(self, 'Hello world', 'I had taken long w',
+                                    'wwwwwwwww@gmail.com', 'dwabuluka@gmail.com', 'sent')
+            data = json.loads(response.data.decode())
+            response = self.client.delete('/epicmail/api/v2/messages/1', content_type='application/json')
+            data = json.loads(response.data.decode())
+            self.assertTrue(data['status'] == 200)
+            self.assertTrue(data['message'] == "The message has successfully been deleted.")
