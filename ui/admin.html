@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Signup - epicmail</title>
+    <title>Dashboard - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
 </head>
@@ -23,165 +23,114 @@
         </div>
     </nav>
 </div>
-<div class="content">
-    <div class="container">
+<div class="container">
         <div class="row">
             <div class="admin-column-one">
-                <button class="tablinks" onclick="openCity(event, 'London')">Create Mail</button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">Inbox</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Drafts</button>
+                <a href="#tab2" class="tablinks">Create Mail</a>
+                <a href="#tab1" class="tablinks">Inbox</a>
+                <a href="#tab3" class="tablinks">Drafts</a>
             </div>
             <div class="admin-column-two">
-                <div id="Paris" class="tabcontent">
-                        <h3>Inbox</h3>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                            <div class="inbox-footer">
-                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                <div class="tab-folder">
+                        <div id="tab2" class="tab-content">
+                            <h3>Create Mail</h3>
+                            <form action="" method="post">
+                                <div>
+                                    <label for="mail">E-mail:</label>
+                                    <input type="email" id="mail" name="user_mail">
+                                </div>
+                                <div>
+                                    <label for="msg">Message:</label>
+                                    <textarea type="text" id="msg" name="user_message"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="tab3" class="tab-content">
+                            <h3>Drafts</h3>
+                            <div class="inbox">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
+                                </div>
+                            </div>
+                                
+                        </div>
+                        <div id="tab1" class="tab-content">
+                            <h3>Inbox</h3>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
+                            </div>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
+                            </div>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
+                            </div>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
+                            </div>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
+                            </div>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
+                            </div>
+                            <div class="inbox">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
+                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
+                                    repellat sint? Velit, numquam?</p>
+                                <div class="inbox-footer">
+                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                            <div class="inbox-footer">
-                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                            </div>
-                        </div>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                            <div class="inbox-footer">
-                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                            </div>
-                        </div>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                        </div>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                            <div class="inbox-footer">
-                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                            </div>
-                        </div>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                            <div class="inbox-footer">
-                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                            </div>
-                        </div>
-                        <div class="inbox">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                repellat sint? Velit, numquam?</p>
-                            <div class="inbox-footer">
-                                <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                            </div>
-                        </div>
                     </div>
-                <div id="London" class="tabcontent">
-                    <h3>Create Mail</h3>
-                    <form action="" method="post">
-                        <div>
-                            <label for="mail">E-mail:</label>
-                            <input type="email" id="mail" name="user_mail">
-                        </div>
-                        <div>
-                            <label for="msg">Message:</label>
-                            <textarea type="text" id="msg" name="user_message"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit">Send</button>
-                        </div>
-                        </form>
-                </div>
-                
-                <div id="Tokyo" class="tabcontent">
-                    <h3>Drafts</h3>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                    <div class="inbox">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                            Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                            repellat sint? Velit, numquam?</p>
-                        <div class="inbox-footer">
-                            <a href="">Send</a><a href="">Delete</a><a href="">Edit</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-</div>   
 <footer>
     <div class="container">
         <p><small>dwabuluka</small></p>
