@@ -153,7 +153,8 @@ class User:
 
     @staticmethod
     def validate_email(email):
-        email = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
+        # re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
+        email = re.match(r"[^@]+@[^@]+\.[^@]+", email)
         if email  == None:
             error = {
                 'status':401,
