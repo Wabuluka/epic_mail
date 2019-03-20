@@ -138,17 +138,27 @@ button {
 .admin-column-two .inbox{
     padding: 10px;
 }
+.admin-column-two a{
+    padding: 10px;
+}
 .admin-column-two .inbox .inbox-footer a{
     margin-right: 5px;
     text-decoration: none;
     color: #4CAF50;
 }
 /* Admin Buttons */
+
 .tablinks{
     background-color: rgb(221, 145, 94);
     padding: 14px 20px;
     margin: 2px 0;
     text-align: left;
+    display: block;
+    text-decoration: none;
+    color: #f1f1f1;
+}
+.row{
+    min-height:500px;
 }
 
 /* footer always at the bottom */
@@ -162,7 +172,13 @@ footer {
     color:antiquewhite;
     background: #333; 
   }
-
+/* admin tabs */
+.tab-folder > .tab-content:target ~ .tab-content:last-child, .tab-folder > .tab-content {
+    display: none;
+}
+.tab-folder > :last-child, .tab-folder > .tab-content:target {
+    display: block;
+}
 
 
   /* when the screen gets less than 600px in width hide the main navigation links except the right dashes */
