@@ -5,15 +5,13 @@ html, body, a, p, h1, h2, h3, h4, h5, h6{
 }
 /* Body sytles only */
 body{
+    position: relative;
     min-height: 100%;
 }
 /* container that cuts across the entire website pages */
 .container{
     margin: 0 auto;
     width: 80%;
-}
-.content{
-    min-height: 500px;
 }
 /* Main Navigation bar */
 nav {
@@ -50,7 +48,7 @@ nav {
     position: relative;
 }
 .content{
-    min-height: 650px;
+    min-height: 100%;
 }
 /* Column for separating the pages content */
 .column{
@@ -164,7 +162,7 @@ button {
 /* footer always at the bottom */
 footer {
     clear: both;
-    position: relative;
+    position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
