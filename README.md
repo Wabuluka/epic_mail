@@ -51,21 +51,14 @@ After successfully runing the API, you can now have the oppotunity to interract 
 |   METHODS     |   URL ENDPOINT                        |   DESCRIPTION                 |
 |---------------|---------------------------------------|-------------------------------|
 |   POST        |/epicmail/v2/api/auth/signup/          |Create a new user              |
-|---------------|---------------------------------------|-------------------------------|
 |   POST        |/epicmail/v2/api/auth/signin/          |Signin a registered user       |
-|---------------|---------------------------------------|-------------------------------|
 |   POST        |/epicmail/v2/api/messages/             |Create a new message           |
-|---------------|---------------------------------------|-------------------------------|
 |   GET         |/epicmail/v2/api/messages/<int:id>     |Get a one message              |
-|---------------|---------------------------------------|-------------------------------|
 |   GET         |/epicmail/v2/api/messages/unread       |Get unread messages            |
-|---------------|---------------------------------------|-------------------------------|
 |   GET         |/epicmail/v2/api/messages/sent         |Get all sent messages          |
-|---------------|---------------------------------------|-------------------------------|
 |   GET         |/epicmail/v2/api/messages/received     |Get all received messages      |
-|---------------|---------------------------------------|-------------------------------|
 |   DELETE      |/epicmail/v2/api/messages/<int:id>     |Delete a messages              |
-|---------------|---------------------------------------|-------------------------------|
+
 
 ## Deployment
 This API has been deployed on Heroku for live viewing. The link can be found below
