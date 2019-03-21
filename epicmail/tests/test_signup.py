@@ -6,6 +6,9 @@ import unittest
 
 from epicmail.app.models.users import User, users
 from epicmail.tests.base import BaseTestCase
+from epicmail.app.handler.auth import JwtAuth
+
+authentic = JwtAuth()
 
 def signup_new_user(self, email, firstname, lastname, password):
     """Mock data for testing user signup"""

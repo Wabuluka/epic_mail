@@ -4,6 +4,9 @@ from flask import Blueprint, request, make_response, jsonify
 from epicmail.app import bcrypt
 from flask.views import MethodView
 from epicmail.app.models.users import User, users
+from epicmail.app.handler.auth import JwtAuth
+
+authentic = JwtAuth()
 
 user_blueprint = Blueprint('user', __name__)
 
@@ -52,13 +55,13 @@ class RegisterUser(MethodView):
                 
             )
             users.append(new_user)
-            auth_token=new_user.encode_auth_token(new_user.user_id) 
+            auth_token=authentic.encode_token(new_user.user_id) 
             responseObject = {
                 "status": 201,
                 "message": "You have successfully created an account.",
                 "data":[
                     {
-                        "token": auth_token.decode(),
+                        "token": auth_token,
                         "data": new_user.to_dictionary()
                     }
                 ]
@@ -81,13 +84,13 @@ class LoginUser(MethodView):
 
         for user in users:
             if user.email == email and bcrypt.check_password_hash(user.password, password):
-                auth_token = user.encode_auth_token(user.user_id)
+                auth_token = authentic.encode_token(user.user_id)
                 return jsonify({
                     "status": 200,
                     "message": "You have successfully logged in",
                     "data": [{
                         'user': user.to_dictionary(),
-                        'token':auth_token.decode()
+                        'token':auth_token
                     }]
                 }), 200
 

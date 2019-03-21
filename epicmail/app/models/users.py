@@ -33,39 +33,6 @@ class User:
             "registered_on":self.registered_on,
             # "token":self.auth_token
         }
-    
-    # jwt token generator
-    def encode_auth_token(self, user_id):
-        """Encode Tokens"""
-        try:
-            payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
-                'iat': datetime.datetime.utcnow(),
-                'sub': user_id
-            }
-            return jwt.encode(
-                payload,
-                app.config.get('SECRET_KEY'),
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
-
-    # decoding tokens created
-    @staticmethod
-    def decode_auth_token(auth_token):
-        """Decode the auth token"""
-        try:
-            payload = jwt.decode(
-                auth_token,
-                app.config.get('SECRET_KEY'),
-                algorithms='HS256'
-                )
-            return payload['sub']
-        except jwt.ExpiredSignatureError:
-            return 'Your signature has expired, Please login again.'
-        except jwt.InvalidTokenError:
-            return 'Your token is not valid. Please log in again.'
 
     @staticmethod
     def validate_firstname(firstname):
