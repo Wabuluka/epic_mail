@@ -4,12 +4,16 @@ from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
 from epicmail.app.views.user_views import LoginUser
 from epicmail.app.models.messages import Messages, messages
+# from epicmail.app.handler.auth import JwtAuth
+
+# authentic = JwtAuth()
 
 # blueprint for the message
 messages_blueprint = Blueprint('messages', __name__)
 
 class SendMessage(MethodView):
     """Method View for creating a new email"""
+    # @authentic.user_token
     def post(self):
         # get data from json
         data_posted = request.get_json()
@@ -51,6 +55,7 @@ class SendMessage(MethodView):
 
 class GetSpecificMail(MethodView):
     """Get a message as specified by the user"""
+    # @authentic.user_token
     def get(self, id):
         """Get a message by id"""
         for message in messages:
@@ -69,6 +74,7 @@ class GetSpecificMail(MethodView):
 
 class GetAllMail(MethodView):
     """User fetches all the mails"""
+    # @authentic.user_token
     def get(self):
         if messages == []:
             responseObject = {
@@ -84,6 +90,7 @@ class GetAllMail(MethodView):
 
 class DeleteMail(MethodView):
     """Delete a mail by a user"""
+    # @authentic.user_token
     def delete(self, id):
         if len(messages) < 1:
             responseObject = {
@@ -105,10 +112,26 @@ class DeleteMail(MethodView):
         }
         return make_response(jsonify(responseObject)), 404
 
+class GetReceivedMessages(MethodView):
+    def get(self):
+        for message in messages:
+            if message['status'] == "sent":
+                responseObject = {
+                    'status': 200,
+                    'message': message
+                }
+                return make_response(jsonify(responseObject)), 200
+        responseObject = {
+                'status': 401,
+                'message':'No message was found for you'
+            }
+        return make_response(jsonify(responseObject)), 401
+
+
 class UpdateStatus(MethodView):
+    # @authentic.user_token
     def put(self, id):
         data_posted = request.get_json()
-
         if len(messages) < 1:
             responseObject = {
                 'status': 404,
@@ -131,6 +154,7 @@ class UpdateStatus(MethodView):
 
 
 class GetReadMessages(MethodView):
+    # @authentic.user_token
     def get(self):
         """Get a message by id"""
         for message in messages:
@@ -154,7 +178,7 @@ get_messages = GetAllMail.as_view('get_messages')
 delete_message = DeleteMail.as_view('del_message')
 update_status = UpdateStatus.as_view('update_statuses')
 get_read_messages = GetReadMessages.as_view('get_read_messages')
-
+get_received_messages = GetReceivedMessages.as_view('get_received')
 # add Rules for Endpoints
 messages_blueprint.add_url_rule(
     '/messages',
@@ -184,5 +208,10 @@ messages_blueprint.add_url_rule(
 messages_blueprint.add_url_rule(
     '/messages/read',
     view_func=get_read_messages,
+    methods=['GET']
+)
+messages_blueprint.add_url_rule(
+    '/messages/received',
+    view_func=get_received_messages,
     methods=['GET']
 )
