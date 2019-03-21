@@ -62,7 +62,7 @@ After successfully runing the API, you can now have the oppotunity to interract 
 
 ## Deployment
 This API has been deployed on Heroku for live viewing. The link can be found below
-[epicmail on heroku](https://epicmailwabuluka.herokuapp.com/epicmail/v2/api/auth/signup/) - Live demo
+[epicmail on heroku](https://epicmailwabuluka.herokuapp.com/epicmail/api/v2/auth/signup) - Live demo
 
 ## Developer
 **Davies Wabuluka**
