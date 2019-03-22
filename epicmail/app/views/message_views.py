@@ -3,7 +3,7 @@
 from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
 from epicmail.app.views.user_views import LoginUser
-from epicmail.app.models.messages import Messages, messages
+from epicmail.app.models.messages import Message
 # from epicmail.app.handler.auth import JwtAuth
 
 # authentic = JwtAuth()
@@ -23,34 +23,11 @@ class SendMessage(MethodView):
             status=data_posted['status']
             createdby=data_posted['createdby']
             address=data_posted['address']
-            # in refernce to the model
-            new_message = Messages(
-                subject=subject,
-                message=message,
-                status=status,
-                createdby=createdby,
-                address=address
-            )
-            val_subject = Messages.validate_subject(subject)
-            if val_subject:
-                return val_subject
-            val_message = Messages.validate_message(message)
-            if val_message:
-                return val_message
-            val_address = Messages.validate_address(address)
-            if val_address:
-                return val_address
-            val_createdby  = Messages.validate_createdby(createdby)
-            if val_createdby:
-                return val_createdby
-
-            messages.append(new_message.to_dictionary())
-            responseObject = {
-                "status": 201,
-                "message": "Your message has been successfully sent.",
-                "data": new_message.to_dictionary()
-            }
-            return make_response(jsonify(responseObject)), 201
+            
+            data = Message(subject, message, status, createdby, address)
+            msg = data.create_message(subject, message, status, createdby, address)
+            # print(msg)
+            return jsonify(msg), 201
 
 
 class GetSpecificMail(MethodView):
@@ -58,117 +35,29 @@ class GetSpecificMail(MethodView):
     # @authentic.user_token
     def get(self, id):
         """Get a message by id"""
-        for message in messages:
-            if message['id'] == id:
-                responseObject = {
-                    'status': 200,
-                    'message': message
-                }
-                return make_response(jsonify(responseObject)), 200
-        responseObject = {
-                'status': 401,
-                'message':'No message was found with id that belongs to you'
-            }
-        return make_response(jsonify(responseObject)), 401
+        return jsonify(Message.find_message_by_id(id))
 
 
 class GetAllMail(MethodView):
     """User fetches all the mails"""
     # @authentic.user_token
     def get(self):
-        if messages == []:
-            responseObject = {
-                'statu': 404,
-                'message': 'There were no messages found.'
-            }
-            return make_response(jsonify(responseObject)), 404
-        responseObject = {
-            'status': 200,
-            'data': messages
-        }
-        return make_response(jsonify(responseObject)),200
+        return jsonify(Message.get_all_messages())
+        
 
 class DeleteMail(MethodView):
     """Delete a mail by a user"""
-    # @authentic.user_token
     def delete(self, id):
-        if len(messages) < 1:
-            responseObject = {
-                'status': 404,
-                'message': 'No messages were found'
-            }
-            return make_response(jsonify(responseObject)), 404
-        for message in range(len(messages)):
-            if messages[message]["id"] == id:
-                del messages[message]
-                responseObject = {
-                    'status': 200,
-                    'message': "The message has successfully been deleted."
-                }
-                return make_response(jsonify(responseObject)), 200
-        responseObject = {
-           'status': 404,
-            'message': 'No message was found' 
-        }
-        return make_response(jsonify(responseObject)), 404
-
-class GetReceivedMessages(MethodView):
-    def get(self):
-        for message in messages:
-            if message['status'] == "sent":
-                responseObject = {
-                    'status': 200,
-                    'message': message
-                }
-                return make_response(jsonify(responseObject)), 200
-        responseObject = {
-                'status': 401,
-                'message':'No message was found for you'
-            }
-        return make_response(jsonify(responseObject)), 401
+        return jsonify(Message.delete_message(id))
 
 
 class UpdateStatus(MethodView):
     # @authentic.user_token
-    def put(self, id):
-        data_posted = request.get_json()
-        if len(messages) < 1:
-            responseObject = {
-                'status': 404,
-                'error': "There are no messages found."
-            }
-            return make_response(jsonify(responseObject)), 404
-        for message in range(len(messages)):
-            if messages[message]["id"] == id:
-                messages[message].update({"status":data_posted["status"]})
-                responseObject = {
-                    'status code': 200,
-                    'message': "You have successfully updated your status"
-                }
-                return make_response(jsonify(responseObject)),200
-        responseObject = {
-            'status': 404,
-            'error': "That message was not found, make sure its a right id provided."
-            }
-        return make_response(jsonify(responseObject)), 404
+    def patch(self, id):
+        data = request.get_json()
+        status = data['status']
+        return jsonify(Message.update_status(id, status))
 
-
-class GetReadMessages(MethodView):
-    # @authentic.user_token
-    def get(self):
-        """Get a message by id"""
-        for message in messages:
-            if message['status'] == 'sent':
-                responseObject = {
-                    'status': 200,
-                    'message': messages
-                }
-                return make_response(jsonify(responseObject)), 200
-        responseObject = {
-                'status': 404,
-                'message':'No read emails were found.'
-            }
-        return make_response(jsonify(responseObject)), 401
         
 
 # define the Messages rources
@@ -177,8 +66,7 @@ get_message = GetSpecificMail.as_view('get_message')
 get_messages = GetAllMail.as_view('get_messages')
 delete_message = DeleteMail.as_view('del_message')
 update_status = UpdateStatus.as_view('update_statuses')
-get_read_messages = GetReadMessages.as_view('get_read_messages')
-get_received_messages = GetReceivedMessages.as_view('get_received')
+
 # add Rules for Endpoints
 messages_blueprint.add_url_rule(
     '/messages',
@@ -203,15 +91,5 @@ messages_blueprint.add_url_rule(
 messages_blueprint.add_url_rule(
     '/messages/update/<int:id>',
     view_func=update_status,
-    methods=['PUT']
-)
-messages_blueprint.add_url_rule(
-    '/messages/read',
-    view_func=get_read_messages,
-    methods=['GET']
-)
-messages_blueprint.add_url_rule(
-    '/messages/received',
-    view_func=get_received_messages,
-    methods=['GET']
+    methods=['PATCH']
 )

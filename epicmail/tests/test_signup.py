@@ -4,7 +4,7 @@ import json
 import datetime
 import unittest
 
-from epicmail.app.models.users import User, users
+from epicmail.app.models.users import User
 from epicmail.tests.base import BaseTestCase
 from epicmail.app.handler.auth import JwtAuth
 

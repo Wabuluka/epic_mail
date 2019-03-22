@@ -3,7 +3,7 @@
 import unittest
 import json
 
-from epicmail.app.models.users import User, users
+from epicmail.app.models.users import User
 from epicmail.tests.base import BaseTestCase
 
 
