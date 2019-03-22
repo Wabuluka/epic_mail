@@ -50,12 +50,15 @@ class Message:
         message = Message.find_message_by_id(id)
         for message in Message.messages_list:
             if message:
-                del message
+                Message.messages_list.remove(message)
                 return {
                     "status": 200,
                     "message": "You have successfully deleted the message"
                 }
-        return {"message":"Message with that id was not found"}    
+        return {
+            "status": 404,
+            "message":"Message with that id was not found"
+        }    
 
     @staticmethod
     def update_status(id, stats):
@@ -81,4 +84,30 @@ class Message:
         return {
             "status": 404,
             "message": "No messages were found."
+        }
+
+    @staticmethod
+    def get_all_received_messages():
+        for message in Message.messages_list:
+            if message['status'] == 'read' or message['status'] == 'sent':
+                return {
+                    "status": 200,
+                    "data": message
+                }
+        return {
+            "status": 404,
+            "message": "There are no messages yet"
+        }
+    
+    @staticmethod
+    def get_all_sent_messages():
+        for message in Message.messages_list:
+            if message['status'] == 'sent':
+                return {
+                    "status": 200,
+                    "data": message
+                }
+        return {
+            "status": 404,
+            "message": "There are no messages sent yet"
         }

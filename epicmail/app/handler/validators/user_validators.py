@@ -1,5 +1,6 @@
 import re
 from flask import jsonify
+
 def validate_firstname(firstname):
     """Validation for the field of first name in the User model"""
     if not firstname:

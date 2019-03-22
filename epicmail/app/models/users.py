@@ -54,8 +54,8 @@ class User:
             user = User(email, firstname,lastname, password)
             User.users_list.append(user)
             return {
-                "status": 200,
-                "message": "User is successfully created",
+                "status": 201,
+                "message": "You have successfully created an account.",
                 "data": user.to_dictionary()
             }
 
