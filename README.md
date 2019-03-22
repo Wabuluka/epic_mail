@@ -59,6 +59,11 @@ After successfully runing the API, you can now have the oppotunity to interract 
 |   GET         |/epicmail/v2/api/messages/received     |Get all received messages      |
 |   DELETE      |/epicmail/v2/api/messages/<int:id>     |Delete a messages              |
 
+## Testing
+To run the unittests
+```
+$ pytest --cov
+```
 
 ## Deployment
 This API has been deployed on Heroku for live viewing. The link can be found below
