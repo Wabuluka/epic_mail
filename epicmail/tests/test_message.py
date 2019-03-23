@@ -1,5 +1,3 @@
-# epicmail/tests/test_message.py
-
 import unittest
 import json
 

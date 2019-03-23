@@ -1,5 +1,3 @@
-# epicmail/test/base.py
-
 from flask_testing import TestCase
 
 from epicmail.app import app

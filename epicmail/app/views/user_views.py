@@ -1,22 +1,16 @@
-# epicmail/app/users/views.py
-
 from flask import Blueprint, request, make_response, jsonify
 from epicmail.app import bcrypt
 from flask.views import MethodView
 from epicmail.app.models.users import User
-from epicmail.app.handler.auth import JwtAuth
 from epicmail.app.handler.validators.user_validators import (
     validate_firstname, validate_lastname, validate_email, validate_password
 )
-authentic = JwtAuth()
 user_blueprint = Blueprint('user', __name__)
 
 class RegisterUser(MethodView):
     """Method View for creating new accounts"""
     def post(self):
-        # get data from json
         data = request.get_json()
-        # check for user existence
         email = data['email']
         firstname = data['firstname']
         lastname = data['lastname']
@@ -43,11 +37,9 @@ class LoginUser(MethodView):
         password = data.get("password", None)
         return jsonify(User.login_user(email, password))    
 
-# define the API resources
 registration_view = RegisterUser.as_view('register_user')
 login_view = LoginUser.as_view('login_user')
 
-# add Rules for API Endpoints
 user_blueprint.add_url_rule(
     '/auth/signup',
     view_func=registration_view,

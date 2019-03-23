@@ -1,4 +1,3 @@
-# empicmail/app/models/messages.py
 import datetime
 from flask import jsonify
 import re

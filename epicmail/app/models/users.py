@@ -1,4 +1,3 @@
-# empicmail/app/models.py
 import datetime
 import jwt
 import re
@@ -42,7 +41,7 @@ class User:
     def create_user(self,email, firstname, lastname, password):
         if User.find_user_by_email(self.email):
             return {
-                "status": 202,
+                "status": 409,
                 "message": "Email already exists."
             }
         else:
@@ -64,6 +63,6 @@ class User:
                     "message": "You have successfully logged in."
                 }
         return {
-            "status": 400,
+            "status": 401,
             "message": "Wrong credentials."
         }

@@ -1,5 +1,3 @@
-# epicmail/app/config.py
-
 import os
 
 

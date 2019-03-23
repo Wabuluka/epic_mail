@@ -1,4 +1,3 @@
-# epicmail/tests/test_user.py
 import time
 import json
 import datetime

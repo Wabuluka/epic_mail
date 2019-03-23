@@ -1,5 +1,3 @@
-# epicmail/app/messages/views.py
-
 from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
 from epicmail.app.views.user_views import LoginUser
@@ -13,7 +11,6 @@ messages_blueprint = Blueprint('messages', __name__)
 class SendMessage(MethodView):
     """Method View for creating a new email"""
     def post(self):
-        # get data from json
         data_posted = request.get_json()
         if request.method == "POST":
             subject=data_posted['subject']
@@ -72,7 +69,7 @@ class GetAllSentMessages(MethodView):
 
         
 
-# define the Messages rources
+
 send_message = SendMessage.as_view('create_message')
 get_message = GetSpecificMail.as_view('get_message')
 get_messages = GetAllMail.as_view('get_messages')
@@ -81,7 +78,7 @@ update_status = UpdateStatus.as_view('update_statuses')
 get_received = GetReceivedMessages.as_view('get_received')
 get_sent = GetAllSentMessages.as_view('get_sent')
 
-# add Rules for Endpoints
+
 messages_blueprint.add_url_rule(
     '/messages',
     view_func=send_message,
