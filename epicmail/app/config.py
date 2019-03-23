@@ -1,7 +1,6 @@
 # epicmail/app/config.py
 
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class BaseConfig:
@@ -28,4 +27,4 @@ class ProductionConfig(BaseConfig):
     """Production configuration."""
     SECRET_KEY = 'its me your boy the bad guy'
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql:///'
+    DATABASE_URI = 'postgresql:///'

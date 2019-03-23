@@ -22,10 +22,6 @@ class User:
         self.lastname = lastname
         self.email = email
         self.password = password
-        # bcrypt.generate_password_hash(
-        #     password, app.config.get('BCRYPT_LOG_ROUNDS')
-        # ).decode()
-        # self.auth_token=auth_token
         self.registered_on = datetime.datetime.now()
 
     def to_dictionary(self):
@@ -35,8 +31,7 @@ class User:
             "lastname":self.lastname,
             "email":self.email,
             "password":self.password,
-            "registered_on":self.registered_on,
-            # "token":self.auth_token
+            "registered_on":self.registered_on
         }
     @staticmethod
     def find_user_by_email(email):

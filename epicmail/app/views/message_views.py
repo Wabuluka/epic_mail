@@ -7,14 +7,11 @@ from epicmail.app.models.messages import Message
 from epicmail.app.handler.validators.message_validators import (
     validate_address, validate_createdby, validate_message, validate_subject)
 
-# authentic = JwtAuth()
-
 # blueprint for the message
 messages_blueprint = Blueprint('messages', __name__)
 
 class SendMessage(MethodView):
     """Method View for creating a new email"""
-    # @authentic.user_token
     def post(self):
         # get data from json
         data_posted = request.get_json()
@@ -36,13 +33,11 @@ class SendMessage(MethodView):
             
             data = Message(subject, message, status, createdby, address)
             msg = data.create_message(subject, message, status, createdby, address)
-            # print(msg)
             return jsonify(msg), 201
 
 
 class GetSpecificMail(MethodView):
     """Get a message as specified by the user"""
-    # @authentic.user_token
     def get(self, id):
         """Get a message by id"""
         return jsonify(Message.find_message_by_id(id))

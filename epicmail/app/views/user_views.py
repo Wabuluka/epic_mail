@@ -37,7 +37,6 @@ class RegisterUser(MethodView):
 
 class LoginUser(MethodView):
     """Users with accounts can log in"""
-    # def post(self):
     def post(self):
         data = request.get_json()
         email = data.get("email", None)

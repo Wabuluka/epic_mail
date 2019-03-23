@@ -71,11 +71,13 @@ class Message:
                     "message": "You have successfully updated",
                     "data": message
                 }
-        return {"message": "The message was not found."}
+        return {
+            "status": 404,
+            "message": "The message was not found."
+            }
 
     @staticmethod
     def get_all_messages():
-        # for message in Message.messages_list:
         if Message.messages_list:
             return {
                 "status": 200,
