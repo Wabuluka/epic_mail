@@ -1,3 +1,4 @@
+import datetime
 from flask import Blueprint, request, make_response, jsonify
 from epicmail.app import bcrypt
 from flask.views import MethodView
@@ -5,6 +6,10 @@ from epicmail.app.models.users import User
 from epicmail.app.handler.validators.user_validators import (
     validate_firstname, validate_lastname, validate_email, validate_password
 )
+from epicmail.app.models.db import DatabaseConnection
+
+usermodel = User()
+
 user_blueprint = Blueprint('user', __name__)
 
 class RegisterUser(MethodView):
@@ -15,19 +20,14 @@ class RegisterUser(MethodView):
         firstname = data['firstname']
         lastname = data['lastname']
         password =data['password']
+        registered_on = datetime.datetime.utcnow()
         
-        if validate_email(email):
-            return validate_email(email)
-        if validate_firstname(firstname):
-            return validate_firstname(firstname)
-        if validate_lastname(lastname):
-            return validate_lastname(lastname)
-        if validate_password(password):
-            return validate_password(password)
-        
-        user = User(email, firstname, lastname, password)
-        data2=user.create_user(email, firstname, lastname, password)
-        return jsonify(data2),201
+        user = User(firstname=firstname,lastname=lastname,email=email,password=password,registered_on=registered_on)
+        usermodel.create_user(user)
+        return jsonify({
+            "status":201,
+            "message": "You have successfully created an account."
+        })
 
 class LoginUser(MethodView):
     """Users with accounts can log in"""

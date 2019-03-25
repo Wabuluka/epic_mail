@@ -4,6 +4,12 @@ import re
 
 from flask import jsonify, abort
 from epicmail.app import app, bcrypt
+from epicmail.app.models.db import DatabaseConnection
+
+database=DatabaseConnection()
+cur=database.cursor
+
+database.create_user_table()
 
 
 """
@@ -15,17 +21,15 @@ class User:
 
     users_list = []
 
-    def __init__(self, email, firstname, lastname, password):
-        self.id = len(User.users_list)+1
-        self.firstname = firstname
-        self.lastname = lastname
-        self.email = email
-        self.password = password
-        self.registered_on = datetime.datetime.now()
+    def __init__(self, **kwargs):
+        self.firstname=kwargs.get('firstname')
+        self.lastname=kwargs.get('lastname')
+        self.email=kwargs.get('email')
+        self.password=kwargs.get('password')
+        self.registered_on=datetime.datetime.utcnow()
 
     def to_dictionary(self):
         return {
-            "id": self.id,
             "firstname":self.firstname,
             "lastname":self.lastname,
             "email":self.email,
@@ -38,20 +42,13 @@ class User:
             if email == user.email:
                 return user
 
-    def create_user(self,email, firstname, lastname, password):
-        if User.find_user_by_email(self.email):
-            return {
-                "status": 409,
-                "message": "Email already exists."
-            }
-        else:
-            user = User(email, firstname,lastname, password)
-            User.users_list.append(user)
-            return {
-                "status": 201,
-                "message": "You have successfully created an account.",
-                "data": user.to_dictionary()
-            }
+    def create_user(self, user):
+        """Create a new user"""
+        query = """
+            INSERT INTO users(firstname, lastname, email, password, registered_on)
+            VALUES('{}', '{}', '{}', '{}', '{}')""".format(user.firstname, user.lastname,
+            user.email, user.password, user.registered_on)
+        cur.execute(query)
 
     @staticmethod
     def login_user(email, password):

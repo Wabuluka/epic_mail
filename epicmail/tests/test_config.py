@@ -12,6 +12,9 @@ class TestDevelopmentConfig(TestCase):
     def test_app_is_development(self):
         self.assertTrue(app.config['DEBUG'] is True)
         self.assertFalse(current_app is None)
+        self.assertTrue(
+            app.config['DATABASE_URI'] == 'postgresql://postgres:root123@localhost/challengethree'
+        )
 
 class TestTestingConfig(TestCase):
     def create_app(self):
@@ -20,6 +23,9 @@ class TestTestingConfig(TestCase):
 
     def test_app_is_testing(self):
         self.assertTrue(app.config['DEBUG'])
+        self.assertTrue(
+            app.config['DATABASE_URI'] == 'postgresql://postgres:root123@localhost/challengethree_test'
+        )
 
 
 class TestProductionConfig(TestCase):
