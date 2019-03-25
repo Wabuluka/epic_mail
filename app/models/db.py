@@ -1,6 +1,6 @@
 import os
-from epicmail.app import app
-from epicmail.app import config
+from app import app
+from app import config
 import psycopg2
 
 class DatabaseConnection():   

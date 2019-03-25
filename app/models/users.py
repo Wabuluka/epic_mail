@@ -3,8 +3,8 @@ import jwt
 import re
 
 from flask import jsonify, abort
-from epicmail.app import app, bcrypt
-from epicmail.app.models.db import DatabaseConnection
+from app import app, bcrypt
+from app.models.db import DatabaseConnection
 
 database=DatabaseConnection()
 cur=database.cursor
