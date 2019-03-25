@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app_settings = os.getenv(
     'APP_SETTINGS',
-    'epicmail.app.config.DevelopmentConfig'
+    'app.config.DevelopmentConfig'
 )
 
 app.config.from_object(app_settings)
@@ -16,9 +16,9 @@ app.config.from_object(app_settings)
 bcrypt = Bcrypt(app)
 
 # calling the blueprints
-from epicmail.app.views.user_views import user_blueprint
-from epicmail.app.views.message_views import messages_blueprint
+from app.views.user_views import user_blueprint
+from app.views.message_views import messages_blueprint
 
 # registering the blueprints
-app.register_blueprint(user_blueprint, url_prefix='/epicmail/api/v2/')
-app.register_blueprint(messages_blueprint, url_prefix='/epicmail/api/v2/')
+app.register_blueprint(user_blueprint, url_prefix='/api/v3/')
+app.register_blueprint(messages_blueprint, url_prefix='/api/v3/')
