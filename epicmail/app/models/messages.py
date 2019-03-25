@@ -1,15 +1,16 @@
-# empicmail/app/models/messages.py
 import datetime
 from flask import jsonify
 import re
 
-messages = []
 
-class Messages:
+
+class Message:
     """Messages Models contains properties stored for a message to be sent to an individual"""
+    messages_list = []
+
     def __init__(self, subject, message, status, createdby, address):
         """Initializes the message"""
-        self.id=len(messages)+1
+        self.id=len(Message.messages_list)+1
         self.createdon=datetime.datetime.now()
         self.subject=subject
         self.message=message
@@ -28,57 +29,86 @@ class Messages:
             "address":self.address
         }
 
-    @staticmethod
-    def validate_subject(subject):
-        if not subject:
-            error = {
-                "status": 401,
-                "error":"You must fill the subject field."
-            }
-            return jsonify(error), 401
-    
-    @staticmethod
-    def validate_message(message):
-        if not message:
-            error = {
-                "status": 401,
-                "error":"You must fill the message field."
-            }
-            return jsonify(error), 401
-    @staticmethod
-    def validate_address(address):
-        if not address:
-            error = {
-                "status": 401,
-                "error":"You must fill the address field."
-            }
-            return jsonify(error), 401
-        address = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', address)
-        if address  == None:
-            error = {
-                'status':401,
-                'error': 'Make sure your address is well written.'
-            }
-            return jsonify(error)
-    
-    @staticmethod
-    def validate_createdby(createdby):
-        if not createdby:
-            error = {
-                "status": 401,
-                "error":"You must fill the createdby field."
-            }
-            return jsonify(error), 401
-        createdby = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', createdby)
-        if createdby  == None:
-            error = {
-                'status':401,
-                'error': 'Make sure your createdby is well written.'
-            }
-            return jsonify(error)
+    def create_message(self,subject, message, status, createdby, address):
+        message = Message(subject, message, status, createdby, address)
+        Message.messages_list.append(message.to_dictionary())
+        return {
+            "status": 201,
+            "message": "Message has been created successfully",
+            "data": message.to_dictionary()
+        }
 
-class MessageReply(Messages):
-    """MessageReply Models contains properties stored for a message to be replied to an individual"""
-    def __init__(self, createdon, Message_repy, parent_message_id, reply_status):
-        """Initializes the message reply"""
-        pass
+    @staticmethod
+    def find_message_by_id(id):
+        for message in Message.messages_list:
+            if id == message['id']:
+                return message
+
+    @staticmethod
+    def delete_message(id):
+        message = Message.find_message_by_id(id)
+        for message in Message.messages_list:
+            if message:
+                Message.messages_list.remove(message)
+                return {
+                    "status": 200,
+                    "message": "You have successfully deleted the message"
+                }
+        return {
+            "status": 404,
+            "message":"Message with that id was not found"
+        }    
+
+    @staticmethod
+    def update_status(id, stats):
+        message = Message.find_message_by_id(id)
+        for message in Message.messages_list:
+            if message:
+                message.update(status = stats)
+                return {
+                    "status": 200,
+                    "message": "You have successfully updated",
+                    "data": message
+                }
+        return {
+            "status": 404,
+            "message": "The message was not found."
+            }
+
+    @staticmethod
+    def get_all_messages():
+        if Message.messages_list:
+            return {
+                "status": 200,
+                "data": Message.messages_list
+            }
+        return {
+            "status": 404,
+            "message": "No messages were found."
+        }
+
+    @staticmethod
+    def get_all_received_messages():
+        for message in Message.messages_list:
+            if message['status'] == 'read' or message['status'] == 'sent':
+                return {
+                    "status": 200,
+                    "data": message
+                }
+        return {
+            "status": 404,
+            "message": "There are no messages yet"
+        }
+    
+    @staticmethod
+    def get_all_sent_messages():
+        for message in Message.messages_list:
+            if message['status'] == 'sent':
+                return {
+                    "status": 200,
+                    "data": message
+                }
+        return {
+            "status": 404,
+            "message": "There are no messages sent yet"
+        }
