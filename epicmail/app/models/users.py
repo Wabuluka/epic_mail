@@ -1,14 +1,13 @@
 import datetime
-import jwt
 import re
 
 from flask import jsonify, abort
 from epicmail.app import app, bcrypt
 from epicmail.app.models.db import DatabaseConnection
 
+
 database=DatabaseConnection()
 cur=database.cursor
-
 database.create_user_table()
 
 
@@ -44,6 +43,7 @@ class User:
 
     def create_user(self, user):
         """Create a new user"""
+        
         query = """
             INSERT INTO users(firstname, lastname, email, password, registered_on)
             VALUES('{}', '{}', '{}', '{}', '{}')""".format(user.firstname, user.lastname,

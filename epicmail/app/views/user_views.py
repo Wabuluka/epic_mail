@@ -7,6 +7,10 @@ from epicmail.app.handler.validators.user_validators import (
     validate_firstname, validate_lastname, validate_email, validate_password
 )
 from epicmail.app.models.db import DatabaseConnection
+from epicmail.app.handler.authentication.jwt_auth import Authentication
+
+
+authentication=Authentication()
 
 usermodel = User()
 
