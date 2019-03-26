@@ -32,8 +32,21 @@ class DatabaseConnection():
             registered_on TIMESTAMP )""")
         self.cursor.execute(self.users)
 
+    def create_messages_table(self):
+        self.messages = (
+            """CREATE TABLE IF NOT EXISTS messages (
+            message_id serial primary key, 
+            subject varchar(100) not null,
+            message text not null,
+            status varchar(100) not null,
+            createdby INT REFERENCES users(user_id),
+            createdon TIMESTAMP,
+            address varchar(200) not null)"""
+        )
+        self.cursor.execute(self.messages)
+
     def drop_tables(self):
         query = "DROP TABLE IF EXISTS {} CASCADE"
-        tabl_names = ["users"]
+        tabl_names = ["users", "messages"]
         for name in tabl_names:
             self.cursor.execute(query.format(name))

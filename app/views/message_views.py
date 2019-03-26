@@ -8,7 +8,7 @@ messages_blueprint = Blueprint('messages', __name__)
 
 
 @messages_blueprint.route('/messages', methods=['POST'])   
-def post(self):
+def create_msg():
     """Method View for creating a new email"""
     data_posted = request.get_json()
     if request.method == "POST":
@@ -22,41 +22,50 @@ def post(self):
             return validate_subject
         if validate_message(message):
             return validate_message
-        if validate_createdby(createdby):
-            return validate_createdby
         if validate_address(address):
             return validate_address
         
         data = Message(subject, message, status, createdby, address)
-        msg = data.create_message(subject, message, status, createdby, address)
-        return jsonify(msg), 201
+        msg = data.create_message()
+        return jsonify(
+            {
+                "status": 201,
+                "message": "Message has been created successfully",
+                "data": msg
+            }
+        )
 
 
 @messages_blueprint.route('/messages/<int:id>', methods=['GET'])    
-def get_one_message(self, id):
+def get_one_message(id):
     """Get a message by id"""
     return jsonify(Message.find_message_by_id(id))
 
 @messages_blueprint.route('/messages', methods=['GET'])    
-def get_all_messages(self):
+def get_all_messages():
     """User fetches all the mails"""
     return jsonify(Message.get_all_messages())
         
-@messages_blueprint.route('/message/<int:id>', methods=['DELETE'])   
-def delete_message(self, id):
+@messages_blueprint.route('/messages/<int:id>', methods=['DELETE'])   
+def delete_message(id):
     """Delete a mail by a user"""
-    return jsonify(Message.delete_message(id)),200
+    return jsonify(Message.delete_message(id))
 
 @messages_blueprint.route('/messages/update/<int:id>', methods=['PATCH'])
-def update_status(self, id):
+def update_status(id):
     data = request.get_json()
+    table_name = 'messages'
     status = data['status']
-    return jsonify(Message.update_status(id, status))
+    Message.update_status(table_name, status, id)
+    return jsonify(
+        {
+            "status": 200
+        }
+    )
+# @messages_blueprint.route('/messages/received', methods=['GET'] )
+# def get_all_received_messages(self):
+#     return jsonify(Message.get_all_received_messages()),200
 
-@messages_blueprint.route('/messages/received', methods=['GET'] )
-def get_all_received_messages(self):
-    return jsonify(Message.get_all_received_messages()),200
-
-@messages_blueprint.route('/messages/sent', methods=['GET'])
-def get(self):
-    return jsonify(Message.get_all_sent_messages()),200
+# @messages_blueprint.route('/messages/sent', methods=['GET'])
+# def get(self):
+#     return jsonify(Message.get_all_sent_messages()),200

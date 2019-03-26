@@ -20,5 +20,5 @@ from app.views.user_views import user_blueprint
 from app.views.message_views import messages_blueprint
 
 # registering the blueprints
-app.register_blueprint(user_blueprint, url_prefix='/api/v3/')
-app.register_blueprint(messages_blueprint, url_prefix='/api/v3/')
+app.register_blueprint(user_blueprint, url_prefix='/api/v2/')
+app.register_blueprint(messages_blueprint, url_prefix='/api/v2/')

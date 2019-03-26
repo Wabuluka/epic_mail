@@ -28,6 +28,16 @@ class User:
         self.password=kwargs['password']
         self.registered_on=datetime.datetime.utcnow()
 
+#     @classmethod
+#     def to_dictionary(cls):
+#         return {
+#             "firstname":cls.firstname,
+#             "lastname":cls.lastname,
+#             "email":cls.email,
+#             "password":cls.password,
+#             "registered_on":cls.registered_on
+# }
+
     @staticmethod
     def get_user_by_email(email):
         query = """
@@ -37,14 +47,14 @@ class User:
         return cur.fetchone()
     
 
-    def __str__(self):
-        return "'{}'".format(self.email)
+    # def __str__(self):
+    #     return "'{}'".format(self.email)
 
 
     def create_user(self):
         """Create a new user"""
         query = "INSERT INTO users(firstname, lastname, email, password, registered_on)\
-            VALUES('{}', '{}', '{}', '{}', '{}')RETURNING *;".format(
+            VALUES('{}', '{}', '{}', '{}', '{}') RETURNING *;".format(
                 self.firstname, 
                 self.lastname,
                 self.email,
@@ -52,7 +62,7 @@ class User:
                 # bcrypt.generate_password_hash(self.password, app.config.get('BCRYPT_LOG_ROUNDS')).decode(), 
                 self.registered_on)
         cur.execute(query)
-        # return jsonify(cur.fetchone())
+        return cur.fetchone()
  
         
     @staticmethod

@@ -13,9 +13,21 @@ user_blueprint = Blueprint('user', __name__)
 @user_blueprint.route('/auth/signup', methods=['POST'])   
 def signup_user():
     data = request.get_json()    
-    user = User(firstname=data['firstname'],lastname = data['lastname'],email = data['email'],password =data['password'])
-    user.create_user()
-    return jsonify({"status": 201, "message": "You have successfully created an account"}), 201
+    user = User(
+            firstname=data['firstname'],
+            lastname = data['lastname'],
+            email = data['email'],
+            password =data['password']
+            )
+    new_user = user.create_user()
+    # print(new_user.get('email'))
+    return jsonify(
+        {
+            "status": 201, 
+            "message": "You have successfully created an account",
+            "data": new_user
+            }
+        ), 201
 
 @user_blueprint.route('/auth/login', methods=['POST'])
 def login_user():
