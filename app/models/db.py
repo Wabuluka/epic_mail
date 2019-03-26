@@ -2,6 +2,8 @@ import os
 from app import app
 from app import config
 import psycopg2
+from psycopg2.extras import RealDictCursor
+from pprint import pprint
 
 class DatabaseConnection():   
     def __init__(self):     
@@ -10,9 +12,10 @@ class DatabaseConnection():
                                                 password="root123",
                                                 host="127.0.0.1",
                                                 port="5432",
-                                                database="challengethree")
+                                                database="challengethree"
+                                                )
             self.connection.autocommit = True
-            self.cursor = self.connection.cursor()
+            self.cursor = self.connection.cursor(cursor_factory=RealDictCursor)
 
 
         except(Exception, psycopg2.DatabaseError) as error:
@@ -28,3 +31,9 @@ class DatabaseConnection():
             password varchar(200) not null,
             registered_on TIMESTAMP )""")
         self.cursor.execute(self.users)
+
+    def drop_tables(self):
+        query = "DROP TABLE IF EXISTS {} CASCADE"
+        tabl_names = ["users"]
+        for name in tabl_names:
+            self.cursor.execute(query.format(name))

@@ -49,4 +49,4 @@ class TestSignUp(BaseTestCase):
             )
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 201)
-            self.assertTrue(data['message'] == "You have successfully created an account.")
+            self.assertTrue(data['message'] == "You have successfully created an account")

@@ -7,32 +7,31 @@ from app.handler.validators.user_validators import (
 )
 from app.models.db import DatabaseConnection
 
-usermodel = User()
-
 user_blueprint = Blueprint('user', __name__)
 
 
 @user_blueprint.route('/auth/signup', methods=['POST'])   
 def signup_user():
-    """Method View for creating new accounts"""
-    data = request.get_json()
-    email = data['email']
-    firstname = data['firstname']
-    lastname = data['lastname']
-    password =data['password']
-    registered_on = datetime.datetime.utcnow()
-    
-    user = User(firstname=firstname,lastname=lastname,email=email,password=password,registered_on=registered_on)
-    usermodel.create_user(user)
-    return jsonify({
-        "status":201,
-        "message": "You have successfully created an account."
-    })
+    data = request.get_json()    
+    user = User(firstname=data['firstname'],lastname = data['lastname'],email = data['email'],password =data['password'])
+    user.create_user()
+    return jsonify({"status": 201, "message": "You have successfully created an account"}), 201
 
-@user_blueprint.route('/auth/login', methods=['POST']) 
-def post(self):
-    """Users with accounts can log in"""
+@user_blueprint.route('/auth/login', methods=['POST'])
+def login_user():
     data = request.get_json()
-    email = data.get("email", None)
-    password = data.get("password", None)
-    return jsonify(User.login_user(email, password))    
+    email=data['email']
+    password=data['password']
+    
+    check_email= User.get_user_by_email(email)
+    if not check_email:
+        return jsonify({
+            "status": 404,
+            "message": "Email was not found in the system."
+        })
+    log_in=User.login_user(email, password)
+    return jsonify({
+        "status": 200,
+        "message": "You are logged in",
+        "data": log_in['email']
+    }),200
