@@ -37,7 +37,7 @@ class Group:
         cur.execute(query)
 
     @staticmethod
-    def add_member(group_id,member):
+    def add_member(group_id, member):
         query="INSERT INTO groupmembers(group_id, member)\
             VALUES({},{}) RETURNING *;".format(
                 group_id, member

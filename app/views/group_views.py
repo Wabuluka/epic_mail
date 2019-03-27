@@ -42,3 +42,20 @@ def delete_a_group(id):
         "status":400,
         "message":"Either you do not own that group or it does not exist"
     }),400
+
+@groups_blueprint.route('/groups/<int:id>/users', methods=['POST'])
+@jwt_required
+def add_user_group(id):
+    data=request.get_json()
+    group_id=data['group_id']
+    member=data['member']
+    new_member=Group.add_member(group_id,member)
+    if new_member:
+        return jsonify({
+            "status":201,
+            "message":"You have added a new member to the group"
+        })
+    return jsonify({
+        "status":203,
+        "message":"We were not able to add a user to your group"
+    })
