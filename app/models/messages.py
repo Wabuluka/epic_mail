@@ -12,7 +12,7 @@ database.create_messages_table()
 class Message:
     """Messages Models contains properties stored for a message to be sent to an individual"""
 
-    def __init__(self, subject, message, status, createdby, address):
+    def __init__(self, subject, message, status, createdby, address, parentMessageId):
         """Initializes the message"""
         self.createdon=datetime.datetime.now()
         self.subject=subject
@@ -20,7 +20,7 @@ class Message:
         self.status=status
         self.createdby=createdby
         self.address=address
-
+        self.parentMessageId=parentMessageId
 
     def create_message(self):
         query = "INSERT INTO messages(createdon, subject, message, status, createdby, address)\
@@ -57,28 +57,30 @@ class Message:
         cur.execute(query)
         return cur.fetchall()
 
+    @staticmethod
+    def get_unread_messages(user_id):
+        """Get unread messages"""
+        query="SELECT * FROM messages WHERE createdby={} AND status='sent';".format(user_id)
+        cur.execute(query)
+        return cur.fetchall()
+
+    @staticmethod
+    def get_all_messages_sent_by_a_user(user_id):
+        """Get all user sent messages"""
+        query="SELECT * FROM messages WHERE createdby={};".format(user_id)
+        cur.execute(query)
+        return cur.fetchall()
     # @staticmethod
-    # def get_all_received_messages():
-    #     for message in Message.messages_list:
-    #         if message['status'] == 'read' or message['status'] == 'sent':
-    #             return {
-    #                 "status": 200,
-    #                 "data": message
-    #             }
-    #     return {
-    #         "status": 404,
-    #         "message": "There are no messages yet"
-    #     }
-    
-    # @staticmethod
-    # def get_all_sent_messages():
-    #     for message in Message.messages_list:
-    #         if message['status'] == 'sent':
-    #             return {
-    #                 "status": 200,
-    #                 "data": message
-    #             }
-    #     return {
-    #         "status": 404,
-    #         "message": "There are no messages sent yet"
-    #     }
+    # def write_reply(self):
+    #     """Writing a reply to the message"""
+    #     query = "INSERT INTO messages(createdon, subject, message, status, createdby, address, parentMessageId)\
+    #         VALUES('{}', '{}', '{}', '{}', '{}', '{}',{})RETURNING *;".format(
+    #             self.createdon, 
+    #             self.subject,
+    #             self.message,
+    #             self.status, 
+    #             self.createdby,
+    #             self.address,
+    #             self.parentMessageId)
+    #     cur.execute(query)
+    #     return cur.fetchone()

@@ -1,18 +1,20 @@
 import datetime
 from flask import Blueprint, request, make_response, jsonify
-from app import bcrypt
+from app import bcrypt, swag
 from app.models.users import User
 from app.handler.validators.user_validators import (
     validate_firstname, validate_lastname, validate_email, validate_password
 )
 from app.models.db import DatabaseConnection
 from flask_jwt_extended import create_access_token
+from flasgger import swag_from
 
 
 user_blueprint = Blueprint('user', __name__)
 
 
 @user_blueprint.route('/auth/signup', methods=['POST'])   
+@swag_from('../docs/signup.yml', methods=['POST'])
 def signup_user():
     data = request.get_json()    
     user = User(
@@ -21,6 +23,20 @@ def signup_user():
             email = data['email'],
             password =data['password']
             )
+    email_check = User.get_user_by_email(user.email)
+    if email_check:
+        return jsonify({
+            "status":409,
+            "message":"User already exists"
+        }),409
+    if validate_email(user.email):
+        return validate_email(user.email)
+    if validate_firstname(user.firstname):
+        return validate_firstname(user.firstname)
+    if validate_lastname(user.lastname):
+        return validate_lastname(user.lastname)
+    if validate_password(user.password):
+            return validate_password(user.password)
     new_user = user.create_user()
     return jsonify(
         {
