@@ -22,7 +22,6 @@ def signup_user():
             password =data['password']
             )
     new_user = user.create_user()
-    # print(new_user.get('email'))
     return jsonify(
         {
             "status": 201, 

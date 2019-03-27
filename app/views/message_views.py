@@ -16,10 +16,11 @@ def create_msg():
     """Method View for creating a new email"""
     data_posted = request.get_json()
     if request.method == "POST":
+        current_user = get_jwt_identity()
         subject=data_posted['subject']
         message=data_posted['message']
         status=data_posted['status']
-        createdby=data_posted['createdby']
+        createdby=current_user['user_id']
         address=data_posted['address']
 
         if validate_subject(subject):
@@ -31,7 +32,6 @@ def create_msg():
         
         data = Message(subject, message, status, createdby, address)
         msg = data.create_message()
-        current_user = get_jwt_identity()
         print(current_user['user_id'])
         return jsonify(
             {

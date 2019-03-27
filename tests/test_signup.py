@@ -1,28 +1,19 @@
-import unittest
+import  unittest
 import json
-from flask import jsonify
+from app.models.db import DatabaseConnection
+from app.models.users import User
 from tests.base import BaseTestCase
+from flask_jwt_extended import create_access_token
+
+database=DatabaseConnection()
 
 
-class TestUser(BaseTestCase):
+class TestUserModel(BaseTestCase):
 
-    def create_user_login(self):
-        new_user=self.app.post(
-            "/api/v2/auth/signup",
-            content_type='application/json',
-            data=json.dumps(self.create_user)
-            )
-        return new_user
-
-    def login_user_created(self):
-        logged_in_user = self.app.post(
-            "/api/v2/auth/login",
-            content_type='application/json',
-            data=json.dumps(self.login_user)
-            )
-        return logged_in_user
-
-    # def test_user_signup(self):
-    #     signup = self.create_user_login()
-    #     self.assertEquals(signup.status_code, 201)
-
+    def test_login(self):
+        self.create_token()
+        with self.app as d:
+            response=d.post('/api/v2/auth/login',
+                content_type='application/json',
+                data=json.dumps(self.user_login))
+            self.assertEqual(response.status_code, 200)
