@@ -27,9 +27,18 @@ def create_new_group():
             }
         ), 201
 
-@groups_blueprint.route('//groups/<int:id>', methods=['DELETE'])
+@groups_blueprint.route('/groups/<int:id>', methods=['DELETE'])
 @jwt_required
 def delete_a_group(id):
     current_user=get_jwt_identity()
     createdby=current_user['user_id']
-    return jsonify(Group.delete_group(id,createdby))
+    delete = Group.delete_group(id, createdby)
+    if delete:
+        return jsonify({
+            "status":200,
+            "message":"You have successfully deleted your group"
+        })
+    return jsonify({
+        "status":400,
+        "message":"Either you do not own that group or it does not exist"
+    }),400
