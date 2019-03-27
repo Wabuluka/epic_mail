@@ -46,6 +46,6 @@ class Group:
         return cur.fetchone()
 
     @staticmethod
-    def delete_user(member):
-        query="DELETE FROM groupmembers WHERE member = {}".format(member)
+    def delete_user(group_id, member):
+        query="DELETE FROM groupmembers WHERE group_id= {} AND member = {}".format(group_id, member)
         cur.execute(query)

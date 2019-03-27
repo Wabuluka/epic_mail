@@ -59,3 +59,16 @@ def add_user_group(id):
         "status":203,
         "message":"We were not able to add a user to your group"
     })
+
+@groups_blueprint.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
+def delete_user_from_group(group_id, user_id):
+    deleted=Group.delete_user(group_id, user_id)
+    if deleted:
+        return jsonify({
+            "status":200,
+            "message":"You have deleted a member from your group successfully"
+        })
+    return jsonify({
+            "status":404,
+            "message":"User specified was not found"
+        })
