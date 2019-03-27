@@ -61,6 +61,7 @@ def add_user_group(id):
     })
 
 @groups_blueprint.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
+@jwt_required
 def delete_user_from_group(group_id, user_id):
     deleted=Group.delete_user(group_id, user_id)
     if deleted:
@@ -72,3 +73,26 @@ def delete_user_from_group(group_id, user_id):
             "status":404,
             "message":"User specified was not found"
         })
+
+@groups_blueprint.route('/groups/<int:group_id>/messages', methods=['POST'])
+@jwt_required
+def create_group_mail(group_id):
+    current_user=get_jwt_identity()
+    user_id=current_user['user_id']
+    data=request.get_json()
+    group_id=group_id
+    subject=data['subject']
+    message=data['message']
+    status=data['status']
+    createdby=user_id
+
+    group_msg=Group.create_group_message(group_id,subject,message,status,createdby)
+    print(group_msg)
+    if group_msg:
+        return jsonify({
+            "status":201,
+            "message":"Group messages successfully created."
+        })
+    return jsonify({
+        "message":"Unable to create a group message"
+    })

@@ -5,6 +5,7 @@ database=DatabaseConnection()
 cur=database.cursor
 database.create_groups_table()
 database.create_group_members_table()
+database.create_group_mail()
 
 class Group:
     def __init__(self, **kwargs):
@@ -48,4 +49,11 @@ class Group:
     @staticmethod
     def delete_user(group_id, member):
         query="DELETE FROM groupmembers WHERE group_id= {} AND member = {}".format(group_id, member)
+        cur.execute(query)
+
+    @staticmethod
+    def create_group_message(group_id,subject,message,status,createdby):
+        query="INSERT INTO groupmails(group_id,subject,message,status,createdby)VALUES({},'{}','{}','{}',{})".format(
+            group_id,subject,message,status,createdby
+        )
         cur.execute(query)

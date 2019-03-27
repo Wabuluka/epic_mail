@@ -75,12 +75,12 @@ class DatabaseConnection():
         self.groupmails=(
             """CREATE TABLE IF NOT EXISTS groupmails(
                 id serial primary key,
-                group INT REFERENCES groups(group_id),
+                group_id INT REFERENCES groups(group_id),
                 createdon TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 subject varchar(100) not null,
                 message text not null,
                 status varchar(10) not null,
-                createdby REFERENCES users(user_id)
+                createdby INT REFERENCES users(user_id)
                 )"""
         )
         self.cursor.execute(self.groupmails)
