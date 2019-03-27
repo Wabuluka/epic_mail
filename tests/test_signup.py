@@ -3,15 +3,15 @@ import json
 import datetime
 import unittest
 
-from epicmail.app.models.users import User
-from epicmail.tests.base import BaseTestCase
+from app.models.users import User
+from tests.base import BaseTestCase
 
 
 
 def signup_new_user(self, email, firstname, lastname, password):
     """Mock data for testing user signup"""
     return self.client.post(
-        '/epicmail/api/v2/auth/signup',
+        '/api/v3/auth/signup',
         data=json.dumps(dict(
             firstname=firstname,
             lastname=lastname,
@@ -23,7 +23,7 @@ def signup_new_user(self, email, firstname, lastname, password):
 
 def user_login(self, email, password):
     return self.client.post(
-        '/epicmail/api/v2/auth/login',
+        '/api/v3/auth/login',
         data=json.dumps(dict(
             email=email,
             password=password
@@ -38,7 +38,7 @@ class TestSignUp(BaseTestCase):
         """Test user account creation"""
         with self.client:
             response = self.client.post(
-                '/epicmail/api/v2/auth/signup',
+                '/api/v3/auth/signup',
                 data=json.dumps(dict(
                     firstname='Davies',
                     lastname='Wabuluka',
@@ -49,4 +49,4 @@ class TestSignUp(BaseTestCase):
             )
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 201)
-            self.assertTrue(data['message'] == "You have successfully created an account.")
+            self.assertTrue(data['message'] == "You have successfully created an account")

@@ -1,13 +1,13 @@
 import unittest
 import json
 
-from epicmail.app.models.users import User
-from epicmail.tests.base import BaseTestCase
+from app.models.users import User
+from tests.base import BaseTestCase
 
 
 def send_message(self, subject, message, address, createdby, status):
         return self.client.post(
-        '/epicmail/api/v2/messages',
+        '/api/v3/messages',
         data=json.dumps(dict(
             subject=subject,
             message=message,
