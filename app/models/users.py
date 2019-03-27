@@ -32,6 +32,17 @@ class User:
         cur.execute(query)
         return cur.fetchone()
     
+    @staticmethod
+    def get_user_id(email):
+        query = """
+            SELECT user_id FROM users WHERE email = '{}'
+        """.format(email)
+        cur.execute(query)
+        return cur.fetchone()
+    # def __str__(self):
+    #     return "'{}'".format(self.email)
+
+
     def create_user(self):
         """Create a new user"""
         query = "INSERT INTO users(firstname, lastname, email, password, registered_on)\

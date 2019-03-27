@@ -24,3 +24,7 @@ def create_new_group():
             "data": create
             }
         ), 201
+
+@groups_blueprint.route('//groups/<int:id>', methods=['DELETE'])
+def delete_a_group(id):
+    pass

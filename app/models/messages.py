@@ -12,7 +12,7 @@ database.create_messages_table()
 class Message:
     """Messages Models contains properties stored for a message to be sent to an individual"""
 
-    def __init__(self, subject, message, status, createdby, address):
+    def __init__(self, subject, message, status, createdby, address, parentMessageId):
         """Initializes the message"""
         self.createdon=datetime.datetime.now()
         self.subject=subject
@@ -20,7 +20,7 @@ class Message:
         self.status=status
         self.createdby=createdby
         self.address=address
-
+        self.parentMessageId=parentMessageId
 
     def create_message(self):
         query = "INSERT INTO messages(createdon, subject, message, status, createdby, address)\
