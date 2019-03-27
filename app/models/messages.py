@@ -56,29 +56,3 @@ class Message:
         query = "SELECT * FROM messages"
         cur.execute(query)
         return cur.fetchall()
-
-    # @staticmethod
-    # def get_all_received_messages():
-    #     for message in Message.messages_list:
-    #         if message['status'] == 'read' or message['status'] == 'sent':
-    #             return {
-    #                 "status": 200,
-    #                 "data": message
-    #             }
-    #     return {
-    #         "status": 404,
-    #         "message": "There are no messages yet"
-    #     }
-    
-    # @staticmethod
-    # def get_all_sent_messages():
-    #     for message in Message.messages_list:
-    #         if message['status'] == 'sent':
-    #             return {
-    #                 "status": 200,
-    #                 "data": message
-    #             }
-    #     return {
-    #         "status": 404,
-    #         "message": "There are no messages sent yet"
-    #     }
