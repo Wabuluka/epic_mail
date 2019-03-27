@@ -2,12 +2,14 @@ import datetime
 from flask import Blueprint, request, make_response, jsonify
 from app.models.group_model import Group
 from app.models.db import DatabaseConnection
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 groups_blueprint = Blueprint('groups', __name__)
 
 
 @groups_blueprint.route('/groups', methods=['POST'])
+@jwt_required
 def create_new_group():
     data_posted = request.get_json()
     if request.method == "POST":
@@ -26,5 +28,8 @@ def create_new_group():
         ), 201
 
 @groups_blueprint.route('//groups/<int:id>', methods=['DELETE'])
+@jwt_required
 def delete_a_group(id):
-    pass
+    current_user=get_jwt_identity()
+    createdby=current_user['user_id']
+    return jsonify(Group.delete_group(id,createdby))
