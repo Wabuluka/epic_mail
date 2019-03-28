@@ -45,18 +45,33 @@ class BaseTestCase(TestCase):
             "address":"webbiewabuluka@gmail.com",
             "status":"sent"
         }
+        self.group_one={
+            "group_name":"webblots_1",
+            "role":"we are here to be who we are",
+            "createdby":1
+        }
+        self.group_two={
+            "group_name":"webblots_1",
+            "role":"we are here to be who we are",
+            "createdby":1
+        }
+        self.group_member={
+            "group_id":1,
+	        "member":1
+        }
+        self.group_msg={
+            "subject": "heading of the message",
+            "message":"Lorem ipsum of the message that am going to write to you for this moment",
+            "status":"send"
+        }
     def create_token(self):
-        with self.app as d:
-            # response=d.post('/api/v2/auth/signup',
-            #     content_type='application/json',
-            #     data=json.dumps(self.user_one))
-            id={'user_id':1}
-            token=create_access_token(identity=id)
-            print(token)
-            return token
+        id={'user_id':1}
+        token=create_access_token(identity=id)
+        print(token)
+        return token
 
 
 
 
-    def tearDown(self):
-        database.drop_tables()
+    # def tearDown(self):
+    #     database.drop_tables()
