@@ -1,6 +1,6 @@
 from flask_testing import TestCase
 from app import app
-from app.models.db import DatabaseConnection
+from app.models.db import DatabaseConnection 
 import json
 from flask_jwt_extended import create_access_token
 
@@ -53,5 +53,5 @@ class BaseTestCase(TestCase):
 
 
 
-    def tearDown(self):
-        database.drop_tables()
+    # def tearDown(self):
+    #     database.drop_tables()

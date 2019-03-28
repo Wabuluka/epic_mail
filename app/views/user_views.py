@@ -47,6 +47,7 @@ def signup_user():
         ), 201
 
 @user_blueprint.route('/auth/login', methods=['POST'])
+@swag_from('../apidocs/login.yml', methods=['POST'])
 def login_user():
     data = request.get_json()
     email=data['email']

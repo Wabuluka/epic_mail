@@ -11,12 +11,12 @@ from flasgger import Swagger
 app = Flask(__name__)
 
 
-app_settings = os.getenv(
-    'APP_SETTINGS',
-    'app.config.DevelopmentConfig'
-)
+# app_settings = os.getenv(
+#     'APP_SETTINGS',
+#     'app.config.DevelopmentConfig'
+# )
 
-app.config.from_object(app_settings)
+# app.config.from_object(app_settings)
 
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
