@@ -66,7 +66,7 @@ def login_user():
             access_token =create_access_token(identity=user_id)
         return jsonify({
             "status": 200,
-            "message": "You are logged in",
+            "message": "You are logged in successfully",
             "data": log_in['email'],
             "token": access_token
         }),200

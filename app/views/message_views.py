@@ -59,7 +59,7 @@ def get_all_messages():
 @jwt_required
 def delete_message(id):
     """Delete a mail by a user"""
-    return jsonify(Message.delete_message(id))
+    return jsonify(Message.delete_message(id)),200
 
 @messages_blueprint.route('/messages/update/<int:id>', methods=['PATCH'])
 @jwt_required

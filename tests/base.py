@@ -19,12 +19,11 @@ class BaseTestCase(TestCase):
         
 
         self.user_one={
-            "email": "test@gmail.com",
-            "firstname": "test",
-            "lastname": "test",
-            "password": "Test@123",
-            "registered_on": "Tue, 26 Mar 2019 13:36:58 GMT",
-            "user_id": 1
+            "firstname":"Daviesd",
+            "lastname":"Wabuluka",
+            "email":"test@gmail.com",
+            "password":"Test@123"
+                
         }
         self.user_one={
             "email": "test1@gmail.com",
@@ -46,14 +45,10 @@ class BaseTestCase(TestCase):
             "status":"sent"
         }
     def create_token(self):
-        with self.app as d:
-            # response=d.post('/api/v2/auth/signup',
-            #     content_type='application/json',
-            #     data=json.dumps(self.user_one))
-            id={'user_id':1}
-            token=create_access_token(identity=id)
-            print(token)
-            return token
+        id={'user_id':1}
+        token=create_access_token(identity=id)
+        print(token)
+        return token
 
 
 
