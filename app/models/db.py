@@ -9,8 +9,11 @@ class DatabaseConnection:
     def __init__(self):  
         try:
             if os.getenv("FLASK_ENV") == "production":
-                    self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
-
+                self.connection = psycopg2.connect(dbname='dd5fjt4vlqe4u7',
+                                            user='wsldafxguglltc',
+                                            password='fad7e9c808db7d1f53ce9533b54913b4f61f0ecaf371f8d34e75e10c8244f60e',
+                                            host='ec2-54-83-61-142.compute-1.amazonaws.com',
+                                            port='5432', cursor_factory=RealDictCursor)
             elif os.getenv("FLASK_ENV") == "TESTING":
                 print('Connecting to test db')
                 self.connection = psycopg2.connect(user=os.environ['Data_user'],

@@ -62,7 +62,6 @@ def login_user():
     log_in=User.login_user(email, password)
     if log_in:
         user_id = User.get_user_id(email)
-        # print(user_id['user_id'])
         if user_id:
             access_token =create_access_token(identity=user_id)
         return jsonify({

@@ -15,8 +15,6 @@ All the models of the API and the relevant valis=dations are defined
 class User:
     """User Model contains the properties stored for a user"""
 
-    # users_list = []
-
     def __init__(self, **kwargs):
         self.firstname=kwargs["firstname"]
         self.lastname=kwargs['lastname']
@@ -39,9 +37,6 @@ class User:
         """.format(email)
         cur.execute(query)
         return cur.fetchone()
-    # def __str__(self):
-    #     return "'{}'".format(self.email)
-
 
     def create_user(self):
         """Create a new user"""
@@ -51,7 +46,6 @@ class User:
                 self.lastname,
                 self.email,
                 self.password, 
-                # bcrypt.generate_password_hash(self.password, app.config.get('BCRYPT_LOG_ROUNDS')).decode(), 
                 self.registered_on)
         cur.execute(query)
         return cur.fetchone()
