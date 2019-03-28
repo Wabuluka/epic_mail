@@ -1,0 +1,62 @@
+This enpoint is for Sending a message to an invidual
+---
+# tags:
+#   - SEND EMAIL
+
+# parameters:
+#   - name: body
+#       description : Information for sending mail
+      # in: body
+    # required: true
+    # schema:
+    #   type: object
+    #     required:
+    #       - "subject"
+    #       - "sender_status"
+    #     properties:
+    #       parent_message_id:
+    #         type: "int"
+    #         example: 4
+    #       sender_status:
+    #         type: "string"
+    #         example: "sent"
+    #       receiver_id:
+    #         type: "int"
+    #       example: 1
+#   - in: header
+#     name: Authorization
+#     description: authorization header
+#     required: true
+#     type: apikey
+#     schema:
+#     id: bearer
+
+# security:
+#   - JWT:
+#       description: Provide JWT token
+#       type: apikey
+#       schema: bearer
+#       name: Authorization
+#       in: header
+#       template: "Bearer {apikey}"
+#       bearerFormat: JWT
+
+# responses:
+#   201:
+#     description: Accessing the url
+#     schema:
+#       type: object
+#       properties:
+#         type: string
+#         enum:
+#           - [
+#             {
+#                 "firstname":"Daviesd",
+#                 "lastname":"Wabuluka",
+#                 "email":"dwabuluka@gmail.com",
+#                 "password":"Test@123"
+#             }
+#             ]
+
+  
+
