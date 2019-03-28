@@ -2,8 +2,9 @@ from flask import Blueprint, request, make_response, jsonify
 from app.models.messages import Message
 from app.handler.validators.message_validators import (
     validate_address, validate_createdby, validate_message, validate_subject)
-from app import jwt
+from app import jwt, swag
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from flasgger import swag_from
 
 
 # blueprint for the message
@@ -12,6 +13,7 @@ messages_blueprint = Blueprint('messages', __name__)
 
 @messages_blueprint.route('/messages', methods=['POST'])   
 @jwt_required
+@swag_from('../apidocs/index.yml', methods=['POST'])
 def create_msg():
     """Method View for creating a new email"""
     data_posted = request.get_json()

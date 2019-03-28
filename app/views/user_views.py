@@ -14,7 +14,7 @@ user_blueprint = Blueprint('user', __name__)
 
 
 @user_blueprint.route('/auth/signup', methods=['POST'])   
-@swag_from('../docs/signup.yml', methods=['POST'])
+@swag_from('../apidocs/signup.yml', methods=['POST'])
 def signup_user():
     data = request.get_json()    
     user = User(
