@@ -2,15 +2,19 @@ language: python
 python:
   - "3.6"  
 
+services:
+  - postgresql
+before_script:
+  - psql -c "create database challengethree_test;" -U postgres
+
 install:
-- pip install -r requirements.txt
+  - pip install -r requirements.txt
 
 script:
-# - pytest -v --cov app --cov-report term-missing
-- pytest --cov
-
+  - pytest --cov
+  - coverage report
 after_success:
   - coveralls
 
 notifications:
-  email: false
+email: false

@@ -38,11 +38,14 @@ def signup_user():
     if validate_password(user.password):
             return validate_password(user.password)
     new_user = user.create_user()
+    user_id=User.get_user_id(user.email)
+    access_token =create_access_token(identity=user_id)
     return jsonify(
         {
             "status": 201, 
             "message": "You have successfully created an account",
-            "data": new_user
+            "data": new_user,
+            "token": access_token
             }
         ), 201
 
@@ -61,7 +64,6 @@ def login_user():
     log_in=User.login_user(email, password)
     if log_in:
         user_id = User.get_user_id(email)
-        # print(user_id['user_id'])
         if user_id:
             access_token =create_access_token(identity=user_id)
         return jsonify({
@@ -70,3 +72,7 @@ def login_user():
             "data": log_in['email'],
             "token": access_token
         }),200
+    return jsonify({
+            "status": 401,
+            "message": "Login has been denied"
+        }),401

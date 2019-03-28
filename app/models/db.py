@@ -46,8 +46,47 @@ class DatabaseConnection():
         )
         self.cursor.execute(self.messages)
 
+    def create_groups_table(self):
+        self.groups=(
+            """CREATE TABLE IF NOT EXISTS groups(
+                group_id serial primary key,
+                group_name VARCHAR(50) not null unique,
+                role VARCHAR(100) not null,
+                createdon TIMESTAMP,
+                createdby INT REFERENCES users(user_id)
+            )"""
+        )
+        self.cursor.execute(self.groups)
+
+    def create_group_members_table(self):
+        self.groupmembers=(
+            """
+                CREATE TABLE IF NOT EXISTS groupmembers(
+                    member_id serial primary key,
+                    group_id INT REFERENCES groups(group_id),
+                    member INT REFERENCES users(user_id),
+                    createdon TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                )
+            """
+        )
+        self.cursor.execute(self.groupmembers)
+
+    def create_group_mail(self):
+        self.groupmails=(
+            """CREATE TABLE IF NOT EXISTS groupmails(
+                id serial primary key,
+                group_id INT REFERENCES groups(group_id),
+                createdon TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                subject varchar(100) not null,
+                message text not null,
+                status varchar(10) not null,
+                createdby INT REFERENCES users(user_id)
+                )"""
+        )
+        self.cursor.execute(self.groupmails)
+
     def drop_tables(self):
         query = "DROP TABLE IF EXISTS {} CASCADE"
-        tabl_names = ["users", "messages"]
+        tabl_names = ["users", "messages", "groupmails", "groups", "groupmembers"]
         for name in tabl_names:
             self.cursor.execute(query.format(name))

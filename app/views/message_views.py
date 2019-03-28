@@ -33,7 +33,6 @@ def create_msg():
         
         data = Message(subject, message, status, createdby, address, parentMessageId)
         msg = data.create_message()
-        # print(current_user['user_id'])
         return jsonify(
             {
                 "status": 201,
@@ -59,7 +58,20 @@ def get_all_messages():
 @jwt_required
 def delete_message(id):
     """Delete a mail by a user"""
-    return jsonify(Message.delete_message(id))
+    deleted=Message.delete_message(id)
+    if deleted:
+        return jsonify(
+            {
+                "status":200,
+                "message":"Message has been successfully deleted"
+            }
+        )
+    return jsonify(
+            {
+                "status":404,
+                "message":"Message was not found"
+            }
+        )
 
 @messages_blueprint.route('/messages/update/<int:id>', methods=['PATCH'])
 @jwt_required
@@ -69,18 +81,31 @@ def update_status(id):
     status = data['status']
     Message.update_status(table_name, status, id)
     return jsonify(
-        {
-            "status": 200
-        }
-    )
+            {
+                "status": 200,
+                "message": "status updated successfully"
+            }
+        )
 
 @messages_blueprint.route('/messages/unread', methods=['GET'])
 @jwt_required
 def get_unread_messages():
     current_user = get_jwt_identity()
     id= current_user['user_id']
-    print(id)
-    return jsonify(Message.get_unread_messages(id))
+    unread_messages=Message.get_unread_messages(id)
+    if unread_messages:
+        return jsonify(
+            {
+                "status":200,
+                "data": unread_messages
+            }
+        ),200
+    return jsonify(
+            {
+                "status":404,
+                "data": "Unread messages were not found"
+            }
+        ),404
 
 @messages_blueprint.route('/messages/sent', methods=['GET'])
 @jwt_required
@@ -89,31 +114,3 @@ def get_all_messages_sent():
     id=current_user['user_id']
     return jsonify(Message.get_all_messages_sent_by_a_user(id))
 
-# @messages_blueprint.route('/messages/reply/<int:id>', methods=['POST'])
-# @jwt_required
-# def reply_message(id):
-#     data_posted = request.get_json()
-#     if request.method == "POST":
-#         current_user = get_jwt_identity()
-#         subject=data_posted['subject']
-#         message=data_posted['message']
-#         status=data_posted['status']
-#         createdby=current_user['user_id']
-#         address=data_posted['address']
-#         parentMessageId=data_posted['parentMessageId']
-#         if validate_subject(subject):
-#             return validate_subject
-#         if validate_message(message):
-#             return validate_message
-#         if validate_address(address):
-#             return validate_address
-        
-#         data = Message(subject, message, status, createdby, address, parentMessageId)
-#         msg = data.create_message()
-#         return jsonify(
-#             {
-#                 "status": 201,
-#                 "message": "Message has been created successfully",
-#                 "data": msg
-#             }
-#         )
