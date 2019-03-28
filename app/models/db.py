@@ -8,14 +8,25 @@ from pprint import pprint
 class DatabaseConnection():   
     def __init__(self):     
         try:
-            self.connection = psycopg2.connect(user="postgres",
-                                                password="root123",
-                                                host="127.0.0.1",
-                                                port="5432",
-                                                database="challengethree"
-                                                )
+            if os.getenv("FLASK_ENV") == "production":
+                self.connection = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
+
+            elif os.getenv("FLASK_ENV") == "TESTING":
+                print('Connecting to test db')
+                self.connection = psycopg2.connect(dbname='challengethree_test',
+                                                   user='postgres',
+                                                   password='',
+                                                   host='localhost',
+                                                   port='5432', cursor_factory=RealDictCursor)
+            else:
+                print('Connecting development db')
+                self.connection = psycopg2.connect(dbname='challengethree',
+                                                   user='postgres',
+                                                   password='root123',
+                                                   host='localhost',
+                                                   port='5432', cursor_factory=RealDictCursor)
             self.connection.autocommit = True
-            self.cursor = self.connection.cursor(cursor_factory=RealDictCursor)
+            self.cursor = self.connection.cursor()
 
 
         except(Exception, psycopg2.DatabaseError) as error:

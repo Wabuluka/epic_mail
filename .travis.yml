@@ -4,6 +4,10 @@ python:
 
 services:
   - postgresql
+
+env:
+  global:
+    - APP_SETTINGS = test_env
 before_script:
   - psql -c "create database challengethree_test;" -U postgres
 
