@@ -10,6 +10,7 @@ env:
     - APP_SETTINGS = test_env
 before_script:
   - psql -c "create database challengethree_test;" -U postgres
+  - export 'DB-NAME' = "challengethree_test"
 
 install:
   - pip install -r requirements.txt
