@@ -26,8 +26,7 @@ class Group:
                 self.group_name,
                 self.role,
                 self.createdon,
-                self.createdby
-                
+                self.createdby      
             )
         cur.execute(query)
         return cur.fetchone()

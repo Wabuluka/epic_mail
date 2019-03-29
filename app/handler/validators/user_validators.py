@@ -28,8 +28,6 @@ def validate_firstname(firstname):
         }
         return jsonify(error), 400
 
-
-
 def validate_lastname(lastname):
     """Validation for the field of last name in the User model"""
     if not lastname:
@@ -57,7 +55,6 @@ def validate_lastname(lastname):
         }
         return jsonify(error), 400
 
-
 def validate_password(password):
     if len(password) < 4:
         error = {
@@ -84,7 +81,6 @@ def validate_password(password):
         }
         return jsonify(error)
 
-
 def validate_email(email):
         """
         validates email
@@ -100,6 +96,5 @@ def validate_email(email):
             return jsonify({
                 "status": 400,
                 "message": "please input valid email"
-            })
-    
+            })    
         return None

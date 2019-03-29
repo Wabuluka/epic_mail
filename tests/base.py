@@ -7,7 +7,6 @@ from flask_jwt_extended import create_access_token
 
 class BaseTestCase(TestCase):
     """ Base Tests """
-
     def create_app(self):
         app.config.from_object('app.config.TestingConfig')
         return app
@@ -19,8 +18,7 @@ class BaseTestCase(TestCase):
         database.create_messages_table()
         database.create_groups_table()
         database.create_group_members_table()
-        database.create_group_mail()
-        
+        database.create_group_mail()  
 
         self.user_one={
             "email": "test@gmail.com",
@@ -42,7 +40,6 @@ class BaseTestCase(TestCase):
             "email":"test1@gmail.com",
 	        "password":"Test1@123"
         }
-        
         self.message={
             "subject":"Hello world",
             "message":"I had taken long with out seeing you so i decided to message you to see if we can schedule a meet up",
@@ -73,9 +70,6 @@ class BaseTestCase(TestCase):
         token=create_access_token(identity=id)
         print(token)
         return token
-
-
-
 
     def tearDown(self):
         database=DatabaseConnection()

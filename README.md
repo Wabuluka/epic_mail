@@ -1,7 +1,7 @@
 # epic_mail
 [![Build Status](https://travis-ci.com/Wabuluka/epic_mail.svg?branch=develop)](https://travis-ci.com/Wabuluka/epic_mail) [![Maintainability](https://api.codeclimate.com/v1/badges/8e24e2c5b57349dfdee5/maintainability)](https://codeclimate.com/github/Wabuluka/epic_mail/maintainability) [![Coverage Status](https://coveralls.io/repos/github/Wabuluka/epic_mail/badge.svg?branch=develop)](https://coveralls.io/github/Wabuluka/epic_mail?branch=develop)
 
-A web app that helps people exchange messages or information over the internet. Epicmail is an API that helps a developer implement the required features such that a frontend can communicate with the backend. In this API however, only the backend has been implemented and postman can be used to mimic the frontend.
+A web app that helps people exchange messages or information over the internet. Epicmail is an API that helps a developer implement the required features such that a frontend can communicate with the backend. In this API however, backend has been implemented and postman or any other related tools can be used to mimic the frontend.
 
 ## Getting Started
 To get epicmail working there are two versions of requirements that am going going to breakdown.
@@ -50,14 +50,20 @@ After successfully runing the API, you can now have the oppotunity to interract 
 ### Table of endpoints and their descriptions as used in the API
 |   METHODS     |   URL ENDPOINT                        |   DESCRIPTION                 |
 |---------------|---------------------------------------|-------------------------------|
-|   POST        |/epicmail/v2/api/auth/signup/          |Create a new user              |
-|   POST        |/epicmail/v2/api/auth/signin/          |Signin a registered user       |
-|   POST        |/epicmail/v2/api/messages/             |Create a new message           |
-|   GET         |/epicmail/v2/api/messages/<int:id>     |Get a one message              |
-|   GET         |/epicmail/v2/api/messages/unread       |Get unread messages            |
-|   GET         |/epicmail/v2/api/messages/sent         |Get all sent messages          |
-|   GET         |/epicmail/v2/api/messages/received     |Get all received messages      |
-|   DELETE      |/epicmail/v2/api/messages/<int:id>     |Delete a messages              |
+|   POST        |/api/v2/auth/signup                    |Create a new user              |
+|   POST        |/api/v2/auth/signin                    |Signin a registered user       |
+|   POST        |/api/v2/messages                       |Create a new message           |
+|   GET         |/api/v2/messages/<int:id>              |Get a one message              |
+|   GET         |/api/v2/messages/unread                |Get unread messages            |
+|   GET         |/api/v2/messages/sent                  |Get all sent messages          |
+|   GET         |/api/v2/messages/received              |Get all received messages      |
+|   DELETE      |/api/v2/messages/<int:id>              |Delete a messages              |
+|   POST        |/api/v2/groups                         |Creates a new group            |
+|   DELETE      |api/v2/groups/<int:id>                 |Deletes a group                |
+|   POST        |/api/v2/groups/<int:id>/users          |Adds a new member to the group |
+|   DELETE      |/api/v2/groups/<int:id>/users/<int:id> |Deletes a user from a group    |
+|   POST        |/api/v2/groups/<int:id>/messages       |Deletes a user from a group    |
+
 
 ## Testing
 To run the unittests

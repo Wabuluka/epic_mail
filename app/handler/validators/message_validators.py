@@ -9,7 +9,6 @@ def validate_subject(subject):
         }
         return jsonify(error), 400
 
-
 def validate_message(message):
     if not message:
         error = {
@@ -17,7 +16,6 @@ def validate_message(message):
             "error":"You must fill the message field."
         }
         return jsonify(error), 400
-
 
 def validate_createdby(createdby):
     if not createdby:
