@@ -18,21 +18,6 @@ def validate_message(message):
         }
         return jsonify(error), 400
 
-def validate_address(address):
-    if not address:
-        error = {
-            "status": 400,
-            "error":"You must fill the address field."
-        }
-        return jsonify(error), 400
-    address = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', address)
-    if address  == None:
-        error = {
-            'status':400,
-            'error': 'Make sure your address is well written.'
-        }
-        return jsonify(error)
-
 
 def validate_createdby(createdby):
     if not createdby:
