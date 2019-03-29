@@ -4,7 +4,7 @@ from app.models.db import DatabaseConnection
 import json
 from flask_jwt_extended import create_access_token
 
-database=DatabaseConnection()
+
 class BaseTestCase(TestCase):
     """ Base Tests """
 
@@ -14,8 +14,12 @@ class BaseTestCase(TestCase):
 
     def setUp(self):
         self.app=app.test_client()
+        database=DatabaseConnection()
         database.create_user_table()
         database.create_messages_table()
+        database.create_groups_table()
+        database.create_group_members_table()
+        database.create_group_mail()
         
 
         self.user_one={
@@ -42,7 +46,7 @@ class BaseTestCase(TestCase):
         self.message={
             "subject":"Hello world",
             "message":"I had taken long with out seeing you so i decided to message you to see if we can schedule a meet up",
-            "address":"webbiewabuluka@gmail.com",
+            "address":2,
             "status":"sent"
         }
         self.group_one={
@@ -73,5 +77,6 @@ class BaseTestCase(TestCase):
 
 
 
-    # def tearDown(self):
-    #     database.drop_tables()
+    def tearDown(self):
+        database=DatabaseConnection()
+        database.drop_tables()

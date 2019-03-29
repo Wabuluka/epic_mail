@@ -10,8 +10,8 @@ database.create_messages_table()
 
 
 class Message:
-    """Messages Models contains properties stored for a message to be sent to an individual"""
 
+    """Messages Models contains properties stored for a message to be sent to an individual"""
     def __init__(self, subject, message, status, createdby, address, parentMessageId):
         """Initializes the message"""
         self.createdon=datetime.datetime.now()
@@ -24,7 +24,7 @@ class Message:
 
     def create_message(self):
         query = "INSERT INTO messages(createdon, subject, message, status, createdby, address)\
-            VALUES('{}', '{}', '{}', '{}', '{}', '{}')RETURNING *;".format(
+            VALUES('{}', '{}', '{}', '{}', '{}', {})RETURNING *;".format(
                 self.createdon, 
                 self.subject,
                 self.message,
@@ -34,7 +34,6 @@ class Message:
         cur.execute(query)
         return cur.fetchone()
         
-
     @staticmethod
     def find_message_by_id(id):
         query = "SELECT * FROM messages WHERE message_id = '{}'".format(id)
@@ -70,17 +69,15 @@ class Message:
         query="SELECT * FROM messages WHERE createdby={};".format(user_id)
         cur.execute(query)
         return cur.fetchall()
-    # @staticmethod
-    # def write_reply(self):
-    #     """Writing a reply to the message"""
-    #     query = "INSERT INTO messages(createdon, subject, message, status, createdby, address, parentMessageId)\
-    #         VALUES('{}', '{}', '{}', '{}', '{}', '{}',{})RETURNING *;".format(
-    #             self.createdon, 
-    #             self.subject,
-    #             self.message,
-    #             self.status, 
-    #             self.createdby,
-    #             self.address,
-    #             self.parentMessageId)
-    #     cur.execute(query)
-    #     return cur.fetchone()
+
+    @staticmethod
+    def get_received_messages(address):
+        query="SELECT * FROM messages WHERE address={};".format(address)
+        cur.execute(query)
+        return cur.fetchall()
+
+    @staticmethod
+    def get_id_from_email(address):
+        query="SELECT message_id FROM messages WHERE address='{}'".format(address)
+        cur.execute(query)
+        return cur.fetchone()

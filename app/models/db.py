@@ -57,7 +57,7 @@ class DatabaseConnection():
             createdby INT REFERENCES users(user_id),
             parentMessageId integer default 0,
             createdon TIMESTAMP,
-            address varchar(200) not null)"""
+            address INT not null)"""
         )
         self.cursor.execute(self.messages)
 

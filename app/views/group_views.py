@@ -56,11 +56,11 @@ def add_user_group(id):
         return jsonify({
             "status":201,
             "message":"You have added a new member to the group"
-        })
+        }),201
     return jsonify({
         "status":203,
         "message":"We were not able to add a user to your group"
-    })
+    }),203
 
 @groups_blueprint.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
 @jwt_required
@@ -70,7 +70,7 @@ def delete_user_from_group(group_id, user_id):
         return jsonify({
             "status":200,
             "message":"You have deleted a member from your group successfully"
-        })
+        }),200
     return jsonify({
             "status":404,
             "message":"User specified was not found"
@@ -90,8 +90,6 @@ def create_group_mail(group_id):
 
     if check_group_id(group_id):
         return check_group_id
-    # if check_group_id(user_id):
-    #     return check_group_id
     if validate_subject(subject):
         return validate_subject
     if validate_message(message):
@@ -100,4 +98,4 @@ def create_group_mail(group_id):
     return jsonify({
         "status":201,
         "message":"Group messages successfully created."
-    })
+    }),201

@@ -1,7 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
 from app.models.messages import Message
-from app.handler.validators.message_validators import (
-    validate_address, validate_createdby, validate_message, validate_subject)
+from app.handler.validators.message_validators import (validate_createdby, validate_message, validate_subject)
 from app import jwt
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -28,8 +27,6 @@ def create_msg():
             return validate_subject
         if validate_message(message):
             return validate_message
-        if validate_address(address):
-            return validate_address
         
         data = Message(subject, message, status, createdby, address, parentMessageId)
         msg = data.create_message()
@@ -40,7 +37,6 @@ def create_msg():
                 "data": msg
             }
         )
-
 
 @messages_blueprint.route('/messages/<int:id>', methods=['GET'])  
 @jwt_required  
@@ -113,4 +109,20 @@ def get_all_messages_sent():
     current_user=get_jwt_identity()
     id=current_user['user_id']
     return jsonify(Message.get_all_messages_sent_by_a_user(id))
+
+@messages_blueprint.route('/messages/received', methods=['GET'])
+@jwt_required
+def get_received():
+    current_user=get_jwt_identity()
+    address=current_user['user_id']
+    if address:
+        msg=Message.get_received_messages(address)
+        return jsonify({
+            "status":200,
+            "data":msg
+        })
+    return jsonify({
+        "status":404,
+        "message": "You have not received any messages yet"
+    })
 
