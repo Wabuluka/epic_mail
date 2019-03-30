@@ -1,0 +1,41 @@
+This enpoint is for creating a group mail
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This the information that needed to create a mail in a group
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "subject"
+        - "message"
+        - "status"
+      properties:
+        subject:
+          type: "string"
+          example: "heading of the message"
+        message:
+          type: "string"
+          example: "Lorem ipsum of the message that am going to write to you for this moment"
+        status:
+          type: "string"
+          example: "send"
+
+responses:
+  201:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        data:
+          type: string
+          enum:
+            - [
+                {
+                    "message": "Group messages successfully created.",
+                    "status": 201
+                }
+              ]

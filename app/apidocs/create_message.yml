@@ -1,2 +1,10 @@
 This enpoint is for Creating an email
 ---
+tags:
+  - EPIC MAIL
+
+parameters:
+  - name: body
+    description: This is the new user information provided for signup
+    in: body
+    required: true
