@@ -1,8 +1,7 @@
-This enpoint is for getting all the mail already read
+This enpoint is for viewing sent messages
 ---
 tags:
   - EPIC MAIL
-
 parameters:
   - name: body
     description: This is the new user information provided for signup

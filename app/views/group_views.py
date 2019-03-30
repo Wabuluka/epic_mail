@@ -1,5 +1,6 @@
 import datetime
 from flask import Blueprint, request, make_response, jsonify
+from app import app, swag
 from app.models.group_model import Group
 from app.models.db import DatabaseConnection
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -68,7 +69,7 @@ def add_user_group(id):
 
 @groups_blueprint.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
 @jwt_required
-@swag_from('../apidocs/delete_user_group.yml', methods=['DELETE'])
+@swag_from('../apidocs/delete_group_user.yml', methods=['DELETE'])
 def delete_user_from_group(group_id, user_id):
     deleted=Group.delete_user(group_id, user_id)
     if deleted:

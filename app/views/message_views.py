@@ -41,21 +41,21 @@ def create_msg():
 
 @messages_blueprint.route('/messages/<int:id>', methods=['GET'])  
 @jwt_required
-@swag_from('../apidocs/get_mail.yml', methods=['POST']) 
+@swag_from('../apidocs/get_mail.yml', methods=['GET']) 
 def get_one_message(id):
     """Get a message by id"""
     return jsonify(Message.find_message_by_id(id))
 
 @messages_blueprint.route('/messages', methods=['GET']) 
 @jwt_required
-@swag_from('../apidocs/get_mails.yml', methods=['POST'])  
+@swag_from('../apidocs/get_mails.yml', methods=['GET'])  
 def get_all_messages():
     """User fetches all the mails"""
     return jsonify(Message.get_all_messages())
         
 @messages_blueprint.route('/messages/<int:id>', methods=['DELETE'])   
 @jwt_required
-@swag_from('../apidocs/delete_mail.yml', methods=['POST'])
+@swag_from('../apidocs/delete_mail.yml', methods=['DELETE'])
 def delete_message(id):
     """Delete a mail by a user"""
     deleted=Message.delete_message(id)
@@ -75,7 +75,7 @@ def delete_message(id):
 
 @messages_blueprint.route('/messages/update/<int:id>', methods=['PATCH'])
 @jwt_required
-@swag_from('../apidocs/edit_status.yml', methods=['PATCH'])
+# @swag_from('../apidocs/edit_status.yml', methods=['PATCH'])
 def update_status(id):
     data = request.get_json()
     table_name = 'messages'
@@ -90,6 +90,7 @@ def update_status(id):
 
 @messages_blueprint.route('/messages/unread', methods=['GET'])
 @jwt_required
+@swag_from('../apidocs/message_unread.yml', methods=['GET'])
 def get_unread_messages():
     current_user = get_jwt_identity()
     id= current_user['user_id']
@@ -110,6 +111,7 @@ def get_unread_messages():
 
 @messages_blueprint.route('/messages/sent', methods=['GET'])
 @jwt_required
+# @swag_from('../apidocs/message_sent.yml', methods=['GET'])
 def get_all_messages_sent():
     current_user=get_jwt_identity()
     id=current_user['user_id']
@@ -117,7 +119,7 @@ def get_all_messages_sent():
 
 @messages_blueprint.route('/messages/received', methods=['GET'])
 @jwt_required
-@swag_from('../apidocs/get_received_mail.yml', methods=['POST'])
+# @swag_from('../apidocs/get_received_mail.yml', methods=['GET'])
 def get_received():
     current_user=get_jwt_identity()
     address=current_user['user_id']

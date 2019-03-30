@@ -1,10 +1,69 @@
-This enpoint is for logging in into an account with epicmail
+This enpoint is for Logging in epicmail
 ---
 tags:
   - EPIC MAIL
-
 parameters:
   - name: body
-    description: This is the new user information provided for signup
+    description: This the information that has to be provided for a successful login
     in: body
     required: true
+    schema:
+      type: object
+      required:
+        - "email"
+        - "password"
+      properties:
+        email:
+          type: "string"
+          example: "dwabuluka@gmail.com"
+        password:
+          type: "string"
+          example: "Wabuluka@123"
+
+responses:
+  201:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        data:
+          type: string
+          enum:
+            - [
+                {
+                  data": "dwabuluka@gmail.com",
+                    "message": "You are logged in",
+                    "status": 200,
+                    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTM5NzQ3NDAsIm5
+                    iZiI6MTU1Mzk3NDc0MCwianRpIjoiNmMzODE4MGQtMmI3Yy00OTIyLWE0NmItOTEwNTc2OTMzZjE4IiwiZXhwIjoxNTUzOTc1NjQwLCJpZGVudGl0eSI6eyJ1c2VyX2l
+                    kIjoxfSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.d45bhtB01pPI_wruhZMJ6xx48f43V0Gv3shq0jBnUu8"
+                }
+              ]
+  404:
+    description: When the user with email being submitted does not exist in the system
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+            - [
+                {
+                  "status":404,
+                  "message": "Email was not found in the system."
+                }
+              ]
+  401:
+    description: When the password is invalid or the email is wrongly written
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+            - [
+                {
+                  "status": 401,
+                  "message": "Login has been denied"
+                }
+              ]
