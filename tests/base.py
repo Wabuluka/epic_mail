@@ -14,11 +14,7 @@ class BaseTestCase(TestCase):
     def setUp(self):
         self.app=app.test_client()
         database=DatabaseConnection()
-        database.create_user_table()
-        database.create_messages_table()
-        database.create_groups_table()
-        database.create_group_members_table()
-        database.create_group_mail()  
+        database.create_tables()
 
         self.user_one={
             "email": "test@gmail.com",
