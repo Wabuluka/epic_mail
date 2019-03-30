@@ -88,8 +88,6 @@ def create_group_mail(group_id):
     status=data['status']
     createdby=user_id
 
-    if check_group_id(group_id):
-        return check_group_id
     if validate_subject(subject):
         return validate_subject
     if validate_message(message):

@@ -3,10 +3,8 @@ from flask import jsonify
 import re
 from app.models.db import DatabaseConnection
 
-
 database=DatabaseConnection()
 cur=database.cursor
-database.create_messages_table()
 
 
 class Message:

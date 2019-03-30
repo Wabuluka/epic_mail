@@ -8,8 +8,6 @@ from app.models.db import DatabaseConnection
 
 database=DatabaseConnection()
 cur=database.cursor
-database.drop_tables()
-database.create_user_table()
 
 class User:
     """User Model contains the properties stored for a user"""
