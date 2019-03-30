@@ -5,6 +5,7 @@ from app.models.db import DatabaseConnection
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.handler.validators.message_validators import validate_message, validate_subject
 from app.handler.validators.group_validators import check_group_id
+from flasgger import swag_from
 
 
 groups_blueprint = Blueprint('groups', __name__)
@@ -12,6 +13,7 @@ groups_blueprint = Blueprint('groups', __name__)
 
 @groups_blueprint.route('/groups', methods=['POST'])
 @jwt_required
+@swag_from('../apidocs/create_group.yml', methods=['POST'])
 def create_new_group():
     data_posted = request.get_json()
     if request.method == "POST":
@@ -31,6 +33,7 @@ def create_new_group():
 
 @groups_blueprint.route('/groups/<int:id>', methods=['DELETE'])
 @jwt_required
+@swag_from('../apidocs/delete_group.yml', methods=['DELETE'])
 def delete_a_group(id):
     current_user=get_jwt_identity()
     createdby=current_user['user_id']
@@ -47,6 +50,7 @@ def delete_a_group(id):
 
 @groups_blueprint.route('/groups/<int:id>/users', methods=['POST'])
 @jwt_required
+@swag_from('../apidocs/add_user_to_group.yml', methods=['POST'])
 def add_user_group(id):
     data=request.get_json()
     group_id=data['group_id']
@@ -64,6 +68,7 @@ def add_user_group(id):
 
 @groups_blueprint.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
 @jwt_required
+@swag_from('../apidocs/delete_user_group.yml', methods=['DELETE'])
 def delete_user_from_group(group_id, user_id):
     deleted=Group.delete_user(group_id, user_id)
     if deleted:
@@ -78,6 +83,7 @@ def delete_user_from_group(group_id, user_id):
 
 @groups_blueprint.route('/groups/<int:group_id>/messages', methods=['POST'])
 @jwt_required
+@swag_from('../apidocs/create_group_mail.yml', methods=['POST'])
 def create_group_mail(group_id):
     current_user=get_jwt_identity()
     user_id=current_user['user_id']

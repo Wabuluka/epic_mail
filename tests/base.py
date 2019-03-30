@@ -14,7 +14,7 @@ class BaseTestCase(TestCase):
     def setUp(self):
         self.app=app.test_client()
         database=DatabaseConnection()
-        database.create_tables()
+        database.create_tables() 
 
         self.user_one={
             "email": "test@gmail.com",
