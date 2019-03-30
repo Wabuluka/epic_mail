@@ -3,6 +3,7 @@ from app.models.messages import Message
 from app.handler.validators.message_validators import (validate_createdby, validate_message, validate_subject)
 from app import jwt
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from flasgger import swag_from
 
 
 messages_blueprint = Blueprint('messages', __name__)
@@ -10,6 +11,7 @@ messages_blueprint = Blueprint('messages', __name__)
 
 @messages_blueprint.route('/messages', methods=['POST'])   
 @jwt_required
+@swag_from('../apidocs/create_message.yml', methods=['POST'])
 def create_msg():
     """Method View for creating a new email"""
     data_posted = request.get_json()
@@ -38,19 +40,22 @@ def create_msg():
         )
 
 @messages_blueprint.route('/messages/<int:id>', methods=['GET'])  
-@jwt_required  
+@jwt_required
+@swag_from('../apidocs/get_mail.yml', methods=['POST']) 
 def get_one_message(id):
     """Get a message by id"""
     return jsonify(Message.find_message_by_id(id))
 
 @messages_blueprint.route('/messages', methods=['GET']) 
-@jwt_required   
+@jwt_required
+@swag_from('../apidocs/get_mails.yml', methods=['POST'])  
 def get_all_messages():
     """User fetches all the mails"""
     return jsonify(Message.get_all_messages())
         
 @messages_blueprint.route('/messages/<int:id>', methods=['DELETE'])   
 @jwt_required
+@swag_from('../apidocs/delete_mail.yml', methods=['POST'])
 def delete_message(id):
     """Delete a mail by a user"""
     deleted=Message.delete_message(id)
@@ -70,6 +75,7 @@ def delete_message(id):
 
 @messages_blueprint.route('/messages/update/<int:id>', methods=['PATCH'])
 @jwt_required
+@swag_from('../apidocs/edit_status.yml', methods=['PATCH'])
 def update_status(id):
     data = request.get_json()
     table_name = 'messages'
@@ -111,6 +117,7 @@ def get_all_messages_sent():
 
 @messages_blueprint.route('/messages/received', methods=['GET'])
 @jwt_required
+@swag_from('../apidocs/get_received_mail.yml', methods=['POST'])
 def get_received():
     current_user=get_jwt_identity()
     address=current_user['user_id']

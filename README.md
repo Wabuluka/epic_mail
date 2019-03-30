@@ -73,7 +73,12 @@ $ pytest --cov
 
 ## Deployment
 This API has been deployed on Heroku for live viewing. The link can be found below
-[epicmail on heroku](https://epicmailwabuluka.herokuapp.com/epicmail/api/v2/auth/signup) - Live demo
+[epicmail on heroku](https://epicmailwabuluka.herokuapp.com/api/v2/auth/signup) - Live demo
+
+## Documentation
+For a proper documentation of this API please refer to the link below
+[epicmail documentation](https://epicmailwabuluka.herokuapp.com/apidocs) - Live demo
+
 
 ## Developer
 **Davies Wabuluka**
