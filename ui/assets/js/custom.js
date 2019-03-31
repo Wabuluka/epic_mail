@@ -28,3 +28,14 @@ function myFunction(){
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
   } 
+
+// let fetchAPI=function(url, method, data){
+//   if(!('fetch' in window)){
+//     console.log("The API is not found");
+//     return;
+//   }
+
+//   const options={
+//     method:method
+//   }
+// }

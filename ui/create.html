@@ -37,15 +37,27 @@
                             <h3>Create Mail</h3>
                             <form action="" method="post">
                                 <div>
-                                    <label for="mail">E-mail:</label>
-                                    <input type="email" id="mail" name="user_mail">
+                                    <label for="email">E-mail:</label>
+                                    <input type="email" id="address" name="user_mail">
                                 </div>
                                 <div>
-                                    <label for="msg">Message:</label>
-                                    <textarea type="text" id="msg" name="user_message"></textarea>
+                                    <label for="sub">Subject:</label>
+                                    <textarea type="text" id="subject" name="user_message"></textarea>
                                 </div>
                                 <div>
-                                    <button type="submit">Send</button>
+                                    <label for="sender">Sender ID:</label>
+                                    <textarea type="text" id="sender" name="user_message"></textarea>
+                                </div>
+                                <div>
+                                    <label for="status">Status:</label>
+                                    <textarea type="text" id="status" name="user_message"></textarea>
+                                </div>
+                                <div>
+                                    <label for="message">Message:</label>
+                                    <textarea type="text" id="message" name="user_message"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" id="submit">Send</button>
                                 </div>
                             </form>
                         </div>
