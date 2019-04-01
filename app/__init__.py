@@ -6,6 +6,7 @@ from flask_jwt_extended import (
     JWTManager, create_access_token,
     get_jwt_identity
 )
+from flask_cors import CORS
 from flasgger import Swagger
 
 app = Flask(__name__)
@@ -20,6 +21,7 @@ app.config.from_object(app_settings)
 
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+cors = CORS(app)
 swag=Swagger(app)
 
 # calling the blueprints

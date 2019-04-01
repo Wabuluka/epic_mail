@@ -22,7 +22,7 @@ class Message:
 
     def create_message(self):
         query = "INSERT INTO messages(createdon, subject, message, status, createdby, address)\
-            VALUES('{}', '{}', '{}', '{}', '{}', {})RETURNING *;".format(
+            VALUES('{}', '{}', '{}', '{}', '{}', '{}')RETURNING *;".format(
                 self.createdon, 
                 self.subject,
                 self.message,
@@ -33,8 +33,8 @@ class Message:
         return cur.fetchone()
         
     @staticmethod
-    def find_message_by_id(id):
-        query = "SELECT * FROM messages WHERE message_id = '{}'".format(id)
+    def find_message_by_id(id, email):
+        query = "SELECT * FROM messages WHERE message_id = '{}' AND createdby='{}' OR address='{}'".format(id, email, email)
         cur.execute(query)
         return cur.fetchone()
 
@@ -50,27 +50,27 @@ class Message:
 
     @staticmethod
     def get_all_messages():
-        query = "SELECT * FROM messages"
+        query = "SELECT * FROM messages WHERE "
         cur.execute(query)
         return cur.fetchall()
 
     @staticmethod
-    def get_unread_messages(user_id):
+    def get_unread_messages(email):
         """Get unread messages"""
-        query="SELECT * FROM messages WHERE createdby={} AND status='sent';".format(user_id)
+        query="SELECT * FROM messages WHERE createdby='{}' AND status='sent';".format(email)
         cur.execute(query)
         return cur.fetchall()
 
     @staticmethod
-    def get_all_messages_sent_by_a_user(user_id):
+    def get_all_messages_sent_by_a_user(email):
         """Get all user sent messages"""
-        query="SELECT * FROM messages WHERE createdby={};".format(user_id)
+        query="SELECT * FROM messages WHERE createdby={};".format(email)
         cur.execute(query)
         return cur.fetchall()
 
     @staticmethod
     def get_received_messages(address):
-        query="SELECT * FROM messages WHERE address={};".format(address)
+        query="SELECT * FROM messages WHERE address='{}';".format(address)
         cur.execute(query)
         return cur.fetchall()
 
