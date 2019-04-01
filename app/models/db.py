@@ -21,17 +21,17 @@ class DatabaseConnection():
             subject varchar(100) not null,
             message text not null,
             status varchar(100) not null,
-            createdby INT REFERENCES users(user_id),
+            createdby VARCHAR REFERENCES users(email),
             parentMessageId integer default 0,
             createdon TIMESTAMP,
-            address INT not null)
+            address VARCHAR not null)
             """,
             """CREATE TABLE IF NOT EXISTS groups(
                 group_id serial primary key,
                 group_name VARCHAR(50) not null unique,
                 role VARCHAR(100) not null,
                 createdon TIMESTAMP,
-                createdby INT REFERENCES users(user_id)
+                createdby VARCHAR REFERENCES users(email)
             )""",
             """
                 CREATE TABLE IF NOT EXISTS groupmembers(

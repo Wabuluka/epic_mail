@@ -38,8 +38,8 @@ def signup_user():
     if validate_password(user.password):
             return validate_password(user.password)
     new_user = user.create_user()
-    user_id=User.get_user_id(user.email)
-    access_token =create_access_token(identity=user_id)
+    user_email=User.get_user_by_email(user.email)
+    access_token =create_access_token(identity=user_email)
     return jsonify(
         {
             "status": 201, 
@@ -64,9 +64,9 @@ def login_user():
         })
     log_in=User.login_user(email, password)
     if log_in:
-        user_id = User.get_user_id(email)
-        if user_id:
-            access_token =create_access_token(identity=user_id)
+        email = User.get_user_by_email(email)
+        if email:
+            access_token=create_access_token(identity=email)
         return jsonify({
             "status": 200,
             "message": "You are logged in",

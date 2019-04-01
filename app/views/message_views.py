@@ -1,5 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
 from app.models.messages import Message
+from app.models.users import User
 from app.handler.validators.message_validators import (validate_createdby, validate_message, validate_subject)
 from app import jwt
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -20,10 +21,10 @@ def create_msg():
         subject=data_posted['subject']
         message=data_posted['message']
         status=data_posted['status']
-        createdby=current_user['user_id']
+        createdby=current_user['email']
         address=data_posted['address']
         parentMessageId=0
-
+        
         if validate_subject(subject):
             return validate_subject
         if validate_message(message):
@@ -93,8 +94,8 @@ def update_status(id):
 @swag_from('../apidocs/message_unread.yml', methods=['GET'])
 def get_unread_messages():
     current_user = get_jwt_identity()
-    id= current_user['user_id']
-    unread_messages=Message.get_unread_messages(id)
+    email= current_user['email']
+    unread_messages=Message.get_unread_messages(email)
     if unread_messages:
         return jsonify(
             {
@@ -114,15 +115,15 @@ def get_unread_messages():
 # @swag_from('../apidocs/message_sent.yml', methods=['GET'])
 def get_all_messages_sent():
     current_user=get_jwt_identity()
-    id=current_user['user_id']
-    return jsonify(Message.get_all_messages_sent_by_a_user(id))
+    email=current_user['email']
+    return jsonify(Message.get_all_messages_sent_by_a_user(email))
 
 @messages_blueprint.route('/messages/received', methods=['GET'])
 @jwt_required
 # @swag_from('../apidocs/get_received_mail.yml', methods=['GET'])
 def get_received():
     current_user=get_jwt_identity()
-    address=current_user['user_id']
+    address=current_user['email']
     if address:
         msg=Message.get_received_messages(address)
         return jsonify({

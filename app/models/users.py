@@ -8,6 +8,7 @@ from app.models.db import DatabaseConnection
 
 database=DatabaseConnection()
 cur=database.cursor
+database.drop_tables()
 
 class User:
     """User Model contains the properties stored for a user"""
@@ -26,13 +27,13 @@ class User:
         cur.execute(query)
         return cur.fetchone()
     
-    @staticmethod
-    def get_user_id(email):
-        query = """
-            SELECT user_id FROM users WHERE email = '{}'
-        """.format(email)
-        cur.execute(query)
-        return cur.fetchone()
+    # @staticmethod
+    # def get_user_id(email):
+    #     query = """
+    #         SELECT user_id FROM users WHERE email = '{}'
+    #     """.format(email)
+    #     cur.execute(query)
+    #     return cur.fetchone()
 
     def create_user(self):
         """Create a new user"""
