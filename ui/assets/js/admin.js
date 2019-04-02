@@ -3,8 +3,6 @@ let create_message=document.getElementById('submit');
 let token=localStorage.getItem('token');
 // get current user from browser
 let current_user=localStorage.getItem('email');
-
-let sender_mail=localStorage.getItem('user-email');
 create_message.addEventListener('click', CreateMessage);
 
 function CreateMessage(e){
@@ -33,29 +31,19 @@ fetch("http://127.0.0.1:5000/api/v2/messages",{
     })
     .then((response) => response.json())
     .then(function(data){
-        document.getElementById('m_error').innerHTML=data['errors'];
-        if(data['message']==='Message has been created successfully'){
-            document.getElementById('m_error').innerHTML=data['message'];
+        document.getElementById('errors').innerHTML=data['errors'];
+        if(data['message']==='The person you are sending the email to does not exist'){
+            document.getElementById('errors').innerText=data.message;
+            document.getElementById('errors').style.color="red";
+            return false
+        }
+        else if(data['message']==='Message has been created successfully'){
+            document.getElementById('errors').innerHTML=data['message'];
             window.location.replace('/create.html');
         }
+        
     });
 
 }
 
 
-// inbox for the user
-window.onload = function getInbox(){
-    fetch("http://127.0.0.1:5000/api/v2/messages/received", {
-        method: 'GET',
-        headers:{
-            'Content-type':'application/json',
-            Authorization: `Bearer ${token}`
-        },
-    })
-    .then((response) => response.json())
-    .then(function (data){
-        if(data['msg']){
-            let output
-        }
-    })
-}

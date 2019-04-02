@@ -7,6 +7,18 @@ function loginUser(e){
     let email=document.getElementById('email').value;
     let password=document.getElementById('password').value;
 
+    if (email == ''){
+        document.getElementById('errors').innerText = "Please provide an email to login";
+        document.getElementById('errors').style.color="red";
+        return false
+    }
+    // lastname input
+    else if (password == ''){
+        document.getElementById('errors').innerText = "You did not provide a password";
+        document.getElementById('errors').style.color="red";
+        return false
+    }
+
     let login_data={
         "email":email,
         "password":password

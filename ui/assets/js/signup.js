@@ -13,24 +13,24 @@ function registerUser(e){
     // validation of data submitted
     // firstname input
     if (firstname == ''){
-        document.getElementById('e_firstname').innerText = "You have not provided your first name.";
-        document.getElementById('e_firstname').style.color="red";
+        document.getElementById('errors').innerText = "You have not provided your first name.";
+        document.getElementById('errors').style.color="red";
         return false
     }
     // lastname input
     else if (lastname == ''){
-        document.getElementById('e_lastname').innerText = "You have not provided your last name.";
-        document.getElementById('e_lastname').style.color="red";
+        document.getElementById('errors').innerText = "You have not provided your last name.";
+        document.getElementById('errors').style.color="red";
         return false
     }
     // email input
     else if (email == ''){
-        document.getElementById('e_email').innerText = "You have not provided you email address.";
-        document.getElementById('e_email').style.color="red";
+        document.getElementById('errors').innerText = "You have not provided you email address.";
+        document.getElementById('errors').style.color="red";
     }
     else if(password== ''){
-        document.getElementById('e_password').innerText="You have not provided your password";
-        document.getElementById('e_password').style.color="red";
+        document.getElementById('errors').innerText="You have not provided your password";
+        document.getElementById('errors').style.color="red";
         return false
     }
 
@@ -56,12 +56,19 @@ function registerUser(e){
             window.location.replace('login.html');
         }
         else if(data['message']==='User already exists'){
-            document.getElementById('e_error').innerHTML=data['message'];
-            document.getElementById('e_email').style.color="red";
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="red";
             return false
         }
-        else{
-            window.location.replace('index.html');
+        else if (data['message']==='Do not use special characters and numbers on a name'){
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="red";
+            return false
+            // window.location.replace('index.html');
+        }
+        else if (data['message']==='Your password must at least contain an uppercase character'){
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="red";
         }
     });
 

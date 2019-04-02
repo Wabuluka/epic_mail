@@ -26,9 +26,29 @@ fetch("http://127.0.0.1:5000/api/v2/groups",{
     })
     .then((response) => response.json())
     .then(function(data){
+        document.getElementById('m_error').innerHTML=data['errors'];
         if(data['message']==='You have successfully created a new group'){
+            document.getElementById('m_error').innerHTML=data['message'];
             window.location.replace('/create.html');
         }
     });
 
+}
+
+
+// inbox for the user
+window.onload = function getInbox(){
+    fetch("http://127.0.0.1:5000/api/v2/messages/received", {
+        method: 'GET',
+        headers:{
+            'Content-type':'application/json',
+            Authorization: `Bearer ${token}`
+        },
+    })
+    .then((response) => response.json())
+    .then(function (data){
+        if(data['msg']){
+            let output
+        }
+    })
 }
