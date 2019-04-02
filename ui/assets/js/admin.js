@@ -41,3 +41,21 @@ fetch("http://127.0.0.1:5000/api/v2/messages",{
     });
 
 }
+
+
+// inbox for the user
+window.onload = function getInbox(){
+    fetch("http://127.0.0.1:5000/api/v2/messages/received", {
+        method: 'GET',
+        headers:{
+            'Content-type':'application/json',
+            Authorization: `Bearer ${token}`
+        },
+    })
+    .then((response) => response.json())
+    .then(function (data){
+        if(data['msg']){
+            let output
+        }
+    })
+}
