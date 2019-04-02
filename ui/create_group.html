@@ -35,27 +35,24 @@
             <div class="admin-column-two">
                 <div class="tab-folder">
                         <div id="tab2" class="tab-content">
-                            <h3>Create Mail</h3>
+                            <h3>Create Group</h3>
                             <form action="" method="post">
                                 <div>
-                                    <label for="email">Send to:</label>
-                                    <input type="email" id="address" name="user_mail">
+                                    <label for="group_name">Group Name:</label>
+                                    <input type="text" id="group_name" name="group_name">
                                 </div>
                                 <div>
-                                    <label for="sub">Subject:</label>
-                                    <textarea type="text" id="subject" name="user_message"></textarea>
+                                    <label for="sub">Group Role:</label>
+                                    <textarea type="text" id="role" name="group_role"></textarea>
                                 </div>
                                 <div>
-                                    <label for="message">Message:</label>
-                                    <textarea type="text" id="message" name="user_message"></textarea>
-                                </div>
-                                <div>
-                                    <button type="submit" id="submit">Send</button>
+                                    <button type="submit" id="submit">Create Group</button>
                                 </div>
                                 <div>
                                     <span id="m_error"></span>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
             </div>
@@ -67,6 +64,6 @@
     </div>
 </footer>                 
 <script src="assets/js/custom.js"></script>
-<script src="assets/js/admin.js"></script>
+<script src="assets/js/create_group.js"></script>
 </body>
 </html>
