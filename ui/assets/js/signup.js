@@ -2,8 +2,8 @@ let submit = document.getElementById('submit');
 submit.addEventListener('click', registerUser);
 
 
-function registerUser(e){
-    e.preventDefault();
+function registerUser(){
+    // e.preventDefault();
 
     let firstname=document.getElementById('firstname').value;
     let lastname=document.getElementById('lastname').value;
@@ -53,7 +53,9 @@ function registerUser(e){
     .then(function(data){
         console.log(data['message']);
         if (data['message']==='You have successfully created an account'){
-            window.location.replace('login.html');
+            // localStorage.setItem('token', token)
+            // localStorage.setItem('email', login_data.email)
+            window.location.replace('admin.html');
         }
         else if(data['message']==='User already exists'){
             document.getElementById('errors').innerHTML=data.message;

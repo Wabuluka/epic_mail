@@ -1,12 +1,10 @@
-// inbox for the user
-let get_inbox=document.getElementById('inbox');;
-get_inbox.addEventListener('click', getInbox);
+let inbox = document.getElementById('inbox');
+inbox.addEventListener('click', getInbox);
 
-let token=localStorage.getItem('token');
-// get current user from browser
-let current_user=localStorage.getItem('email');
+
+// let current_user=localStorage.getItem('email');
 function getInbox(){
-    document.getElementById('inboxing').innerHTML = "output";
+    let token=localStorage.getItem('token');
     let output = "";
     fetch("http://127.0.0.1:5000/api/v2/messages/received",{
         method:'GET',
@@ -21,9 +19,21 @@ function getInbox(){
         received.forEach(inbox => {
             console.log(received)
             output +=`
-            <div>
-                <h3>${inbox.subject}</h3>
-                <p>${inbox.message}</p>
+            <div id="tab3" class="tab-content">
+                <table style="width:100%">
+                <tr>
+                    <th>Message ID</th>
+                    <th>Subject</th>
+                    <th>Date Received</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>${inbox.message_id}</td>
+                    <td><a href="#">${inbox.subject}</a></td>
+                    <td>${inbox.createdon}</td>
+                    <td>${inbox.status}</td>
+                </tr>
+                </table>
             </div>
             `;
         });

@@ -1,8 +1,8 @@
 let login = document.getElementById('login');
 login.addEventListener('click', loginUser);
 
-function loginUser(e){
-    e.preventDefault();
+function loginUser(){
+    // e.preventDefault();
 
     let email=document.getElementById('email').value;
     let password=document.getElementById('password').value;
@@ -39,8 +39,10 @@ function loginUser(e){
             localStorage.setItem('token', token)
             localStorage.setItem('email', login_data.email)
             console.log(token);
-            window.location.replace('admin.html')
-        };
+            window.location.href('admin.html')
+        }else{
+            console.log('Not logged in')
+        }
     })
         
 

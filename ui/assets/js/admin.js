@@ -1,12 +1,11 @@
-let create_message=document.getElementById('submit');
-// retrieve the token from cache
-let token=localStorage.getItem('token');
-// get current user from browser
-let current_user=localStorage.getItem('email');
+let create_message = document.getElementById('create');
 create_message.addEventListener('click', CreateMessage);
 
-function CreateMessage(e){
-    e.preventDefault();
+function CreateMessage(){
+    let token=localStorage.getItem('token');
+    let current_user=localStorage.getItem('email');
+
+    // e.preventDefault();
     let address=document.getElementById('address').value;
     let subject=document.getElementById('subject').value;
     let message=document.getElementById('message').value;
