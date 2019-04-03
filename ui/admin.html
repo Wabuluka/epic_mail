@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard - epicmail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
+</head>
+<body>
+<div class="wrapper">
+    <nav class="top-navigation" id="myTopnav">
+        <div class="container">
+            <div class="nav-bar-right">
+                <a href="about.html">About</a>
+                <a href="login.html">Logout</a>
+                <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container">
+        <div class="row content">
+            <div class="admin-column-one">
+                <a href="create.html" class="tablinks">Create Mail</a>
+                <a href="#" class="tablinks" id="inbox">Inbox</a>
+                <a href="sent.html" class="tablinks">Sent Mail</a>
+                <a href="draft.html" class="tablinks">Drafts</a>
+                <a href="create_group.html" class="tablinks">Create New Group</a>
+            </div>
+            <div class="admin-column-two">
+                <div class="tab-folder">
+                        <div id="tab1" class="tab-content">
+                            <h3>Inbox</h3>
+                            <div class="inbox" id="inboxing">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container">
+        <p><small>dwabuluka</small></p>
+    </div>
+</footer>                 
+<script src="assets/js/custom.js"></script>
+<script src="assets/js/inbox.js"></script>
+</body>
+</html>
