@@ -43,6 +43,7 @@ function registerUser(){
     };
     fetch("http://127.0.0.1:5000/api/v2/auth/signup",{
         method: 'POST',
+        // cache:'no-cache',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-type':'application/json'
@@ -60,7 +61,7 @@ function registerUser(){
         else if(data['message']==='User already exists'){
             document.getElementById('errors').innerHTML=data.message;
             document.getElementById('errors').style.color="red";
-            return false
+            window.location.reload('index.html');
         }
         else if (data['message']==='Do not use special characters and numbers on a name'){
             document.getElementById('errors').innerHTML=data.message;

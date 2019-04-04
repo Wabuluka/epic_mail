@@ -26,6 +26,7 @@ function loginUser(){
 
     fetch("http://127.0.0.1:5000/api/v2/auth/login", {
         method: 'POST',
+        // cache:'no-cache',
         headers: {
             'Access': 'application/json, text/plain, */*',
             'Content-type': 'application/json'

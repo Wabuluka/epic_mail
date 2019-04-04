@@ -27,7 +27,7 @@ fetch("http://127.0.0.1:5000/api/v2/groups/users/members",{
         // document.getElementById('m_error').innerHTML=data['errors'];
         if(data['message']==='You have added a new member to the group'){
             // document.getElementById('m_error').innerHTML=data['message'];
-            // window.location.replace('/create.html');
+            window.location.replace('/create.html');
             console.log("success")
         }
     });

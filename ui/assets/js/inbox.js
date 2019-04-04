@@ -8,6 +8,7 @@ function getInbox(){
     let output = "";
     fetch("http://127.0.0.1:5000/api/v2/messages/received",{
         method:'GET',
+        // cache:'no-cache',
         headers:{
             Authorization:`Bearer ${token}`
         }
@@ -18,15 +19,16 @@ function getInbox(){
         let received = data.data
         received.forEach(inbox => {
             console.log(received)
+            output=`<div id="tab3" class="tab-content">
+            <table style="width:100%">
+            <tr>
+                <th>Message ID</th>
+                <th>Subject</th>
+                <th>Date Received</th>
+                <th>Status</th>
+            </tr>`;
             output +=`
-            <div id="tab3" class="tab-content">
-                <table style="width:100%">
-                <tr>
-                    <th>Message ID</th>
-                    <th>Subject</th>
-                    <th>Date Received</th>
-                    <th>Status</th>
-                </tr>
+            
                 <tr>
                     <td>${inbox.message_id}</td>
                     <td><a href="#">${inbox.subject}</a></td>

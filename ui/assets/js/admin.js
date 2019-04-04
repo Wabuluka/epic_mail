@@ -21,6 +21,7 @@ let data={
 };
 fetch("http://127.0.0.1:5000/api/v2/messages",{
         method:'POST',
+        cache:'no-cache',
         headers:{
             'Application':'application/json, text/plain,*/*',
             'Content_type':'application/json',
@@ -38,7 +39,7 @@ fetch("http://127.0.0.1:5000/api/v2/messages",{
         }
         else if(data['message']==='Message has been created successfully'){
             document.getElementById('errors').innerHTML=data['message'];
-            window.location.replace('/create.html');
+            window.location.replace('/admin.html');
         }
         
     });
