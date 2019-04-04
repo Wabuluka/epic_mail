@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Signup - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
 </head>
 <body>
 <div class="wrapper">
@@ -38,17 +38,14 @@
                         <h1>Sign Up</h1>
                         <p>Please fill in this form to create an account.</p>
                         <input type="text" placeholder="Enter Firstname" name="firstname" id="firstname" required>
-                        <span id="e_firstname"></span>
                         <input type="text" placeholder="Enter Lastname" name="lastname" id="lastname" required>
-                        <span id="e_lastname"></span>
                         <input type="email" placeholder="Enter Email" name="email" id="email" required>
-                        <span id="e_email"></span>
                         <input type="password" placeholder="Enter Password" name="psw" id="password" required>
-                        <span id="e_password"></span>
+                        <div id="errors"></div>
                         <button type="submit" class="signupbtn" id="submit">Sign Up</button><br>
                         <a href="login.html">I already have an account?</a>
                     </div>
-                </form>
+                </form>                
             </div>
         </div>
     </div>
@@ -58,7 +55,7 @@
         <p><small>dwabuluka</small></p>
     </div>
 </footer>                 
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/signup.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/signup.js"></script>
 </body>
 </html>

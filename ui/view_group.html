@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Compose Mail - epicmail</title>
+    <title>Inbox - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
-    <meta charset="utf-8"/>
 </head>
-<body>
-<div class="wrapper">
+<body onload="readMail()">
+<div class="wrapper" >
     <nav class="top-navigation" id="myTopnav">
         <div class="container">
             <div class="nav-bar-right">
@@ -25,38 +24,41 @@
     </nav>
 </div>
 <div class="container">
-        <div class="row">
+        <div class="row content">
             <div class="admin-column-one">
                 <a href="create.html" class="tablinks">Create Mail</a>
                 <a href="admin.html" class="tablinks">Inbox</a>
                 <a href="sent.html" class="tablinks">Sent Mail</a>
                 <a href="creategroup.html" class="tablinks">Create Group</a>
                 <a href="groups.html" class="tablinks">View Groups</a>
+                <a href="view_group.html" class="tablinks">Group Details</a>
                 <a href="add_member.html" class="tablinks">Add Group Member</a>
                 <a href="group_message.html" class="tablinks">Create Group Message</a>
             </div>
             <div class="admin-column-two">
                 <div class="tab-folder">
-                        <div id="tab2" class="tab-content">
-                            <h3>Create Mail</h3>
-                            <form action="" method="post">
-                                <div>
-                                    <label for="email">Send to:</label>
-                                    <input type="email" id="address" name="user_mail">
-                                </div>
-                                <div>
-                                    <label for="sub">Subject:</label>
-                                    <input type="text" id="subject" name="user_message">
-                                </div>
-                                <div>
-                                    <label for="message">Message:</label>
-                                    <textarea type="text" id="message" name="user_message"></textarea>
-                                </div>
-                                <div>
-                                    <div id="errors"></div>
-                                    <button type="submit" id="submit">Send</button>
-                                </div>
-                            </form>
+                        <div id="tab1" class="tab-content">
+                            <div class="compose-row11">
+                                <div>From: </div>
+                                <div id="from"></div>
+            
+                            </div>
+                            <div class="compose-row2">
+                                <div><b>To:</b> </div>
+                                <div id="to"></div>
+            
+                            </div>
+                            <div class="compose-row3">
+            
+                                <div><b>Subject:</b> </div>
+                                <div id="subject"></div>
+                            </div>
+            
+                            <div class="compose-message">
+            
+                                <div><b>Message:</b> </div>
+                                <div id="message"></div>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -68,6 +70,6 @@
     </div>
 </footer>                 
 <script src="js/custom.js"></script>
-<script src="js/create_mail.js"></script>
+<script src="js/get_one.js"></script>
 </body>
 </html>

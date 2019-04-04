@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard - epicmail</title>
+    <title>Inbox - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
 </head>
-<body>
-<div class="wrapper">
+<body onload="getInbox()">
+<div class="wrapper" >
     <nav class="top-navigation" id="myTopnav">
         <div class="container">
             <div class="nav-bar-right">
@@ -28,74 +28,17 @@
             <div class="admin-column-one">
                 <a href="create.html" class="tablinks">Create Mail</a>
                 <a href="admin.html" class="tablinks">Inbox</a>
-                <a href="draft.html" class="tablinks">Drafts</a>
+                <a href="sent.html" class="tablinks">Sent Mail</a>
+                <a href="creategroup.html" class="tablinks">Create Group</a>
+                <a href="groups.html" class="tablinks">View Groups</a>
+                <a href="add_member.html" class="tablinks">Add Group Member</a>
+                <a href="group_message.html" class="tablinks">Create Group Message</a>
             </div>
             <div class="admin-column-two">
                 <div class="tab-folder">
                         <div id="tab1" class="tab-content">
                             <h3>Inbox</h3>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
-                            </div>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
-                            </div>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
-                            </div>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
-                            </div>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
-                            </div>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
-                            </div>
-                            <div class="inbox">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                                    Dolore quam quis culpa earum? Exercitationem, voluptatum ex! 
-                                    Cumque ipsa distinctio quod dolores enim iure error labore impedit 
-                                    repellat sint? Velit, numquam?</p>
-                                <div class="inbox-footer">
-                                    <a href="">Read</a><a href="">Archive</a><a href="">Delete</a>
-                                </div>
+                            <div id="inboxing">
                             </div>
                         </div>
                     </div>
@@ -107,6 +50,8 @@
         <p><small>dwabuluka</small></p>
     </div>
 </footer>                 
-<script src="assets/js/custom.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/delete_mail.js"></script>
 </body>
 </html>

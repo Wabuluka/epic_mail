@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Compose Mail - epicmail</title>
+    <title>Dashboard - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
-    <meta charset="utf-8"/>
 </head>
 <body>
 <div class="wrapper">
@@ -38,19 +38,19 @@
             <div class="admin-column-two">
                 <div class="tab-folder">
                         <div id="tab2" class="tab-content">
-                            <h3>Create Mail</h3>
+                            <h3>Create Mail for group:</h3>
                             <form action="" method="post">
                                 <div>
-                                    <label for="email">Send to:</label>
-                                    <input type="email" id="address" name="user_mail">
+                                    <label for="group_name">Group Name:</label>
+                                    <input type="text" id="group_name" name="group_name">
                                 </div>
                                 <div>
-                                    <label for="sub">Subject:</label>
-                                    <input type="text" id="subject" name="user_message">
+                                    <label for="subject">Subject:</label>
+                                    <input type="text" id="subject" name="subject">
                                 </div>
                                 <div>
                                     <label for="message">Message:</label>
-                                    <textarea type="text" id="message" name="user_message"></textarea>
+                                    <textarea type="text" id="message" name="message"></textarea>
                                 </div>
                                 <div>
                                     <div id="errors"></div>
@@ -66,8 +66,8 @@
     <div class="container">
         <p><small>dwabuluka</small></p>
     </div>
-</footer>                 
+</footer>                
 <script src="js/custom.js"></script>
-<script src="js/create_mail.js"></script>
+<script src="js/create_group_msg.js"></script>
 </body>
 </html>
