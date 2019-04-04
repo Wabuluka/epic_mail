@@ -13,10 +13,10 @@ from flasgger import swag_from
 user_blueprint = Blueprint('user', __name__)
 
 
-@user_blueprint.route('/auth/signup', methods=['POST'])   
+@user_blueprint.route('/auth/signup', methods=['POST'])
 @swag_from('../apidocs/index.yml', methods=['POST'])
 def signup_user():
-    data = request.get_json()    
+    data = request.get_json()
     user = User(
             firstname=data['firstname'],
             lastname = data['lastname'],
@@ -42,7 +42,7 @@ def signup_user():
     access_token =create_access_token(identity=user_email)
     return jsonify(
         {
-            "status": 201, 
+            "status": 201,
             "message": "You have successfully created an account",
             "data": new_user,
             "token": access_token
@@ -55,7 +55,7 @@ def login_user():
     data = request.get_json()
     email=data['email']
     password=data['password']
-    
+
     check_email= User.get_user_by_email(email)
     if not check_email:
         return jsonify({
