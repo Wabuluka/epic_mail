@@ -1,0 +1,51 @@
+This enpoint is for adding a user to a group
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This the information that needed to create a mail in a group
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "group_id"
+        - "member"
+      properties:
+        group_id:
+          type: "string"
+          example: "http://127.0.0.1:5000/api/v2/groups/1/users"
+        member:
+          type: "int"
+          example: "1"
+        
+responses:
+  201:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        data:
+          type: string
+          enum:
+            - [
+                {
+                  "status":201,
+                  "message":"You have added a new member to the group"
+                }
+              ]
+  203:
+    description: Unable to add a new user to a group
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+            - [
+                {
+                  "status":203,
+                  "message":"We were not able to add a user to your group"
+                }
+            ]

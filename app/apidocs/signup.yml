@@ -1,0 +1,29 @@
+This enpoint is for Creating an account with epicmail
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This is the new user information provided for signup
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "email"
+        - "firstname"
+        - "lastname"
+        - "password"
+      properties:
+        email:
+          type: "string"
+          example: "dwabuluka@gmail.com"
+        firstname:
+          type: "string"
+          example: "Davies"
+        lastname:
+          type: "string"
+          example: "Wabuluka"
+        password:
+          type: "string"
+          example: "Wabuluka@123"

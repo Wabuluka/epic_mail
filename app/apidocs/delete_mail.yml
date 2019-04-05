@@ -1,0 +1,49 @@
+This enpoint is for deleting a mail
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This the information needed to delete mail
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "url"
+      properties:
+        url:
+          type: "string"
+          example: "http://127.0.0.1:5000/api/v2/groups/2"
+
+responses:
+  200:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          enum:
+            - [
+                {
+                  "status":200,
+                  "message":"Message has been successfully deleted"
+                }
+              ]
+
+  400:
+    description: Error in case for not being able to delete a group
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+            - [
+                {
+                  "status":404,
+                  "message":"Message was not found"
+                }
+              ]
+

@@ -1,0 +1,48 @@
+This enpoint is for deleting a user from a group they belong
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This the information needed to delete a user from a group
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "url"
+      properties:
+        url:
+          type: "string"
+          example: "http://127.0.0.1:5000/api/v2/groups/1/users/1"
+
+responses:
+  200:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          enum:
+            - [
+                {
+                  "status":"200",
+                  "message":"You have deleted a member from your group successfully"
+                }
+              ]
+
+  404:
+    description: Error in case for not being able to delete a group
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+            - [
+                {
+                  "status":"404",
+                  "message":"User specified was not found"
+                }
+              ]

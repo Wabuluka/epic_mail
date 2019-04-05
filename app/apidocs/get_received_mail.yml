@@ -1,0 +1,38 @@
+This enpoint is for getting mail received
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This the information for getting mail received
+    required: true
+    schema:
+      type: object
+      required:
+        - "url"
+      properties:
+        url:
+          type: "string"
+          example: "http://127.0.0.1:5000/api/v2/messages/received"
+
+responses:
+  201:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        data:
+          type: string
+          enum:
+            - [
+                {
+                    "address": 1,
+                    "createdby": 1,
+                    "createdon": "Sun, 31 Mar 2019 00:27:31 GMT",
+                    "message": "I had taken long with out seeing you so i decided to message you to see if we can schedule a meet up",
+                    "message_id": 1,
+                    "parentmessageid": 0,
+                    "status": "sent",
+                    "subject": "Message from Kenneth"
+                }
+              ]

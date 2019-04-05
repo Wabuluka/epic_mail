@@ -1,0 +1,70 @@
+This enpoint is for Creating an account with epicmail
+---
+tags:
+  - EPIC MAIL
+parameters:
+  - name: body
+    description: This is the new user information provided for signup
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "email"
+        - "firstname"
+        - "lastname"
+        - "password"
+      properties:
+        email:
+          type: "string"
+          example: "dwabuluka@gmail.com"
+        firstname:
+          type: "string"
+          example: "Davies"
+        lastname:
+          type: "string"
+          example: "Wabuluka"
+        password:
+          type: "string"
+          example: "Wabuluka@123"
+
+responses:
+  201:
+    description: After submitting the request above the following should be returned
+    schema:
+      type: object
+      properties:
+        data:
+          type: string
+          enum:
+            - [
+                {
+                "data": {
+                    "email": "dwabuluka@gmail.com",
+                    "firstname": "Davies",
+                    "lastname": "Wabuluka",
+                    "password": "Wabuluka@123",
+                    "registered_on": "Sat, 30 Mar 2019 12:00:16 GMT",
+                    "user_id": 1
+                },
+                "message": "You have successfully created an account",
+                "status": 201,
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTM5NDcyMTYs
+                Im5iZiI6MTU1Mzk0NzIxNiwianRpIjoiZDU1OWM5NjctYzE3MC00NzdmLTgwM2EtYmZlOTlkY
+                mI5OGJlIiwiZXhwIjoxNTUzOTQ4MTE2LCJpZGVudGl0eSI6eyJ1c2VyX2lkIjoxfSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.zVVGeq50YfnFg5Lr4Wk7gqenS4wRXlOi01T59AItM5M"
+                }
+              ]
+  409:
+    description: When the user with email being submitted already exists
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+            - [
+                {
+                  "status":409,
+                  "message":"User already exists"
+                }
+              ]

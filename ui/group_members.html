@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
 </head>
-<body onload="getInbox()">
+<body onload="getGroups()">
 <div class="wrapper" >
     <nav class="top-navigation" id="myTopnav">
         <div class="container">
@@ -29,15 +29,15 @@
                 <a href="create.html" class="tablinks">Create Mail</a>
                 <a href="admin.html" class="tablinks">Inbox</a>
                 <a href="sent.html" class="tablinks">Sent Mail</a>
-                <a href="groups.html" class="tablinks">View Your Groups</a>
-                <!-- <a href="groups.html" class="tablinks">View Groups</a>
+                <a href="creategroup.html" class="tablinks">Create Group</a>
+                <a href="groups.html" class="tablinks">View Groups</a>
                 <a href="add_member.html" class="tablinks">Add Group Member</a>
-                <a href="group_message.html" class="tablinks">Create Group Message</a> -->
+                <a href="group_message.html" class="tablinks">Create Group Message</a>
             </div>
             <div class="admin-column-two">
                 <div class="tab-folder">
                         <div id="tab1" class="tab-content">
-                            <h3>Inbox</h3>
+                            <h3>Groups You Created</h3>
                             <div id="inboxing">
                             </div>
                         </div>
@@ -51,7 +51,7 @@
     </div>
 </footer>                 
 <script src="js/custom.js"></script>
-<script src="js/admin.js"></script>
-<script src="js/delete_mail.js"></script>
+<script src="js/group_members.js"></script>
+<!-- <script src="js/delete_mail.js"></script> -->
 </body>
 </html>
