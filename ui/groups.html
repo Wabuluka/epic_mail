@@ -12,8 +12,7 @@
     <nav class="top-navigation" id="myTopnav">
         <div class="container">
             <div class="nav-bar-right">
-                <a href="about.html">About</a>
-                <a href="login.html">Logout</a>
+                <a href="" onclick="logOut()">Logout</a>
                 <a href="javascript:void(0);" class="mobile" onclick="myFunction()">
                     <span></span>
                     <span></span>
@@ -28,16 +27,26 @@
             <div class="admin-column-one">
                 <a href="create.html" class="tablinks">Create Mail</a>
                 <a href="admin.html" class="tablinks">Back Inbox</a>
-                <!-- <a href="sent.html" class="tablinks">Sent Mail</a>
-                <a href="creategroup.html" class="tablinks">Create Group</a> -->
                 <a href="groups.html" class="tablinks">View Groups</a>
-                <!-- <a href="view_group.html" class="tablinks">Group Details</a> -->
-                <!-- <a href="add_member.html" class="tablinks">Add Group Member</a>
-                <a href="group_message.html" class="tablinks">Create Group Message</a> -->
             </div>
             <div class="admin-column-two">
                 <div class="tab-folder">
                         <div id="tab1" class="tab-content">
+                            <h3>Create Group</h3>
+                            <form action="" method="post">
+                                <div>
+                                    <input type="text" id="group_name" name="group_name" placeholder="Group Name">
+                                </div>
+                                <div>
+                                    <input type="text" id="role" name="group_role" placeholder="Role of the group">
+                                </div>
+                                <div>
+                                    <button type="submit" id="submit">Create Group</button>
+                                </div>
+                                <div>
+                                    <span id="m_error"></span>
+                                </div>
+                            </form>
                             <h3>Groups You Created</h3>
                             <div id="inboxing">
                             </div>
@@ -50,9 +59,9 @@
     <div class="container">
         <p><small>dwabuluka</small></p>
     </div>
-</footer>                 
+</footer>
+<script src="js/create_group.js"></script>                 
 <script src="js/custom.js"></script>
 <script src="js/groups.js"></script>
-<!-- <script src="js/delete_mail.js"></script> -->
 </body>
 </html>

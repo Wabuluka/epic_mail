@@ -1,9 +1,8 @@
 function getInbox(){
     let token=localStorage.getItem('token');
     let output = "";
-    fetch("https://epicmailwabuluka.herokuapp.com/api/v2/messages/received",{
+    fetch("http://127.0.0.1:5000/api/v2/messages/received",{
         method:'GET',
-        // cache:'no-cache',
         headers:{
             Authorization:`Bearer ${token}`
         }
@@ -11,6 +10,7 @@ function getInbox(){
     .then((response) => response.json())
     .then((data) => { 
         console.log(data)
+        output = "Seems like you have not received any mails yet"
         let received = data.data
         output=
             `

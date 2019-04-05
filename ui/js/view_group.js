@@ -8,12 +8,11 @@ window.onload = function(){
     let message_id = url.searchParams.get('id')
     getGroupMembers(message_id)
     addMember(message_id)
-    // deleteUser(message_id)
 }
 
 function getGroupMembers(id){
     token=localStorage.getItem('token')
-    fetch(`https://epicmailwabuluka.herokuapp.com/api/v2/groups/members/${id}`,{
+    fetch(`http://127.0.0.1:5000/api/v2/groups/members/${id}`,{
         method: 'GET',
         headers:{
             Authorization:`Bearer ${token}`
@@ -26,22 +25,16 @@ function getGroupMembers(id){
             `
             <table style="width:100%">
             <tr>
-                <th>ID</th>
                 <th>Subject</th>
                 <th>Date Received</th>
                 <th>Actions</th>
             </tr>`;
-            received.forEach(inbox => {
-                // console.log('id', message_id)
-                
+            received.forEach(inbox => {                
                 output +=`
-                
                     <tr>
-                        <td id="member_id">${inbox.member_id}</td>
                         <td>${inbox.member}</td>
                         <td>${inbox.createdon}</td>
-                        <td><button onclick="deleteUser('${id}', ${inbox.member_id})">Delete</button></td>
-                        
+                        <td><button onclick="deleteUser('${id}', ${inbox.member_id})">Delete</button></td>                       
                     </tr>`;
             });
             output +='</table>';
@@ -56,7 +49,7 @@ let data={
     'group_name': message_id,
     'member':member
 };
-fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/users/members",{
+fetch("http://127.0.0.1:5000/api/v2/groups/users/members",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',
@@ -68,8 +61,9 @@ fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/users/members",{
     .then((response) => response.json())
     .then(function(data){
         if(data['message']==='You have added a new member to the group'){
-            window.location.reload;
-            console.log("success")
+            document.getElementById('errors').innerText=data.message;
+            document.getElementById('errors').style.color="green";
+            return false
         }
     });
 
@@ -79,10 +73,7 @@ function deleteUser(id, number){
     token=localStorage.getItem('token')
     console.log('group_name', id)
     console.log('number', number)
-    // let member_identification = getGroupMembers.received['member_id'];
-    // let member_identification = document.getElementById("member_id")
-    // console.log('id', member_identification)
-    fetch(`https://epicmailwabuluka.herokuapp.com/api/v2/groups/${id}/users/${number}`,{
+    fetch(`http://127.0.0.1:5000/api/v2/groups/${id}/users/${number}`,{
         method: 'DELETE',
         headers:{
             Authorization:`Bearer ${token}`

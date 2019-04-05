@@ -8,6 +8,7 @@ function registerUser(e){
     let lastname=document.getElementById('lastname').value;
     let email=document.getElementById('email').value;
     let password=document.getElementById('password').value;
+    let password_2=document.getElementById('password_2').value;
 
     if (firstname == ''){
         document.getElementById('errors').innerText = "You have not provided your first name.";
@@ -28,6 +29,11 @@ function registerUser(e){
         document.getElementById('errors').style.color="red";
         return false
     }
+    else if(password_2 !== password){
+        document.getElementById('errors').innerText="Passwords are not matching";
+        document.getElementById('errors').style.color="red";
+        return false
+    }
 
     let data={
         "firstname":firstname,
@@ -35,7 +41,7 @@ function registerUser(e){
         "email":email,
         "password":password
     };
-    fetch("https://epicmailwabuluka.herokuapp.com/api/v2/auth/signup",{
+    fetch("http://127.0.0.1:5000/api/v2/auth/signup",{
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',

@@ -15,7 +15,7 @@ let data={
     role:role,
     createdby:createdby
 };
-fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups",{
+fetch("http://127.0.0.1:5000/api/v2/groups",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',
@@ -28,6 +28,9 @@ fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups",{
     .then(function(data){
         document.getElementById('m_error').innerHTML=data['errors'];
         if(data['message']==='You have successfully created a new group'){
+            document.getElementById('m_error').innerHTML=data['message'];
+            window.location.replace('groups.html');
+        }else if (data['message'] === "Group name already taken"){
             document.getElementById('m_error').innerHTML=data['message'];
             window.location.replace('groups.html');
         }

@@ -19,7 +19,7 @@ let data={
     sender:sender,
     status:status
 };
-fetch("https://epicmailwabuluka.herokuapp.com/api/v2/messages",{
+fetch("http://127.0.0.1:5000/api/v2/messages",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',

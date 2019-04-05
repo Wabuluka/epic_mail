@@ -9,7 +9,7 @@ let data={
     'group_name':group_name,
     'member':member
 };
-fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/users/members",{
+fetch("http://127.0.0.1:5000/api/v2/groups/users/members",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',
@@ -21,8 +21,24 @@ fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/users/members",{
     .then((response) => response.json())
     .then(function(data){
         if(data['message']==='You have added a new member to the group'){
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="green";
             window.location.replace('admin.html');
-            console.log("success")
+        }
+        else if (data['message'] === "The user you are trying to add does not exist in the system"){
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="red";
+            return false
+        }
+        else if (data["message"] === "The member you are trying to add into the group already exists"){
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="red";
+            return false
+        }
+        else if (data["message"] === "You can not add a member to a group you did not create"){
+            document.getElementById('errors').innerHTML=data.message;
+            document.getElementById('errors').style.color="red";
+            return false
         }
     });
 

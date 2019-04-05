@@ -21,3 +21,8 @@ function myFunction(){
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " w3-red";
   }
+
+  function logOut(){
+    localStorage.removeItem("token");
+    window.location="login.html";
+  }

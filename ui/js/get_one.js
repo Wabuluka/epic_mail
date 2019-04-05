@@ -6,7 +6,7 @@ window.onload = function(){
 }
 function readMail(id){
     token=localStorage.getItem('token')
-    fetch(`https://epicmailwabuluka.herokuapp.com/api/v2/messages/${id}`,{
+    fetch(`http://127.0.0.1:5000/api/v2/messages/${id}`,{
         method: 'GET',
         headers:{
             Authorization:`Bearer ${token}`

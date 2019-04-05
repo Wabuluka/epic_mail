@@ -1,9 +1,8 @@
 function getGroups(){
     let token=localStorage.getItem('token');
     let output = "";
-    fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/all",{
+    fetch("http://127.0.0.1:5000/api/v2/groups/all",{
         method:'GET',
-        // cache:'no-cache',
         headers:{
             Authorization:`Bearer ${token}`
         }
