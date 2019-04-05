@@ -1,8 +1,3 @@
-let inbox = document.getElementById('inbox');
-inbox.addEventListener('click', getInbox);
-
-
-// let current_user=localStorage.getItem('email');
 function getInbox(){
     let token=localStorage.getItem('token');
     let output = "";
@@ -17,28 +12,30 @@ function getInbox(){
     .then((data) => { 
         console.log(data)
         let received = data.data
-        received.forEach(inbox => {
-            console.log(received)
-            output=`<div id="tab3" class="tab-content">
+        output=
+            `
             <table style="width:100%">
             <tr>
-                <th>Message ID</th>
                 <th>Subject</th>
                 <th>Date Received</th>
-                <th>Status</th>
+                <th>From</th>
+                <th>Actions</th>
             </tr>`;
+        received.forEach(inbox => {
+            console.log(received)
+            
             output +=`
             
                 <tr>
-                    <td>${inbox.message_id}</td>
-                    <td><a href="#">${inbox.subject}</a></td>
+                    <td><a href="/get_one.html?id=${inbox.message_id}">${inbox.subject}</a></td>
                     <td>${inbox.createdon}</td>
-                    <td>${inbox.status}</td>
+                    <td>${inbox.createdby}</td>
+                    <td><a href="#" onclick="deleteMail(${inbox.message_id})">Delete</a></td>
+                    
                 </tr>
-                </table>
-            </div>
             `;
         });
+        output+=`</table>`;
         document.getElementById('inboxing').innerHTML = output;
     }).catch(error =>{
         console.log(error)

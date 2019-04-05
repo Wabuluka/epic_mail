@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dashboard - epicmail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/custom.css">
 </head>
 <body>
 <div class="wrapper">
@@ -30,9 +30,10 @@
                 <a href="create.html" class="tablinks">Create Mail</a>
                 <a href="admin.html" class="tablinks">Inbox</a>
                 <a href="sent.html" class="tablinks">Sent Mail</a>
-                <a href="create_group.html" class="tablinks">Create New Group</a>
-                <a href="add_member.html" class="tablinks">Add Member to Group</a>
-                <a href="create_group_msg.html" class="tablinks">Create Group Message</a>
+                <a href="creategroup.html" class="tablinks">Create Group</a>
+                <a href="groups.html" class="tablinks">View Groups</a>
+                <a href="add_member.html" class="tablinks">Add Group Member</a>
+                <a href="group_message.html" class="tablinks">Create Group Message</a>
             </div>
             <div class="admin-column-two">
                 <div class="tab-folder">
@@ -44,8 +45,8 @@
                                     <input type="text" id="group_name" name="group_name">
                                 </div>
                                 <div>
-                                    <label for="sub">Member Email:</label>
-                                    <input type="email" id="member" name="group_role">
+                                    <label for="sub">Group Role:</label>
+                                    <textarea type="text" id="role" name="group_role"></textarea>
                                 </div>
                                 <div>
                                     <button type="submit" id="submit">Create Group</button>
@@ -65,7 +66,7 @@
         <p><small>dwabuluka</small></p>
     </div>
 </footer>                 
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/add_member.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/create_group.js"></script>
 </body>
 </html>

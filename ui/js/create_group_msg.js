@@ -4,8 +4,8 @@ let token=localStorage.getItem('token');
 let current_user=localStorage.getItem('email');
 create_group_msg.addEventListener('click', CreateGroupMsg)
 
-function CreateGroupMsg(){
-    // e.preventDefault();
+function CreateGroupMsg(e){
+    e.preventDefault();
     let group_name=document.getElementById('group_name').value;
     let subject=document.getElementById('subject').value;
     let message=document.getElementById('message').value;

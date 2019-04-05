@@ -29,9 +29,8 @@ fetch("http://127.0.0.1:5000/api/v2/groups",{
         document.getElementById('m_error').innerHTML=data['errors'];
         if(data['message']==='You have successfully created a new group'){
             document.getElementById('m_error').innerHTML=data['message'];
-            window.location.replace('/create.html');
+            window.location.replace('groups.html');
         }
     });
 
 }
-

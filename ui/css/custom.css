@@ -184,7 +184,28 @@ footer {
 .tab-folder > :last-child, .tab-folder > .tab-content:target {
     display: block;
 }
-
+/* tables */
+table {
+    width:100%;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table#t01 tr:nth-child(even) {
+    background-color: #eee;
+  }
+  table#t01 tr:nth-child(odd) {
+   background-color: #fff;
+  }
+  table#t01 th {
+    background-color: black;
+    color: white;
+  }
 
   /* when the screen gets less than 600px in width hide the main navigation links except the right dashes */
 @media screen and (max-width: 600px) {

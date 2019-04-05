@@ -1,11 +1,11 @@
-let create_message = document.getElementById('create');
+let create_message = document.getElementById('submit');
 create_message.addEventListener('click', CreateMessage);
 
-function CreateMessage(){
+function CreateMessage(e){
     let token=localStorage.getItem('token');
     let current_user=localStorage.getItem('email');
 
-    // e.preventDefault();
+    e.preventDefault();
     let address=document.getElementById('address').value;
     let subject=document.getElementById('subject').value;
     let message=document.getElementById('message').value;
@@ -21,7 +21,6 @@ let data={
 };
 fetch("http://127.0.0.1:5000/api/v2/messages",{
         method:'POST',
-        cache:'no-cache',
         headers:{
             'Application':'application/json, text/plain,*/*',
             'Content_type':'application/json',
@@ -39,11 +38,9 @@ fetch("http://127.0.0.1:5000/api/v2/messages",{
         }
         else if(data['message']==='Message has been created successfully'){
             document.getElementById('errors').innerHTML=data['message'];
-            window.location.replace('/admin.html');
+            window.location.replace('admin.html');
         }
         
     });
 
 }
-
-
