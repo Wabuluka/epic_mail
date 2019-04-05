@@ -9,7 +9,7 @@ window.onclick = function(){
 function deleteMail(id){
     token=localStorage.getItem('token')
 
-    fetch(`http://127.0.0.1:5000/api/v2/messages/${id}`,{
+    fetch(`https://epicmailwabuluka.herokuapp.com/api/v2/messages/${id}`,{
         method: 'DELETE',
         headers:{
             Authorization:`Bearer ${token}`
@@ -17,21 +17,7 @@ function deleteMail(id){
     }).then((response) => response.json())
     .then((data) =>{
         if (data.status === 200){
-            // var one_mail = data.data;
             console.log("deleted")
-            // let result = ``;
-            // let email = ``;
-
-            // document.getElementById("from").innerHTML = `${one_mail.createdby}`;
-            // document.getElementById("to").innerHTML = `${one_mail.address}`;
-            // document.getElementById("message").innerHTML = `${one_mail.message}`;
-            // document.getElementById("subject").innerHTML = `${one_mail.subject}`;
-
-            // one_mail.forEach((mail) => {
-            
-
-            // document.
-            // });
         }
     });
 }

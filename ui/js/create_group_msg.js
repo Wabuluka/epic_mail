@@ -17,7 +17,7 @@ let data={
     'message':message,
     'status':status
 };
-fetch("http://127.0.0.1:5000/api/v2/groups/messages",{
+fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/messages",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',

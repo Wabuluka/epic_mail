@@ -13,7 +13,7 @@ window.onload = function(){
 
 function getGroupMembers(id){
     token=localStorage.getItem('token')
-    fetch(`http://127.0.0.1:5000/api/v2/groups/members/${id}`,{
+    fetch(`https://epicmailwabuluka.herokuapp.com/api/v2/groups/members/${id}`,{
         method: 'GET',
         headers:{
             Authorization:`Bearer ${token}`
@@ -56,7 +56,7 @@ let data={
     'group_name': message_id,
     'member':member
 };
-fetch("http://127.0.0.1:5000/api/v2/groups/users/members",{
+fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/users/members",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',
@@ -82,7 +82,7 @@ function deleteUser(id, number){
     // let member_identification = getGroupMembers.received['member_id'];
     // let member_identification = document.getElementById("member_id")
     // console.log('id', member_identification)
-    fetch(`http://127.0.0.1:5000/api/v2/groups/${id}/users/${number}`,{
+    fetch(`https://epicmailwabuluka.herokuapp.com/api/v2/groups/${id}/users/${number}`,{
         method: 'DELETE',
         headers:{
             Authorization:`Bearer ${token}`

@@ -15,7 +15,7 @@ let data={
     role:role,
     createdby:createdby
 };
-fetch("http://127.0.0.1:5000/api/v2/groups",{
+fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',
