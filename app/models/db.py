@@ -36,19 +36,19 @@ class DatabaseConnection():
             """
                 CREATE TABLE IF NOT EXISTS groupmembers(
                     member_id serial primary key,
-                    group_id INT REFERENCES groups(group_id),
-                    member INT REFERENCES users(user_id),
+                    group_id VARCHAR REFERENCES groups(group_name),
+                    member VARCHAR REFERENCES users(email),
                     createdon TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
                 )
             """,
             """CREATE TABLE IF NOT EXISTS groupmails(
                 id serial primary key,
-                group_id INT REFERENCES groups(group_id),
+                group_name VARCHAR REFERENCES groups(group_name),
                 createdon TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 subject varchar(100) not null,
                 message text not null,
                 status varchar(10) not null,
-                createdby INT REFERENCES users(user_id)
+                createdby VARCHAR REFERENCES users(email)
                 )"""
         )
         try:

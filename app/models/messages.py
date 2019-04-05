@@ -39,8 +39,8 @@ class Message:
         return cur.fetchone()
 
     @staticmethod
-    def delete_message(id):
-        query = "DELETE FROM messages WHERE message_id = {}".format(id)
+    def delete_message(id, address):
+        query = "DELETE FROM messages WHERE message_id = {} AND address ='{}'".format(id, address)
         cur.execute(query)
 
     @staticmethod
@@ -57,14 +57,14 @@ class Message:
     @staticmethod
     def get_unread_messages(email):
         """Get unread messages"""
-        query="SELECT * FROM messages WHERE createdby='{}' AND status='sent';".format(email)
+        query="SELECT * FROM messages WHERE address='{}' AND status='sent';".format(email)
         cur.execute(query)
         return cur.fetchall()
 
     @staticmethod
     def get_all_messages_sent_by_a_user(email):
         """Get all user sent messages"""
-        query="SELECT * FROM messages WHERE createdby={};".format(email)
+        query="SELECT * FROM messages WHERE createdby='{}';".format(email)
         cur.execute(query)
         return cur.fetchall()
 
