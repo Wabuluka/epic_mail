@@ -22,7 +22,7 @@ function loginUser(e){
         "email":email,
         "password":password
     };
-    fetch("http://127.0.0.1:5000/api/v2/auth/login", {
+    fetch("https://epicmailwabuluka.herokuapp.com/api/v2/auth/login", {
         method: 'POST',
         headers: {
             'Access': 'application/json, text/plain, */*',

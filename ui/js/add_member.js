@@ -9,7 +9,7 @@ let data={
     'group_name':group_name,
     'member':member
 };
-fetch("http://127.0.0.1:5000/api/v2/groups/users/members",{
+fetch("https://epicmailwabuluka.herokuapp.com/api/v2/groups/users/members",{
         method:'POST',
         headers:{
             'Application':'application/json, text/plain,*/*',
