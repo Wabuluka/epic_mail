@@ -59,10 +59,11 @@ class Group:
 
 
     @staticmethod
-    def delete_user(group_id, member):
+    def delete_user(group_id, member_id):
         """Remove a member of a group"""
-        query="DELETE FROM groupmembers WHERE group_id= {} AND member = {}".format(group_id, member)
+        query="DELETE FROM groupmembers WHERE group_id= '{}' AND member_id = {}".format(group_id, member_id)
         cur.execute(query)
+        return cur.fetchone()
 
     @staticmethod
     def create_group_message(group_name,subject,message,status,createdby):
@@ -83,4 +84,4 @@ class Group:
     def get_all_members_in_group(group_id):
         query = "SELECT * FROM groupmembers WHERE group_id='{}'".format(group_id)
         cur.execute(query)
-        cur.fetchall()
+        return cur.fetchall()

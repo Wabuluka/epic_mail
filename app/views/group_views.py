@@ -102,7 +102,7 @@ def add_user_group():
         "message":"We were not able to add a user to your group"
     }),203
 
-@groups_blueprint.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
+@groups_blueprint.route('/groups/<string:group_id>/users/<int:user_id>', methods=['DELETE'])
 @jwt_required
 @swag_from('../apidocs/delete_group_user.yml', methods=['DELETE'])
 def delete_user_from_group(group_id, user_id):
@@ -161,13 +161,13 @@ def get_all_groups():
 @groups_blueprint.route('groups/members/<string:name>', methods=['GET'])
 @jwt_required
 def get_all_members(name):
-    # result=Group.get_all_members_in_group(name)
-    # if result:
+    result=Group.get_all_members_in_group(name)
+    if result:
+        return jsonify({
+            "status":200,
+            "data": result
+        })
     return jsonify({
-        "status":200,
-        "data": Group.get_all_members_in_group(name)
+        "status":404,
+        "message": "Feels like there are no members in this group"
     })
-    # return jsonify({
-    #     "status":404,
-    #     "message": "Feels like there are no members in this group"
-    # })
